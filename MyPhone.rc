@@ -1,0 +1,1483 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&О MyPhone..."
+    IDS_PROGTITLE           "MyPhone"
+    IDS_STARTCHANNELTX      "Отправляем %1 данные %2."
+    IDS_STARTCHANNELRX      "Получаем %1 данные %2."
+    IDS_STOPCHANNELTX       "Прекратили отправлять %1 данные."
+    IDS_STOPCHANNELRX       "Прекратили получать %1 данные."
+    IDS_STOPCONNECT         "Соединение с %1 завершено."
+    IDS_TALKING             "Разгавариваем с %1"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_IP         "localhost"
+    ID_INDICATOR_TIME       "Готов..."
+    IDS_NONETSTR            " - ВНИМАНИЕ! Сеть не обнаружена"
+    IDS_PROXINETSTR         " - ВНИМАНИЕ! Возможно, вы находитесь за NAT/Proxy"
+    IDS_UMSGSTR             "Ваши текстовые сообщения...(Ctrl+Enter для отправки)"
+    IDS_UIPSTR              "Ваш  IP: %s"
+    IDS_MPREADYSTR          "%1 готов..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DSTCLEAREDSTR       "История звонков очищена..."
+    IDS_USAIDMSGSTR         "> Вы сказали: ""%1"""
+    IDS_CALLINGSTR          " звонит."
+    IDS_CALLING1STR         "%1 звонит"
+    IDS_STATFSTR            "Время: %s   Отправлено: %s(%s/s)   Получено: %s(%s/s)   Задержка: %d ms"
+    IDS_STATSSTR            "В:%s  О:%s(%s/s)  П:%s(%s/s)  З:%d ms"
+    IDS_RINGSTR             "Вызываем %1..."
+    IDS_RING1STR            "Вызываем %s..."
+    IDS_REPLMSGSTR          "< %2"
+    IDS_MPREADY1STR         "%1 готов к приему..."
+    IDS_ERRLSNSTR           "ОШИБКА! %1 не готов к приему, интерфейс: %2."
+    IDS_CALLIGNORSTR        "Звонок от: %1 проигнорирован в %2"
+    IDS_TALKINGSTR          "Разговариваем с: "
+    IDS_CALLBUSYSTR         "У %1 занято..."
+    IDS_ERRVDEVSTR          "ОШИБКА! Не могу открыть устройство: %1; канал: %2"
+    IDS_GKUNREGSTR          "Покидаем Гейткипер: %1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GKSRCHSTR           "Ищем Гейткипер.... Пожалуйста, подождите!"
+    IDS_GKREGSTR            "Успешно зарегистрировались на Гейткипере: %1"
+    IDS_ERRSTR              "ОШИБКА! %1"
+    IDS_GKERRPORTSTR        "Гейткипер отказал в слушающем порте."
+    IDS_GKERRALIASSTR       "Ваш псевдоним уже зарегистрирован на Гейткипере."
+    IDS_GKERRSECSTR         "Гейткипер отказал из соображений безопасности, проверьте пароль."
+    IDS_GKERRTRNSTR         "Ошибка соединения с Гейткипером."
+    IDS_GKERRUNSTR          "Гейткипер отказал в регистрации с кодом %d."
+    IDS_GKERRFINDSTR        "ОШИБКА! Не могу найти Гейткипер с ID %1 на %2."
+    IDS_GKERRFIND1STR       "ОШИБКА! Не могу найти Гейткипер на %1."
+    IDS_GKERRFIND2STR       "ОШИБКА! Не могу найти Гейткипер с ID %1 в сети."
+    IDS_GKERRFIND3STR       "ОШИБКА! Не могу найти Гейткипер в сети."
+    IDS_GKERRFIND4STR       "Гейткипер не найден."
+    IDS_CONNECTIONSTR       "Соединение"
+    IDS_CALLTOSTR           "Звонить (хост/IP/п.):"
+    IDS_CALLBSTR            "&Звонить"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ANSWERBSTR          "&Ответить"
+    IDS_REFUSEBSTR          "О&тказать"
+    IDS_HANGUPBSTR          "От&менить"
+    IDS_AUDIOSTR            "Звук"
+    IDS_MSGSSTR             "Сообщения"
+    IDS_VIDEOSTR            "Видео"
+    IDS_LOCALSTR            "Локальный: %s"
+    IDS_REMOTESTR           "Удаленный: %s"
+    IDS_MSETTINGSSTR        "&Установки"
+    IDS_MABOUTSTR           "&?"
+    IDS_STRPROGNAMEVER      "%s\tВерсия %s"
+    IDS_STRPROGDESC         "Aудио&Видео клиент для IP телефонии, основаный на библиотеках проекта OpenH323 (www.openh323.org)"
+    IDS_ABOUTSTR            "&О программе..."
+    IDS_OUTDEVSTR           "Устр. вывода:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEVSTR            "Устр. ввода:"
+    IDS_BUFFSTR             "Буфер:"
+    IDS_JITSTR              "Джитер:"
+    IDS_SLSTR               "Детектор тишины"
+    IDS_CADECSSTR           "Выбор кодеков"
+    IDS_CSUPSTR             "Вверх"
+    IDS_CSENBLSTR           "Вкл."
+    IDS_CSDOWNSTR           "Вниз"
+    IDS_USERSTR             "Пользователь"
+    IDS_UNAMESTR            "Имя пользователя:"
+    IDS_NETWORKSTR          "Сеть"
+    IDS_BANDSTR             "Тип сети:"
+    IDS_KBSSTR              "Кб/с"
+    IDS_IPTSTR              "Тип IP сервиса:"
+    IDS_AANSWERSTR          "Авто-Ответ"
+    IDS_DTMFSTRSTR          "DTMF как строку"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_D242STR             "Не туннелировать H245"
+    IDS_DFSTARTSTR          "Отключить Fast-Start"
+    IDS_RINGFSTR            "Звук вызова:"
+    IDS_GKUSESTR            "Использ. Гейткипер"
+    IDS_GKRECSTR            "Гейткипер обязателен"
+    IDS_GKLOCSTR            "Искать Гейткипер"
+    IDS_GKAUTOLOCSTR        "Авто поиск"
+    IDS_GKHOSTLOCSTR        "Искать по Хосту:"
+    IDS_GKIDLOCSTR          "Искать по ID:"
+    IDS_GKPASSSTR           "ГК Пароль:"
+    IDS_UALIASESSTR         "Псевдонимы пользователя"
+    IDS_UALIASSTR           "Псевдоним:"
+    IDS_UALADDSTR           "Доб."
+    IDS_UALDELSTR           "Убр."
+    IDS_HVIDEOSTR           "Автоматич. прятать видео панель"
+    IDS_HLOGSTR             "Не отображать системные сообщения"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HSTATSTR            "Не отображать статистику соединения"
+    IDS_ADRAUTOADDSTR       "Запоминать адрес звонящего"
+    IDS_SYSTRAYMINSTR       "Минимизировать в system tray"
+    IDS_LANGSTR             "Язык (треб. перезап.):"
+    IDS_COLSTR              "Цвета"
+    IDS_COLMSGSTR           "Сообщения:"
+    IDS_COLAUDIOSTR         "Индикаторы:"
+    IDS_COLLSTR             "Ваши:"
+    IDS_COLRSTR             "Чужие:"
+    IDS_COLASTR             "Звук:"
+    IDS_COLSSTR             "Тишина:"
+    IDS_DEVSTR              "Устр.:"
+    IDS_DEVCHSTR            "Кнл.:"
+    IDS_VSENDSTR            "Отправлять  видео"
+    IDS_VRCVDSTR            "Получать видео"
+    IDS_VLOCSTR             "Показывать локал. видео"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_VIEWSTR             "Настройки видео"
+    IDS_LVFLIPSTR           "В-Зерк. локал."
+    IDS_LHFLIPSTR           "Г-Зерк. локал."
+    IDS_RVFLIPSTR           "В-Зерк. вход."
+    IDS_RHFLIPSTR           "Г-Зерк. удал."
+    IDS_QTYSTR              "Кач-во:"
+    IDS_MBPSSTR             "kbit/s in:"
+    IDS_GENERALSTR          "Основные"
+    IDS_GKSTR               "Гейткипер"
+    IDS_IFACESTR            "Интерфейс"
+    IDS_SETTINGSSTR         "Установки"
+    IDS_MHELPSTR            "&Помощь (Web)"
+    IDS_PROGTRANSSTR        " "
+    IDS_RTPBSTR             "RTP порт мин.:"
+    IDS_RTPMSTR             "RTP порт макс.:"
+    IDS_NATRSTR             "NAT роутер:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOCISTR             "Локал. и-фейсы:"
+    IDS_ABOOKSTR            "&Адреса"
+    IDS_ABOOKTITLESTR       "Записная Книга"
+    IDS_ABOOKADRNAMESTR     "Имя:"
+    IDS_ABOOKADRADRSTR      "Адрес:"
+    IDS_ABOOKADRRINGSTR     "Звонок:"
+    IDS_SBOOKCALLSTR        "Выбрать"
+    IDS_ABOOKPBTITLESTR     "Телефоны"
+    IDS_ABOOKADRADDSTR      "Новый"
+    IDS_ABOOKADRDELSTR      "Удалить"
+    IDS_ABOOKINTITLESTR     "Входящие"
+    IDS_ABOOKOUTTITLESTR    "Исходящие"
+    IDS_ABOOKMSDTITLESTR    "Упущенные"
+    IDS_ABOOKADRSTORESTR    "Сохранить"
+    IDS_ABOOKADRCLRSTR      "Очистить"
+    IDS_LOCFLIPSTR          "В-Зерк. исход."
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+24                      RT_MANIFEST             "XPface.xml"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDA_OHICON              ICON                    "res\\ohico.ico"
+IDI_MICMUTEICON         ICON                    "res\\MicIcon32soff.ico"
+IDI_MICICON             ICON                    "res\\MicIcon32son.ico"
+IDI_SNDICON             ICON                    "res\\SndIcon32son.ico"
+IDI_SNDMUTEICON         ICON                    "res\\SndIcon32soff.ico"
+IDI_USERSICON           ICON                    "res\\UsersIcon16.ico"
+IDI_CALLICON            ICON                    "res\\CallIcon16.ico"
+IDI_CALLANSWICON        ICON                    "res\\CallAnsIcon16.ico"
+IDI_CALLHANGICON        ICON                    "res\\CallHangIcon16.ico"
+IDI_CALLREFICON         ICON                    "res\\CallRefIcon16.ico"
+IDI_TESTICON            ICON                    "res\\testicon.ico"
+IDI_LARRICON            ICON                    "res\\LArrIcon.ico"
+IDI_RARRICON            ICON                    "res\\RArrIcon.ico"
+IDI_PHONE16             ICON                    "res\\Phone16.ico"
+IDI_COMP16              ICON                    "res\\Comp16.ico"
+IDI_PHONE16IN           ICON                    "res\\Phone16in.ico"
+IDI_PHONE16OUT          ICON                    "res\\Phone16out.ico"
+IDI_PHONE16MSD          ICON                    "res\\Phone16msd.ico"
+IDI_PHONE16UP           ICON                    "res\\Phone16up.ico"
+IDI_PNPSHOW             ICON                    "res\\pnpshow.ico"
+IDI_PNPHIDE             ICON                    "res\\pnphide.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 122
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "About..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         131,IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_REALSIZEIMAGE,5,5,67,112
+    CTEXT           "MyPhone 3.0.3",IDC_STITLE,73,5,157,8,SS_NOPREFIX
+    CTEXT           "-=MaGGuS=- 2003",IDC_SCPRT,85,95,128,8
+    DEFPUSHBUTTON   "OK",IDOK,216,103,14,14,BS_CENTER | BS_VCENTER | BS_FLAT | WS_GROUP
+    PUSHBUTTON      "http://myphone.sourceforge.net/",IDC_BHOMEPAGE,78,15,152,12,BS_CENTER | BS_VCENTER | BS_FLAT
+    EDITTEXT        IDC_DESK,78,28,152,66,ES_MULTILINE | ES_READONLY | NOT WS_BORDER | WS_VSCROLL,WS_EX_STATICEDGE
+END
+
+IDD_MYPHONE_DIALOG DIALOGEX 0, 0, 371, 230
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_STATICEDGE | WS_EX_APPWINDOW
+CAPTION "MyPhone"
+MENU IDR_MMAIN
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_DESTINATION,79,11,108,147,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Call",IDC_CALL,9,44,40,15,WS_DISABLED
+    CTEXT           "",IDC_CALLER,8,30,221,11,SS_SUNKEN
+    PUSHBUTTON      "&Refuse",IDC_REFUSE,188,44,40,15,WS_DISABLED
+    LTEXT           "Call to (host/IP/alias):",IDC_CALLSTATIC,6,13,71,8,0,WS_EX_RIGHT
+    PUSHBUTTON      "<",IDC_BVIDPAN,345,220,21,9,BS_ICON
+    GROUPBOX        "Audio",IDC_AUDIOSTATIC,5,64,227,26
+    CONTROL         "Slider1",IDC_SLIDER_VOLUME,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,35,73,83,12
+    CONTROL         "Slider1",IDC_SLIDER_MIC,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,146,73,83,12
+    EDITTEXT        IDC_USERMSG,8,163,221,50,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_DISABLED | WS_VSCROLL
+    GROUPBOX        "Connection",IDC_CONSTATIC,5,1,227,62
+    GROUPBOX        "Messages",IDC_MSGSTATIC,5,90,227,126
+    CONTROL         "",IDC_STATUS,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_BORDER | WS_VSCROLL | WS_TABSTOP,8,99,221,62
+    GROUPBOX        "Video",IDC_VIDEOSTATIC,237,1,129,215
+    CONTROL         145,IDC_VIDEOBITMAP,"Static",SS_BITMAP | SS_REALSIZEIMAGE | WS_BORDER,242,20,119,90
+    CONTROL         145,IDC_VIDEOBITMAP1,"Static",SS_BITMAP | SS_REALSIZEIMAGE | WS_BORDER,242,121,119,90
+    LTEXT           "",IDC_SLVIDEO,242,112,120,9,SS_SUNKEN
+    LTEXT           "",IDC_SRVIDEO,242,11,120,9,SS_SUNKEN
+    CONTROL         "",IDC_MICIND,"Static",SS_BLACKFRAME,150,70,75,3
+    CONTROL         "",IDC_VOLIND,"Static",SS_BLACKFRAME,39,70,75,3
+    LTEXT           "Ready...",IDC_SMYSTAT,5,220,335,9,SS_SUNKEN
+    CONTROL         "Check1",IDC_BMIC,"Button",BS_AUTOCHECKBOX | BS_ICON | BS_PUSHLIKE | WS_TABSTOP,132,73,12,12,WS_EX_STATICEDGE
+    CONTROL         "Check2",IDC_BSND,"Button",BS_AUTOCHECKBOX | BS_ICON | BS_PUSHLIKE | WS_TABSTOP,22,73,12,12,WS_EX_STATICEDGE
+    PUSHBUTTON      "&Book",IDC_ABOOK,188,10,40,15
+    CONTROL         "hide PnP",IDC_HIDEPNPCHECK,"Button",BS_AUTOCHECKBOX | BS_ICON | BS_PUSHLIKE | WS_TABSTOP,242,201,12,12
+END
+
+IDD_AUDIOPAGE DIALOGEX 0, 0, 215, 163
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Audio"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Output Device:",IDC_OUTDEVSTATIC,5,8,59,8
+    COMBOBOX        IDC_PLAYBACK_COMBO,70,5,140,56,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Input Device:",IDC_INDEVSTATIC,5,22,59,8
+    COMBOBOX        IDC_RECORDING_COMBO,70,21,140,58,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Buffers",IDC_BUFFSTATIC,5,42,23,8
+    EDITTEXT        IDC_EDIT_BUFFERS,32,39,17,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN_BUFFERCOUNT,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,50,39,11,14
+    LTEXT           "Jitter",IDC_JITSTATIC,64,42,28,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_JITTER_EDIT,95,39,17,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "ms",IDC_STATIC,114,42,10,8
+    CONTROL         "Silence detection",IDC_SILENCE_DETECT_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,148,73,10
+    GROUPBOX        "Codec Selection",IDC_CODECSSTATIC,5,75,205,83
+    LISTBOX         IDC_CODEC_SELECTION_LIST,10,67,150,68,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Up",IDC_CS_UP_BUTTON,164,67,39,10
+    CONTROL         "Enabled",IDC_CS_ENABLED_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,164,98,39,8
+    PUSHBUTTON      "Down",IDC_CS_DOWN_BUTTON,164,125,39,10
+    CONTROL         "AEC enabled",IDC_AEC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,139,73,10
+    LTEXT           "AGC level",IDC_AGCSTATIC,147,42,36,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_AGC_EDIT,185,39,25,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_GENERALPAGE DIALOGEX 0, 0, 213, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "General"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "User",IDC_USERSTATIC,5,2,203,29
+    LTEXT           "User Alias:",IDC_UNAMESTATIC,11,13,71,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_USERNAME_EDIT,86,11,79,12,ES_AUTOHSCROLL
+    CONTROL         "Auto-Answer",IDC_AUTO_ANSWER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,37,110,8
+    CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,51,112,8
+    CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,66,114,8
+    CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,80,115,8
+    LTEXT           "Ring Sound File:",IDC_RINGSTATIC,5,128,53,8
+    EDITTEXT        IDC_RING_FILE_EDIT,60,127,119,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_RING_FILE_BROWSE,179,127,14,13
+    PUSHBUTTON      ">",IDC_RING_FILE_PLAY,194,127,14,13
+END
+
+IDD_VIDEOPAGE DIALOGEX 0, 0, 213, 167
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Video"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Device:",IDC_VDEVSTATIC,5,7,26,8
+    COMBOBOX        IDC_RECORDING_COMBO,33,5,122,92,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Codec Selection",IDC_CSSTATIC,5,112,203,52
+    LISTBOX         IDC_CODEC_SELECTION_LIST,10,121,152,37,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Up",IDC_CS_UP_BUTTON,164,121,39,10
+    CONTROL         "Enabled",IDC_CS_ENABLED_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,164,136,39,8
+    PUSHBUTTON      "Down",IDC_CS_DOWN_BUTTON,164,148,39,10
+    CONTROL         "Auto send video",IDC_CHECK_SEND_VIDEO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,20,79,10
+    CONTROL         "Auto receive video",IDC_CHECK_RECEIVE_VIDEO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,32,80,10
+    CONTROL         "Show local video",IDC_CHECK_LOCALVIDEO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,43,78,10
+    GROUPBOX        "View adjustments",IDC_VIEWSTATIC,86,18,122,34
+    CONTROL         "V-Flip local",IDC_LVFLIP,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,164,25,35,8
+    CONTROL         "V-Flip remote",IDC_RVFLIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,40,57,8
+    EDITTEXT        IDC_VIDEOQTY,32,96,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Quality:",IDC_QTYSTATIC,6,98,24,8
+    EDITTEXT        IDC_VIDEOINMAXBPS,162,56,35,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kbit/s in:",IDC_BPSSTATIC,133,58,28,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_VIDEOFPS,174,96,23,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "fps:",IDC_FPSSTATIC,151,98,21,8,0,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_VQTYSPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS,52,95,11,14
+    CONTROL         "Spin1",IDC_VINBPSSPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS,197,55,11,14
+    CONTROL         "Spin1",IDC_VFPSSPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS,197,95,11,14
+    COMBOBOX        IDC_VIDDEVSRC_COMBO,173,5,35,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Src:",IDC_VDEVCHSTATIC,158,7,13,8
+    RTEXT           "Size in:",IDC_VSIZE,6,58,38,8
+    COMBOBOX        IDC_VIDEOINSIZE,47,56,75,72,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "V-Flip camera",IDC_LOCFLIPCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,27,65,8
+    RTEXT           "Size out:",IDC_VSIZE2,6,81,38,8
+    COMBOBOX        IDC_VIDEOOUTSIZE,47,79,75,72,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_VIDEOOUTMAXBPS,162,80,35,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kbit/s out:",IDC_BPSSTATIC2,128,81,33,8,0,WS_EX_RIGHT
+    CONTROL         "",IDC_VOUTBPSSPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS,197,78,11,14
+    GROUPBOX        "Transmit parameters",IDC_CSSTATIC2,5,69,203,43
+END
+
+IDD_GUIPAGE DIALOGEX 0, 0, 213, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Interface"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Colors",IDC_COLSTATIC,5,98,203,42
+    LTEXT           "Chat messages:",IDC_COLMSGSTATIC,10,110,61,8
+    CONTROL         "",IDC_INMSGCLR,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,179,109,24,11
+    LTEXT           "Yours:",IDC_COLLSTATIC,69,110,35,8,0,WS_EX_RIGHT
+    CONTROL         "",IDC_OUTMSGCLR,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,108,109,24,11
+    LTEXT           "Audio indicators:",IDC_COLAUDIOSTATIC,10,123,65,8
+    CONTROL         "",IDC_ACTINDCLR,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,108,122,24,11
+    LTEXT           "Others:",IDC_COLRSTATIC,134,111,41,8,0,WS_EX_RIGHT
+    CONTROL         "",IDC_SLNDINDCLR,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,179,122,24,11
+    LTEXT           "Signal:",IDC_COLASTATIC,69,123,35,8,0,WS_EX_RIGHT
+    LTEXT           "Silent:",IDC_COLSSTATIC,135,123,40,8,0,WS_EX_RIGHT
+    CONTROL         "Auto show/hide Video panel",IDC_HIDEVIDEOCHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,5,203,10
+    CONTROL         "Hide connection log messages",IDC_HIDESYSMSG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,16,203,10
+    CONTROL         "Hide connection statistics",IDC_HIDESTAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,27,203,10
+    CONTROL         "Auto add caller address to destinations",IDC_AUTOADDADDRESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,38,203,10
+    CONTROL         "Start minimized",IDC_SYSTRAYMIN,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,5,49,195,10
+    LTEXT           "Language (needs restart):",IDC_LANGSTATIC,5,62,82,8
+    COMBOBOX        IDC_LANGCOMBO,94,61,80,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_GKPAGE DIALOGEX 0, 0, 213, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Gatekeeper"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Locate Gatekeeper",IDC_GKSTATIC,5,14,203,58
+    CONTROL         "Use Gatekeeper",IDC_GKUSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,3,95,10
+    CONTROL         "Require Gatekeeper",IDC_GKREC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,3,93,10
+    CONTROL         "Discover Automatically",IDC_GKAUTODISC,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,25,91,10
+    CONTROL         "IP Address:",IDC_GKHOSTDISC,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,10,40,75,10
+    CONTROL         "Discover by ID:",IDC_GKIDDISC,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,10,55,74,10
+    EDITTEXT        IDC_GKID,88,55,117,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GKHOST,88,39,117,12,ES_AUTOHSCROLL
+    GROUPBOX        "User Aliases",IDC_UALIASESSTATIC,5,92,203,48
+    CONTROL         "List1",IDC_ALIASESLIST,"SysListView32",LVS_SMALLICON | LVS_SINGLESEL | LVS_AUTOARRANGE | WS_BORDER | WS_TABSTOP,119,101,85,35
+    PUSHBUTTON      "Add",IDC_ALSADDBUTTON,51,115,20,10
+    PUSHBUTTON      "Del",IDC_ALSDELLBUTTON,96,115,20,10
+    EDITTEXT        IDC_ALIASEDIT,51,101,65,12,ES_AUTOHSCROLL
+    LTEXT           "Alias:",IDC_UALEASSTATIC,8,102,41,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_GKPASSEDIT,141,23,63,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "GK Pass.:",IDC_GKPASSSTATIC,99,25,40,8,0,WS_EX_RIGHT
+END
+
+IDD_NETWORKPAGE DIALOGEX 0, 0, 213, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Network"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Bandwidth:",IDC_BANDSTATIC,5,8,42,8
+    COMBOBOX        IDC_BANDWIDTH_COMBO,51,5,79,80,CBS_DROPDOWNLIST | WS_TABSTOP
+    EDITTEXT        IDC_BANDWIDTH_EDIT,139,5,40,12,ES_AUTOHSCROLL
+    LTEXT           "Kb/s",IDC_KBSSTATIC,183,8,22,8
+    LTEXT           "IP TOS:",IDC_IPTSTATIC,5,76,60,8
+    EDITTEXT        IDC_IP_TYPE_EDIT,70,74,40,12,ES_AUTOHSCROLL
+    LTEXT           "(hex)",IDC_STATIC,113,76,16,8
+    LTEXT           "RTP port base:",IDC_RTPBSTATIC,5,25,54,8
+    EDITTEXT        IDC_RTPBEDIT,62,23,40,12,ES_AUTOHSCROLL
+    LTEXT           "RTP port max.:",IDC_RTPMSTATIC,108,25,57,8
+    EDITTEXT        IDC_RTPMEDIT,167,23,40,12,ES_AUTOHSCROLL
+    LTEXT           "NAT router:",IDC_NATRSTATIC,6,42,60,8
+    EDITTEXT        IDC_NATREDIT,70,40,78,12,ES_AUTOHSCROLL
+    LTEXT           "Local interfaces:",IDC_LOCISTATIC,5,59,60,8
+    EDITTEXT        IDC_LOCALIEDIT,70,57,78,12,ES_AUTOHSCROLL
+END
+
+IDD_BOOKDIALOG DIALOGEX 0, 0, 170, 230
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Address Book"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Select Address",IDOK,55,212,60,15
+    LTEXT           "Name:",IDC_ABOOKADRNAMESTATIC,3,163,39,8,NOT WS_GROUP
+    EDITTEXT        IDC_ABOOKADRNAMEEDIT,43,161,109,12,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "|",IDC_ABOOKADRNAMEEDITBUTTON,154,161,13,44
+    LTEXT           "Address:",IDC_ABOOKADRADRSTATIC,3,179,40,8,NOT WS_GROUP
+    EDITTEXT        IDC_ABOOKADRADREDIT,43,177,109,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Cust. Ring:",IDC_ABOOKADRRINGSTATIC,3,195,40,8,NOT WS_GROUP
+    EDITTEXT        IDC_ABOOKADRRINGEDIT,43,193,109,12,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_BOOK_ADDR DIALOG  0, 0, 155, 130
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+CAPTION "PhoneBook"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ABOOKSRCHEDIT,0,3,155,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add new",IDC_ABOOKADRADDBUTTON,15,115,50,13
+    PUSHBUTTON      "Delete old",IDC_ABOOKADRDELBUTTON,90,115,50,13,WS_DISABLED
+    CONTROL         "List1",IDC_ABOOKADRLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,0,16,155,97
+END
+
+IDD_BOOK_OUT DIALOG  0, 0, 155, 130
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+CAPTION "Outgoing"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Add to Book",IDC_ABOOKADROUTBUTTON,15,115,50,13,WS_DISABLED
+    PUSHBUTTON      "Clear List",IDC_ABOOKOUTCLRBUTTON,90,115,50,13,WS_DISABLED
+    CONTROL         "List1",IDC_ABOOKOUTLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,0,3,155,110
+END
+
+IDD_BOOK_IN DIALOG  0, 0, 155, 130
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+CAPTION "Incoming"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Add to Book",IDC_ABOOKINADDBUTTON,15,115,50,13,WS_DISABLED
+    PUSHBUTTON      "Clear List",IDC_ABOOKINCLRBUTTON,90,115,50,13,WS_DISABLED
+    CONTROL         "List1",IDC_ABOOKINLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,0,3,155,110
+END
+
+IDD_BOOK_MISSED DIALOG  0, 0, 155, 130
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+CAPTION "Missed"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Add to Book",IDC_ABOOKMSDADDBUTTON,15,115,50,13,WS_DISABLED
+    PUSHBUTTON      "Clear List",IDC_ABOOKMSDCLRBUTTON,90,115,50,13,WS_DISABLED
+    CONTROL         "List1",IDC_ABOOKMSDLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,0,3,155,110
+END
+
+IDD_VIDEOBOX DIALOGEX 0, 0, 243, 215
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_STATICEDGE | WS_EX_APPWINDOW
+CAPTION "Video"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP | NOT WS_VISIBLE,0,0,117,89
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,2,0,0
+ PRODUCTVERSION 0,2,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Voice&Video H323 Softphone"
+            VALUE "CompanyName", "H323plus "
+            VALUE "FileDescription", "MyPhone3 H323plus"
+            VALUE "FileVersion", "0, 1, 0, 0"
+            VALUE "InternalName", "MyPhone3"
+            VALUE "LegalCopyright", "Copyright (C) 2008 ISVO (Asia) Pte Ltd."
+            VALUE "LegalTrademarks", "Mozila Public License"
+            VALUE "OriginalFilename", "MyPhone.EXE"
+            VALUE "PrivateBuild", "0"
+            VALUE "ProductName", "MyPhone3"
+            VALUE "ProductVersion", "0, 1, 0, 0"
+            VALUE "SpecialBuild", "0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 230
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_MYPHONE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 366
+        TOPMARGIN, 1
+        HORZGUIDE, 216
+    END
+
+    IDD_AUDIOPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 210
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_GENERALPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 208
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_VIDEOPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 208
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 162
+    END
+
+    IDD_GUIPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 208
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_GKPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 208
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_NETWORKPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 208
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_BOOKDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 167
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 227
+        HORZGUIDE, 156
+    END
+
+    IDD_BOOK_ADDR, DIALOG
+    BEGIN
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_BOOK_OUT, DIALOG
+    BEGIN
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_BOOK_IN, DIALOG
+    BEGIN
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_BOOK_MISSED, DIALOG
+    BEGIN
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_VIDEOBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 209
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MMAIN MENU 
+BEGIN
+    MENUITEM "&Settings",                   ID_MSETTINGS
+    POPUP "&?", HELP
+    BEGIN
+        MENUITEM "&Help",                       ID_MHELP
+        MENUITEM SEPARATOR
+        MENUITEM "&About...",                   ID_MABOUT
+    END
+END
+
+IDR_LOGMENU MENU 
+BEGIN
+    POPUP "LOGMENU"
+    BEGIN
+        MENUITEM "Select All",                  ID_LOGMENU_SELECTALL
+        MENUITEM "Copy",                        ID_LOGMENU_COPY
+        MENUITEM SEPARATOR
+        POPUP "Clear Log"
+        BEGIN
+            MENUITEM "Ok",                          ID_LOGMENU_CLEARLOG_OK
+        END
+    END
+END
+
+IDR_DESTMENU MENU 
+BEGIN
+    POPUP "DESTMENU"
+    BEGIN
+        MENUITEM "Copy",                        ID_DESTMENU_COPY
+        MENUITEM "Paste",                       ID_DESTMENU_PASTE
+        MENUITEM SEPARATOR
+        POPUP "Clear Addresses"
+        BEGIN
+            MENUITEM "All",                         ID_DESTMENU_CLEARADDRESSES_ALL
+        END
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_MYLOGOBMP           BITMAP                  "res\\MyOpenH.bmp"
+IDB_VIDEOBITMAP         BITMAP                  "res\\ohlogoqcif.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MYPHONE_DIALOG DLGINIT
+BEGIN
+    IDC_DESTINATION, 0x403, 22, 0
+0x3231, 0x2e37, 0x2e30, 0x2e30, 0x2031, 0x202d, 0x6f6c, 0x6163, 0x686c, 
+0x736f, 0x0074, 
+    0
+END
+
+IDD_VIDEOPAGE DLGINIT
+BEGIN
+    IDC_VIDDEVSRC_COMBO, 0x403, 4, 0
+0x6e41, 0x0079, 
+    IDC_VIDDEVSRC_COMBO, 0x403, 2, 0
+0x0041, 
+    IDC_VIDDEVSRC_COMBO, 0x403, 2, 0
+0x0042, 
+    IDC_VIDDEVSRC_COMBO, 0x403, 2, 0
+0x0043, 
+    IDC_VIDEOINSIZE, 0x403, 17, 0
+0x4351, 0x4649, 0x2820, 0x3731, 0x2036, 0x2078, 0x3431, 0x2934, "\000" 
+    IDC_VIDEOINSIZE, 0x403, 16, 0
+0x5651, 0x4147, 0x3328, 0x3032, 0x7820, 0x3220, 0x3034, 0x0029, 
+    IDC_VIDEOINSIZE, 0x403, 16, 0
+0x4943, 0x2046, 0x3328, 0x3235, 0x7820, 0x3220, 0x3838, 0x0029, 
+    IDC_VIDEOINSIZE, 0x403, 15, 0
+0x4756, 0x2841, 0x3436, 0x2030, 0x2078, 0x3834, 0x2930, "\000" 
+    IDC_VIDEOINSIZE, 0x403, 16, 0
+0x4334, 0x4649, 0x3728, 0x3430, 0x7820, 0x3520, 0x3637, 0x0029, 
+    IDC_VIDEOINSIZE, 0x403, 16, 0
+0x5653, 0x4147, 0x3828, 0x3030, 0x7820, 0x3620, 0x3030, 0x0029, 
+    IDC_VIDEOINSIZE, 0x403, 17, 0
+0x5658, 0x4147, 0x3128, 0x3230, 0x2034, 0x2078, 0x3637, 0x2938, "\000" 
+    IDC_VIDEOINSIZE, 0x403, 18, 0
+0x5853, 0x4147, 0x3128, 0x3832, 0x2030, 0x2078, 0x3031, 0x3432, 0x0029, 
+
+    IDC_VIDEOINSIZE, 0x403, 19, 0
+0x3631, 0x4943, 0x2846, 0x3431, 0x3830, 0x7820, 0x3120, 0x3531, 0x2932, 
+"\000" 
+    IDC_VIDEOINSIZE, 0x403, 18, 0
+0x5855, 0x4147, 0x3128, 0x3036, 0x2030, 0x2078, 0x3231, 0x3030, 0x0029, 
+
+    IDC_VIDEOOUTSIZE, 0x403, 17, 0
+0x4351, 0x4649, 0x2820, 0x3731, 0x2036, 0x2078, 0x3431, 0x2934, "\000" 
+    IDC_VIDEOOUTSIZE, 0x403, 16, 0
+0x5651, 0x4147, 0x3328, 0x3032, 0x7820, 0x3220, 0x3034, 0x0029, 
+    IDC_VIDEOOUTSIZE, 0x403, 16, 0
+0x4943, 0x2046, 0x3328, 0x3235, 0x7820, 0x3220, 0x3838, 0x0029, 
+    IDC_VIDEOOUTSIZE, 0x403, 15, 0
+0x4756, 0x2841, 0x3436, 0x2030, 0x2078, 0x3834, 0x2930, "\000" 
+    IDC_VIDEOOUTSIZE, 0x403, 16, 0
+0x4334, 0x4649, 0x3728, 0x3430, 0x7820, 0x3520, 0x3637, 0x0029, 
+    IDC_VIDEOOUTSIZE, 0x403, 16, 0
+0x5653, 0x4147, 0x3828, 0x3030, 0x7820, 0x3620, 0x3030, 0x0029, 
+    IDC_VIDEOOUTSIZE, 0x403, 17, 0
+0x5658, 0x4147, 0x3128, 0x3230, 0x2034, 0x2078, 0x3637, 0x2938, "\000" 
+    IDC_VIDEOOUTSIZE, 0x403, 19, 0
+0x4448, 0x3720, 0x3032, 0x3128, 0x3832, 0x2030, 0x2078, 0x3237, 0x2930, 
+"\000" 
+    IDC_VIDEOOUTSIZE, 0x403, 18, 0
+0x5853, 0x4147, 0x3128, 0x3832, 0x2030, 0x2078, 0x3031, 0x3432, 0x0029, 
+
+    IDC_VIDEOOUTSIZE, 0x403, 19, 0
+0x3631, 0x4943, 0x2846, 0x3431, 0x3830, 0x7820, 0x3120, 0x3531, 0x2932, 
+"\000" 
+    IDC_VIDEOOUTSIZE, 0x403, 18, 0
+0x5855, 0x4147, 0x3128, 0x3036, 0x2030, 0x2078, 0x3231, 0x3030, 0x0029, 
+
+    IDC_VIDEOOUTSIZE, 0x403, 21, 0
+0x4448, 0x3120, 0x3830, 0x2830, 0x3931, 0x3032, 0x7820, 0x3120, 0x3830, 
+0x2930, "\000" 
+    0
+END
+
+IDD_GUIPAGE DLGINIT
+BEGIN
+    IDC_LANGCOMBO, 0x403, 14, 0
+0x2d2d, 0x442d, 0x6665, 0x7561, 0x746c, 0x2d2d, 0x002d, 
+    IDC_LANGCOMBO, 0x403, 8, 0
+0x6e45, 0x6c67, 0x7369, 0x0068, 
+    IDC_LANGCOMBO, 0x403, 7, 0
+0x7246, 0x6e65, 0x6863, "\000" 
+    IDC_LANGCOMBO, 0x403, 8, 0
+0x7449, 0x6c61, 0x6169, 0x006e, 
+    IDC_LANGCOMBO, 0x403, 8, 0
+0x7552, 0x7373, 0x6169, 0x006e, 
+    0
+END
+
+IDD_NETWORKPAGE DLGINIT
+BEGIN
+    IDC_BANDWIDTH_COMBO, 0x403, 12, 0
+0x3431, 0x342e, 0x206b, 0x6f6d, 0x6564, 0x006d, 
+    IDC_BANDWIDTH_COMBO, 0x403, 16, 0
+0x3832, 0x382e, 0x2f6b, 0x3635, 0x206b, 0x6f6d, 0x6564, 0x006d, 
+    IDC_BANDWIDTH_COMBO, 0x403, 9, 0
+0x3436, 0x206b, 0x5349, 0x4e44, "\000" 
+    IDC_BANDWIDTH_COMBO, 0x403, 10, 0
+0x3231, 0x6b38, 0x4920, 0x4453, 0x004e, 
+    IDC_BANDWIDTH_COMBO, 0x403, 7, 0
+0x3154, 0x442f, 0x4c53, "\000" 
+    IDC_BANDWIDTH_COMBO, 0x403, 4, 0
+0x414c, 0x004e, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About MyPhone..."
+    IDS_PROGTITLE           "MyPhone"
+    IDS_STARTCHANNELTX      "Started sending %1 data %2."
+    IDS_STARTCHANNELRX      "Started receiving %1 data %2."
+    IDS_STOPCHANNELTX       "Stopped sending %1 data."
+    IDS_STOPCHANNELRX       "Stopped receiving %1 data."
+    IDS_STOPCONNECT         "Connection with %1 cleared."
+    IDS_TALKING             "Talking to %1"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_IP         "localhost"
+    ID_INDICATOR_TIME       "Ready..."
+    IDS_NONETSTR            " - WARNING! No network detected"
+    IDS_PROXINETSTR         " - WARNING! You could be behind NAT/Proxy"
+    IDS_UMSGSTR             "Your text messages...(Ctrl+Enter to send)"
+    IDS_UIPSTR              "Your IP: %s"
+    IDS_MPREADYSTR          "%1 is ready..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DSTCLEADEDSTR       "Destinations history cleared..."
+    IDS_USAIDMSGSTR         "> You said: ""%1"""
+    IDS_CALLINGSTR          " is calling."
+    IDS_CALLING1STR         "%1 is calling"
+    IDS_STATFSTR            "In call: %s   Sent: %s(%s/s)   Received: %s(%s/s)   Delay: %d ms"
+    IDS_STATSSTR            "C:%s  S:%s(%s/s)  R:%s(%s/s)  D:%d ms"
+    IDS_RINGSTR             "%1 is ringing..."
+    IDS_RING1STR            "%s is ringing..."
+    IDS_REPLMSGSTR          "< %1 said: ""%2"""
+    IDS_MPREADY1STR         "%1 is ready and listening..."
+    IDS_ERRLSNSTR           "ERROR! %1 could not open listener interface: %2."
+    IDS_CALLIGNORSTR        "Call from: %1 ignored at %2"
+    IDS_TALKINGSTR          "In call with "
+    IDS_CALLBUSYSTR         "User: %1 is busy..."
+    IDS_ERRVDEVSTR          "ERROR! Failed to open video input device: %1; source: %2"
+    IDS_GKUNREGSTR          "Unregistering from Gatekeeper: %1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GKSRCHSTR           "Searching for Gatekeeper.... Please Wait!"
+    IDS_GKREGSTR            "Successfully registered with Gatekeeper: %1"
+    IDS_ERRSTR              "ERROR! %1"
+    IDS_GKERRPORTSTR        "Gatekeeper refused to allow the listening port."
+    IDS_GKERRALIASSTR       "Gatekeeper already has alias registered."
+    IDS_GKERRSECSTR         "Gatekeeper security denial, check password and the PC time and date."
+    IDS_GKERRTRNSTR         "Gatekeeper transport failure."
+    IDS_GKERRUNSTR          "Gatekeeper rejected registration with reason code %d."
+    IDS_GKERRFINDSTR        "ERROR! Could not find a gatekeeper with ID %1 at %2."
+    IDS_GKERRFIND1STR       "ERROR! Could not find a gatekeeper at %1."
+    IDS_GKERRFIND2STR       "ERROR! Could not find a gatekeeper with ID %1 on LAN."
+    IDS_GKERRFIND3STR       "ERROR! Could not find a gatekeeper on LAN."
+    IDS_GKERRFIND4STR       "Gatekeeper not found."
+    IDS_CONNECTIONSTR       "Connection"
+    IDS_CALLTOSTR           "Call to (host/IP/alias):"
+    IDS_CALLBSTR            "&Call"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ANSWERBSTR          "&Answer"
+    IDS_REFUSEBSTR          "&Refuse"
+    IDS_HANGUPBSTR          "&Hang Up"
+    IDS_AUDIOSTR            "Audio"
+    IDS_MSGSSTR             "Messages"
+    IDS_VIDEOSTR            "Video"
+    IDS_LOCALSTR            "Local: %s"
+    IDS_REMOTESTR           "Remote: %s"
+    IDS_MSETTINGSSTR        "&Settings"
+    IDS_MABOUTSTR           "&?"
+    IDS_STRPROGNAMEVER      "%s\tVersion %s"
+    IDS_STRPROGDESC         "Voice&Video H.323 softphone based on H323plus (www.h323plus.org)"
+    IDS_ABOUTSTR            "About..."
+    IDS_OUTDEVSTR           "Output Device:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEVSTR            "Input Device:"
+    IDS_BUFFSTR             "Buffers:"
+    IDS_JITSTR              "Jitter:"
+    IDS_SLSTR               "Silence detection"
+    IDS_CODECSSTR           "Codec Selection"
+    IDS_CSUPSTR             "Up"
+    IDS_CSENBLSTR           "Enabled"
+    IDS_CSDOWNSTR           "Down"
+    IDS_USERSTR             "User"
+    IDS_UNAMESTR            "User Name:"
+    IDS_NETWORKSTR          "Network"
+    IDS_BANDSTR             "Bandwidth:"
+    IDS_KBSSTR              "Kb/s"
+    IDS_IPTSTR              "IP Type Of Service:"
+    IDS_AANSWERSTR          "Auto-Answer"
+    IDS_DTMFSTRSTR          "DTMF as String"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_D242STR             "Disable H245 Tunneling"
+    IDS_DFSTARTSTR          "Disable Fast-Start"
+    IDS_RINGFSTR            "Ring Sound File:"
+    IDS_GKUSESTR            "Use Gatekeeper"
+    IDS_GKRECSTR            "Require Gatekeeper"
+    IDS_GKLOCSTR            "Locate Gatekeeper"
+    IDS_GKAUTOLOCSTR        "Discover Automatically"
+    IDS_GKHOSTLOCSTR        "Discover by Host:"
+    IDS_GKIDLOCSTR          "Discover by ID:"
+    IDS_GKPASSSTR           "GK Pass.:"
+    IDS_UALIASESSTR         "User Aliases"
+    IDS_UALIASSTR           "Alias:"
+    IDS_UALADDSTR           "Add"
+    IDS_UALDELSTR           "Del"
+    IDS_HVIDEOSTR           "Auto show/hide Video panel"
+    IDS_HLOGSTR             "Hide connection log messages"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HSTATSTR            "Hide connection statistics"
+    IDS_ADRAUTOADDSTR       "Auto add caller address to destinations"
+    IDS_SYSTRAYMINSTR       "Minimize to system tray"
+    IDS_LANGSTR             "Language (needs restart):"
+    IDS_COLSTR              "Colors"
+    IDS_COLMSGSTR           "Chat messages:"
+    IDS_COLAUDIOSTR         "Audio indicators:"
+    IDS_COLLSTR             "Yours:"
+    IDS_COLRSTR             "Others:"
+    IDS_COLASTR             "Signal:"
+    IDS_COLSSTR             "Silent:"
+    IDS_DEVSTR              "Device:"
+    IDS_DEVCHSTR            "Src:"
+    IDS_VSENDSTR            "Auto send video"
+    IDS_VRCVDSTR            "Auto receive video"
+    IDS_VLOCSTR             "Show local video"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_VIESSTR             "View adjustments"
+    IDS_LVFLIPSTR           "V-Flip local"
+    IDS_LHFLIPSTR           "H-Flip local"
+    IDS_RVFLIPSTR           "V-Flip remote"
+    IDS_RHFLIPSTR           "H-Flip remote"
+    IDS_QTYSTR              "Quality:"
+    IDS_MBPSSTR             "Max. bps:"
+    IDS_GENERALSTR          "General"
+    IDS_GKSTR               "Gatekeeper"
+    IDS_IFACESTR            "Interface"
+    IDS_SETTINGSSTR         "Settings"
+    IDS_MHELPSTR            "&Help (Web)"
+    IDS_PROGTRANSSTR        " "
+    IDS_RTPBSTR             "RTP port base:"
+    IDS_RTPMSTR             "RTP port max.:"
+    IDS_NATRSTR             "NAT router:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOCISTR             "Local interfaces:"
+    IDS_ABOOKSTR            "&Book"
+    IDS_ABOOKTITLESTR       "Address Book"
+    IDS_ABOOKADRNAMESTR     "Name:"
+    IDS_ABOOKADRADRSTR      "Address:"
+    IDS_SBOOKCALLSTR        "Select Address"
+    IDS_ABOOKPBTITLESTR     "PhoneBook"
+    IDS_ABOOKADRADDSTR      "Add New"
+    IDS_ABOOKADRDELSTR      "Del. Old"
+    IDS_ABOOKINTITLESTR     "Incoming"
+    IDS_ABOOKOUTTITLESTR    "Outgoing"
+    IDS_ABOOKMSDTITLESTR    "Missed"
+    IDS_ABOOKADRSTORESTR    "Store"
+    IDS_ABOOKADRCLRSTR      "Clear list"
+    IDS_LOCFLIPSTR          "Grabber flip"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&A propos de MyPhone"
+    IDS_PROGTITLE           "MyPhone"
+    IDS_STARTCHANNELTX      "DEbut envoi donnEes : %1, %2."
+    IDS_STARTCHANNELRX      "DEbut rEception donnEes : %1, %2."
+    IDS_STOPCHANNELTX       "Fin envoi donnEes %1."
+    IDS_STOPCHANNELRX       "Fin rEception donnEes %1."
+    IDS_STOPCONNECT         "Connexion avec %1 supprimEe."
+    IDS_TALKING             "Conversation avec %1"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_IP         "localhost"
+    ID_INDICATOR_TIME       "PrEt..."
+    IDS_NONETSTR            " - Attention! rEseau absent"
+    IDS_PROXINETSTR         " - Attention! Connexion probable via NAT/Proxy"
+    IDS_UMSGSTR             "Vos messages textes...(Envoyer avec Ctrl+Entrer)"
+    IDS_UIPSTR              "Votre IP: %s"
+    IDS_MPREADYSTR          "%1 est prEt..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DSTCLEADEDSTR       "Historique des destinations effacEe..."
+    IDS_USAIDMSGSTR         "> Vous dItes : ""%1"""
+    IDS_CALLINGSTR          " appelle."
+    IDS_CALLING1STR         "%1 appelle"
+    IDS_STATFSTR            "En appel : %s   EnvoyE : %s(%s/s)   ReAu : %s(%s/s) DElai : %d ms"
+    IDS_STATSSTR            "A:%s  E:%s(%s/s)  R:%s(%s/s)  D:%d ms"
+    IDS_RINGSTR             "%1 sonne..."
+    IDS_RING1STR            "%s sonne..."
+    IDS_REPLMSGSTR          "< %1 dit : ""%2"""
+    IDS_MPREADY1STR         "%1 est prEt et Ecoute..."
+    IDS_ERRLSNSTR           "ERREUR! %1 n'a pas pu ouvrir l'interface d'Ecoute : %2."
+    IDS_CALLIGNORSTR        "Appel de : %1 ignorE au %2"
+    IDS_TALKINGSTR          "En appel avec "
+    IDS_CALLBUSYSTR         "Utilisateur %1 occupE..."
+    IDS_ERRVDEVSTR          "ERREUR! Impossible d'ouvrir l'entrEe vidEo : %1; source : %2"
+    IDS_GKUNREGSTR          "DEsinscription de l'opErateur de contrOle : %1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GKSRCHSTR           "Recherche de l'opErateur de contrOle...."
+    IDS_GKREGSTR            "Inscription OK auprOs de l'opErateur : %1"
+    IDS_ERRSTR              "ERREUR! %1"
+    IDS_GKERRPORTSTR        "L'opErateur de contrOle a refusE le port d'Ecoute."
+    IDS_GKERRALIASSTR       "Alias dEj? inscrit auprOs de l'opErateur de contrOle."
+    IDS_GKERRSECSTR         "AccOs opErateur de contrOle refusE, vErifier donnEes de connexion et date systOme."
+    IDS_GKERRTRNSTR         "Echec de transport avec l'opErateur de contrOle."
+    IDS_GKERRUNSTR          "L'opErateur de contrOle a rejetE l'inscription ; Code erreur %d."
+    IDS_GKERRFINDSTR        "ERREUR! Impossible de trouver l'opErateur de contrOle, ID %1 au %2."
+    IDS_GKERRFIND1STR       "ERREUR! Impossible de trouver l'opErateur de contrOle au %1."
+    IDS_GKERRFIND2STR       "ERREUR! Impossible de trouver l'opErateur de contrOle, ID %1 (LAN)."
+    IDS_GKERRFIND3STR       "ERREUR! Impossible de trouver l'opErateur de contrOle (LAN)."
+    IDS_GKERRFIND4STR       "OpErateur de contrOle introuvable."
+    IDS_CONNECTIONSTR       "Connexion"
+    IDS_CALLTOSTR           "Appel (nom d'hOte/IP/alias):"
+    IDS_CALLBSTR            "&Appel"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ANSWERBSTR          "&REpondre"
+    IDS_REFUSEBSTR          "&Refuser"
+    IDS_HANGUPBSTR          "&Raccrocher"
+    IDS_AUDIOSTR            "Audio"
+    IDS_MSGSSTR             "Messages"
+    IDS_VIDEOSTR            "VidEo"
+    IDS_LOCALSTR            "Locale : %s"
+    IDS_REMOTESTR           "Distant : %s"
+    IDS_MSETTINGSSTR        "&Options"
+    IDS_MABOUTSTR           "&?"
+    IDS_STRPROGNAMEVER      "%s\tVersion %s"
+    IDS_STRPROGDESC         "Application cliente de tElEphonie et de vidEo IP basEe sur OpenH323 (www.openh323.org)"
+    IDS_ABOUTSTR            "A propos..."
+    IDS_OUTDEVSTR           "Sortie :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEVSTR            "EntrEe :"
+    IDS_BUFFSTR             "Tampons :"
+    IDS_JITSTR              "Tremblement :"
+    IDS_SLSTR               "DEtection silence"
+    IDS_CODECSSTR           "SElection codec"
+    IDS_CSUPSTR             "Haut"
+    IDS_CSENBLSTR           "ActivE"
+    IDS_CSDOWNSTR           "Bas"
+    IDS_USERSTR             "Utilisateur"
+    IDS_UNAMESTR            "Nom d'utilisateur :"
+    IDS_NETWORKSTR          "REseau"
+    IDS_BANDSTR             "Bande passante :"
+    IDS_KBSSTR              "Kb/s"
+    IDS_IPTSTR              "Type de Service IP :"
+    IDS_AANSWERSTR          "Auto-REponse"
+    IDS_DTMFSTRSTR          "DTMF en caractOres"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_D242STR             "DEsactiver le tunnelage H245"
+    IDS_DFSTARTSTR          "DEsactiver DEmarrage-Rapide"
+    IDS_RINGFSTR            "Fichier de sonnerie :"
+    IDS_GKUSESTR            "Utiliser un opErateur"
+    IDS_GKRECSTR            "Exiger un opErateur"
+    IDS_GKLOCSTR            "Localiser l'opErateur"
+    IDS_GKAUTOLOCSTR        "DEcouvrir automatiquement"
+    IDS_GKHOSTLOCSTR        "DEcouvrir par nom :"
+    IDS_GKIDLOCSTR          "DEcouvrir par ID :"
+    IDS_GKPASSSTR           "Passe Op. :"
+    IDS_UALIASESSTR         "Aliases utilisateur"
+    IDS_UALIASSTR           "Alias :"
+    IDS_UALADDSTR           "Ajouter"
+    IDS_UALDELSTR           "Supprimer"
+    IDS_HVIDEOSTR           "Montrer/Cacher vidEo automatiquement"
+    IDS_HLOGSTR             "Cacher les traces de connexion"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HSTATSTR            "Cacher les statistiques de connexion"
+    IDS_ADRAUTOADDSTR       "Ajouter l'appelant automatiquement aux destinations"
+    IDS_SYSTRAYMINSTR       "Minimiser vers barre des tAches"
+    IDS_LANGSTR             "Language (dEmarrage obligatoire):"
+    IDS_COLSTR              "Couleurs"
+    IDS_COLMSGSTR           "Messages chat :"
+    IDS_COLAUDIOSTR         "Indicateurs audio:"
+    IDS_COLLSTR             "Les vOtres :"
+    IDS_COLRSTR             "Les autres :"
+    IDS_COLASTR             "Signal :"
+    IDS_COLSSTR             "Silence :"
+    IDS_DEVSTR              "Pilote :"
+    IDS_DEVCHSTR            "Src :"
+    IDS_VSENDSTR            "Envoi vidEo auto"
+    IDS_VRCVDSTR            "REception vidEo auto"
+    IDS_VLOCSTR             "Montrer vidEo locale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_VIESSTR             "Ajustements visuels"
+    IDS_LVFLIPSTR           "Ret-V local"
+    IDS_LHFLIPSTR           "Ret-H local"
+    IDS_RVFLIPSTR           "Ret-V distant"
+    IDS_RHFLIPSTR           "Ret-H distant"
+    IDS_QTYSTR              "QualitE :"
+    IDS_MBPSSTR             "Bps max :"
+    IDS_GENERALSTR          "GEnErale"
+    IDS_GKSTR               "OpErateur de contrOle"
+    IDS_IFACESTR            "Interface"
+    IDS_SETTINGSSTR         "Options"
+    IDS_MHELPSTR            "&Aide (Web)"
+    IDS_PROGTRANSSTR        "* Traduction par Samuel KABAK (www.codeas.net)"
+    IDS_RTPBSTR             "La base des ports RTP :"
+    IDS_RTPMSTR             "Max. ports RTP :"
+    IDS_NATRSTR             "Routeur NAT :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOCISTR             "Interfaces locales :"
+    IDS_ABOOKSTR            "&Book"
+END
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&Info su MyPhone..."
+    IDS_PROGTITLE           "MyPhone"
+    IDS_STARTCHANNELTX      "Parto a spedire %1 dati %2."
+    IDS_STARTCHANNELRX      "Parto a ricevere %1 dati %2."
+    IDS_STOPCHANNELTX       "Smetto di spedire %1 dati."
+    IDS_STOPCHANNELRX       "Smetto di ricevere %1 dati."
+    IDS_STOPCONNECT         "Connessione con %1 chiusa."
+    IDS_TALKING             "Parli con %1"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_IP         "localhost"
+    ID_INDICATOR_TIME       "Pronto..."
+    IDS_NONETSTR            " - ATTENZIONE! Nessuna rete trovata"
+    IDS_PROXINETSTR         " - ATTENZIONE! Puoi essere dietro un NAT/Proxy"
+    IDS_UMSGSTR             "Il tuo messaggio...(Ctrl+Enter per spedire)"
+    IDS_UIPSTR              "Il tuo IP e: %s"
+    IDS_MPREADYSTR          "%1 e pronto..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DSTCLEADEDSTR       "Storia delle destinazioni cancellata..."
+    IDS_USAIDMSGSTR         "> Hai detto: ""%1"""
+    IDS_CALLINGSTR          " sta chiamando."
+    IDS_CALLING1STR         "%1 sta chiamando "
+    IDS_STATFSTR            "In chiamata: %s  Spediti: %s(%s/s) Ricevuti: %s(%s/s) Ritado: %d ms"
+    IDS_STATSSTR            "C:%s  S:%s(%s/s)  R:%s(%s/s)  D:%d ms"
+    IDS_RINGSTR             "%1 sta squillando..."
+    IDS_RING1STR            "%s sta squillando..."
+    IDS_REPLMSGSTR          "< %1 dice: ""%2"""
+    IDS_MPREADY1STR         "%1 e pronto e ascolta..."
+    IDS_ERRLSNSTR           "ERRORE! %1 non posso aprire un listener..."
+    IDS_CALLIGNORSTR        "Chiamata da: %1 ignorata al %2"
+    IDS_TALKINGSTR          "In chiamata con "
+    IDS_CALLBUSYSTR         "Utente: %1 e occupato..."
+    IDS_ERRVDEVSTR          "ERRORE! Apertura fallita del device output video: %1; sorgente: %2"
+    IDS_GKUNREGSTR          "Deregistrazione dal Gatekeeper: %1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GKSRCHSTR           "Sto cercando un Gatekeeper.... Attendere!"
+    IDS_GKREGSTR            "Registrato con Gatekeeper: %1"
+    IDS_ERRSTR              "ERRORE! %1"
+    IDS_GKERRPORTSTR        "Il Gatekeeper no accetta la porta di ascolto."
+    IDS_GKERRALIASSTR       "Il Gatekeeper ha gia un alias registrato."
+    IDS_GKERRSECSTR         "Il Gatekeeper ha rifiutato per sicurezza, controlla password e data/ora del PC."
+    IDS_GKERRTRNSTR         "Gatekeeper fallimento di trasporto."
+    IDS_GKERRUNSTR          "Gatekeeper rifiuta la registrazione con motivo di codice %d."
+    IDS_GKERRFINDSTR        "ERRORE! Non trovo un gatekeeper con ID %1 su %2."
+    IDS_GKERRFIND1STR       "ERRORE! Non trovo un gatekeeper a %1."
+    IDS_GKERRFIND2STR       "ERRORE! Non trovo un gatekeeper con ID %1 sulla LAN."
+    IDS_GKERRFIND3STR       "ERRORE! Non trovo un gatekeeper sulla LAN."
+    IDS_GKERRFIND4STR       "Gatekeeper non trovato."
+    IDS_CONNECTIONSTR       "Connessione"
+    IDS_CALLTOSTR           "Chiamata a (host/als.):"
+    IDS_CALLBSTR            "&Chiamata"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ANSWERBSTR          "&Rispondi"
+    IDS_REFUSEBSTR          "&Rifiuta"
+    IDS_HANGUPBSTR          "&Appendi"
+    IDS_AUDIOSTR            "Audio"
+    IDS_MSGSSTR             "Messaggi"
+    IDS_VIDEOSTR            "Video"
+    IDS_LOCALSTR            "Locale: %s"
+    IDS_REMOTESTR           "Remoto: %s"
+    IDS_MSETTINGSSTR        "&Impostazioni"
+    IDS_MABOUTSTR           "&?"
+    IDS_STRPROGNAMEVER      "%s\tVersione %s"
+    IDS_STRPROGDESC         "Client di Telefonia IP Voce&Video basato su OpenH323 (www.openh323.org)"
+    IDS_ABOUTSTR            "&Info su..."
+    IDS_OUTDEVSTR           "Device di output:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEVSTR            "Device di input:"
+    IDS_BUFFSTR             "Buffer:"
+    IDS_JITSTR              "Jitter:"
+    IDS_SLSTR               "Silence detection"
+    IDS_CODECSSTR           "Selezione Codec "
+    IDS_CSUPSTR             "Su"
+    IDS_CSENBLSTR           "Abiliatato"
+    IDS_CSDOWNSTR           "Giu"
+    IDS_USERSTR             "Utente"
+    IDS_UNAMESTR            "Nome Utente:"
+    IDS_NETWORKSTR          "Rete"
+    IDS_BANDSTR             "Banda:"
+    IDS_KBSSTR              "Kb/s"
+    IDS_IPTSTR              "Tipo di servizio IP:"
+    IDS_AANSWERSTR          "Risposta Automatica "
+    IDS_DTMFSTRSTR          "DTMF come Stringa"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_D242STR             "Disabilita H245 Tunneling"
+    IDS_DFSTARTSTR          "Disabilita Fast-Start"
+    IDS_RINGFSTR            "Suono squillo:"
+    IDS_GKUSESTR            "Usa Gatekeeper"
+    IDS_GKRECSTR            "Richiedi Gatekeeper"
+    IDS_GKLOCSTR            "Localizza Gatekeeper"
+    IDS_GKAUTOLOCSTR        "Scopri Automaticamente"
+    IDS_GKHOSTLOCSTR        "Scopri per Host:"
+    IDS_GKIDLOCSTR          "Scopri per ID:"
+    IDS_GKPASSSTR           "GK Pass.:"
+    IDS_UALIASESSTR         "Alias Utente "
+    IDS_UALIASSTR           "Alias:"
+    IDS_UALADDSTR           "Aggiungi"
+    IDS_UALDELSTR           "Canc"
+    IDS_HVIDEOSTR           "Mostra/Nascondi Automaticamente panello Video"
+    IDS_HLOGSTR             "Nascondi msg di log delle connessioni"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HSTATSTR            "Nascondi statistiche connessioni"
+    IDS_ADRAUTOADDSTR       "Auto aggiungi indirizzo del chiamante alle destinazioni"
+    IDS_SYSTRAYMINSTR       "Minimizza"
+    IDS_LANGSTR             "Lingua (richiede restart):"
+    IDS_COLSTR              "Colori"
+    IDS_COLMSGSTR           "Messaggi Chat:"
+    IDS_COLAUDIOSTR         "Indicatori Audio:"
+    IDS_COLLSTR             "Vostri:"
+    IDS_COLRSTR             "Altri:"
+    IDS_COLASTR             "Segnale:"
+    IDS_COLSSTR             "Silenzio:"
+    IDS_DEVSTR              "Device:"
+    IDS_DEVCHSTR            "Srg:"
+    IDS_VSENDSTR            "Auto invia video"
+    IDS_VRCVDSTR            "Auto ricevi video"
+    IDS_VLOCSTR             "Mostra video locale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_VIESSTR             "Vedi settaggi"
+    IDS_LVFLIPSTR           "V-Flip locale"
+    IDS_LHFLIPSTR           "H-Flip locale"
+    IDS_RVFLIPSTR           "V-Flip remoto"
+    IDS_RHFLIPSTR           "H-Flip remoto"
+    IDS_QTYSTR              "Qualita:"
+    IDS_MBPSSTR             "Max. bps:"
+    IDS_GENERALSTR          "Generale"
+    IDS_GKSTR               "Gatekeeper"
+    IDS_IFACESTR            "Interfaccia"
+    IDS_SETTINGSSTR         "Impostazioni"
+    IDS_MHELPSTR            "&Aiuto (Web)"
+    IDS_PROGTRANSSTR        "* Marino Punturieri (Italian translation)"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
