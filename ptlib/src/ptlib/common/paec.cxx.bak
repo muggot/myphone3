@@ -1,0 +1,238 @@
+#include <ptlib.h>
+#include "ptclib\paec.h"
+#include <stdio.h>
+
+///////////////////////////////////////////////////////////////////////////////
+#define ECHO_TEST_NUM 5
+#define MIN_ECHO_LEVEL 500
+#define SAMPLE_LEN 8
+
+
+int16_t sample[240] = {5000,20000,10000,-15000,-30000,-15000,10000,20000};
+
+PAec::PAec(int _algo)
+{
+ algo = _algo;
+
+ FILE *fs=NULL;
+ fs=fopen("aec_test.wav","rb"); 
+ if(fs)
+ {
+  fseek(fs,0,SEEK_END); 
+  t_sz=ftell(fs)-58; 
+  fseek(fs,58,SEEK_SET); t_buffer=new char[t_sz];                    
+  fread(t_buffer,1,t_sz,fs); fclose(fs);
+ }
+ else
+ {
+  t_sz=10000;
+  t_buffer=new char[t_sz];
+  memset(t_buffer,0,10000);
+ }
+ t_pos=0;
+
+ aec_disable = 0;
+ if(algo==0 || algo>3) aec_disable = 1;
+ if(algo==1) speexC = NULL; // new PSpeexAec(8000,sampletime);
+ if(algo==2) easyC = EasyAEC_init();
+ if(algo==3) oslecC = echo_can_create(512,0x3f);
+ spos = 0;
+ rpos = 960;
+ mode = ECHO_TEST_NUM; // in test mode while mode != 0 
+ tstamp = 0;
+ tcount = 0;
+ memset(t_buf,0,60000*4);
+ t_len = 0;
+ t_num = 0;
+ s_sum = 0;
+ memset(s_buf,0,20*4);
+ s_pos = 0;
+ memset(s_trk,0,60000*4*2);
+ s_trk_pos = 0;
+ 
+
+ PTRACE(3, "AEC\tcreated AEC" );
+}
+
+
+PAec::~PAec()
+{
+ if(algo==1 && speexC!=NULL) delete(speexC);
+ if(algo==2) EasyAEC_release(easyC);
+ if(algo==3) echo_can_free(oslecC);
+ delete(t_buffer);
+}
+
+void PAec::Receive(BYTE * buffer, unsigned & length)
+{
+ if(length == 0 || length > 480)
+   return;
+
+ if(buffer==NULL) return;
+
+ if(mode == ECHO_TEST_NUM) // sending channel is not starting yet
+  return;
+
+ if(mode > 0) // in testing mode
+ {
+  int16_t *buf=(int16_t *)buffer;
+  int dt = (length >> 1)/mode;
+  int nt = dt/SAMPLE_LEN;
+  for(int i=0;i<mode;i++)
+  {
+   memcpy(buf,sample,dt); buf+=dt;
+   t_buf[t_len]=1; t_len++; 
+   for(int t=1;t<nt;t++) { t_buf[t_len]=0; t_len++; }
+   t_num++;
+  }
+ }
+ else if(mode > -20) // silence mode
+ {
+  memset(buffer,0,length);                                             
+ }
+ else
+ {
+// sum=0;
+// for(int i=0;i<(length>>1);i++)
+//  sum+=abs(buf[i]);
+// PTRACE(1, "PAEC Receive frame sum: " << sum);
+	 
+  if(t_pos+length<t_sz)
+  {
+   memcpy(buffer,&t_buffer[t_pos],length); t_pos+=length;
+  }
+  else
+  {
+   memcpy(buffer,&t_buffer[t_pos],t_sz-t_pos);
+   memcpy(&buffer[t_sz-t_pos],t_buffer,length-(t_sz-t_pos)); t_pos=length-(t_sz-t_pos);
+  }
+ }
+ int len=length;
+ if(rpos+length >= BSIZE) 
+ {
+  memcpy(&rbuf[rpos],buffer,BSIZE-rpos);
+  len = rpos+length-BSIZE; rpos = 0;
+ }
+ memcpy(&rbuf[rpos],&buffer[length-len],len); rpos+=len;
+ //if(mode<-20)
+ //memset(buffer,0,length);
+}
+
+void PAec::Send(BYTE * buffer, unsigned & length)
+{
+ if(aec_disable != 0) return;
+
+ int16_t *tbuf = (int16_t *)buffer;
+ int16_t *cbuf = (int16_t *)rbuf;
+
+ if(mode > -20) // in test mode
+ {
+  mode--;
+  int16_t *buf = (int16_t *)buffer;
+  int len = length >> 1;
+  for(int i=0;i<len;i++)
+  {
+   s_sum-=s_buf[s_pos]; s_buf[s_pos]=abs(buf[i]); s_sum+=s_buf[s_pos]; 
+   s_pos++; if(s_pos == SAMPLE_LEN) s_pos=0;
+   if(s_sum > MIN_ECHO_LEVEL)
+   {
+    if(tcount-s_trk[s_trk_pos][0] > (SAMPLE_LEN<<1)) // start new peak
+     { s_trk_pos++; s_trk[s_trk_pos][0]=tcount; s_trk[s_trk_pos][1]=s_sum; }
+    else if(s_sum > s_trk[s_trk_pos][1])
+     { s_trk[s_trk_pos][0]=tcount; s_trk[s_trk_pos][1]=s_sum; }
+   }
+   if(tstamp == 0 && cbuf[spos] == -30000) tstamp = tcount; // first testing sample
+   tcount++; spos++; if((spos << 1) >= BSIZE) spos = 0;
+  }
+  memset(buffer,0,length);
+  return;
+ }
+ 
+ if(mode == -20) // calibrating
+ {
+  mode--;
+  int n = s_trk_pos-t_num;
+  int best_sum = 0, best_time = 0;
+  if(n < 0) // no echo, disabling aec
+   { aec_disable = 1; return ; }
+  for(int s=1;s<n;s++)
+  {
+   int sum = s_trk[s][1];
+   int btime = s_trk[s][0];
+   int pos = s+1;
+   for(int i=1;i<t_len;i++)
+   {
+    if(t_buf[i]!=0)
+    {
+     int dt=s_trk[pos][0]-btime;
+     int tt=i*SAMPLE_LEN;
+
+     while(tt>dt+(SAMPLE_LEN>>1) && pos<=s_trk_pos)
+      { pos++; dt=s_trk[pos][0]-btime; }
+     if(pos > s_trk_pos) break;
+
+     if(abs(tt-dt)<=(SAMPLE_LEN>>1)) { sum+=s_trk[pos][1]; pos++; }
+    }
+   }
+   if(sum>best_sum) {best_sum=sum; best_time=btime; };
+  }
+  if(best_time == 0)
+   { aec_disable = 1; return ; }
+  
+  spos-= (best_time - tstamp + 0);
+  while(spos < 0) spos+=(BSIZE>>1);
+ }
+
+ int sum = 0; int16_t *buf = (int16_t *)buffer;
+ for(int i=0;i<(length>>1);i++)
+  sum+=abs(buf[i]);
+ PTRACE(1, "PAEC Send frame sum: " << sum);
+
+ sum=0; int pos=spos; 
+ for(int i=0;i<(length>>1);i++)
+ {
+  sum+=abs(cbuf[pos]); pos++; if(pos*2 >= BSIZE) pos = 0;
+ }
+ PTRACE(1, "PAEC Check frame sum: " << sum);
+
+ int len = length >> 1;
+ if(algo==3) //Oslec
+ {
+//	 int tp=spos-20; if(tp<0) tp+=(BSIZE>>1);
+  for(int i=0;i<len;i++)
+  {
+   tbuf[i] = echo_can_update(oslecC, cbuf[spos], tbuf[i]);
+ //  tbuf[i] = echo_can_update(oslecC, cbuf[spos], cbuf[tp]);
+   spos++; if((spos << 1) >= BSIZE) spos = 0;
+ //  tp++; if((tp << 1) >= BSIZE) tp = 0;
+
+  }
+ }
+ else
+ {
+  int tp=spos-100; if(tp<0) tp+=(BSIZE>>1);
+  if(BSIZE-(spos<<1) > length) { memcpy(rframe,&cbuf[spos],length); spos+=len; }
+  else
+  {
+   int fraglen=BSIZE-(spos<<1);
+   memcpy(rframe,&cbuf[spos],fraglen);
+   memcpy(&rframe[fraglen],cbuf,length-fraglen);
+   spos=(length-fraglen)>>1;
+  }
+  if(algo==1) //Speex
+  {
+   if(speexC == NULL) speexC = new PSpeexAec(8000,30);
+   for(int i=0;i<len;i++) { tbuf[i]=cbuf[tp]; tp++; if(tp>=(BSIZE>>1)) tp=0; }
+   speexC->Receive(rframe,length);
+   speexC->Send(buffer,length);
+//   memcpy(buffer,rframe,length);
+//   int16_t *b = (int16_t *)rframe;
+//   for(int i=0;i<len;i++) tbuf[i]-=b[i]>>6;
+  }
+  if(algo==2 && length==480) //Easy
+  {
+   EasyAEC_SaveSampleFromPeer(easyC, (short *)rframe);
+   EasyAEC_FilterSampleToPeer(easyC, (short *)buffer);
+  }
+ }
+}
