@@ -55,6 +55,8 @@ public:
 	BOOL	m_NoTunneling;
 	BOOL	m_DtmfAsString;
 	BOOL	m_disableFastStart;
+	BOOL	m_singleLine;
+
 	//}}AFX_DATA
 
 

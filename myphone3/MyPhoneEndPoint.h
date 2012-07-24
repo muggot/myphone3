@@ -100,6 +100,7 @@ public:
 	int  m_fAGCOn;
 	BOOL m_fAutoAnswer;
 	BOOL m_fNoFastStart;
+	BOOL m_fStrictSingleLine;
 	BOOL m_fDoH245Tunnelling;
 	BOOL m_fDtmfAsString;
 

@@ -56,6 +56,8 @@
 #include <math.h>
 
 #include <dxerr9.h>
+#pragma comment(lib, "dxerr9.lib")
+#pragma comment(lib, "dxguid.lib")
 
 
 #pragma comment(lib, P_DIRECTSOUND_LIBRARY)

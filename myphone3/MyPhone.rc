@@ -132,6 +132,7 @@ BEGIN
     IDS_D242STR             "Не туннелировать H245"
     IDS_DFSTARTSTR          "Отключить Fast-Start"
     IDS_RINGFSTR            "Звук вызова:"
+    IDS_SINGLELINE          "Только одна линия"
     IDS_GKUSESTR            "Использ. Гейткипер"
     IDS_GKRECSTR            "Гейткипер обязателен"
     IDS_GKLOCSTR            "Искать Гейткипер"
@@ -349,6 +350,7 @@ BEGIN
     CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,51,112,8
     CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,66,114,8
     CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,80,115,8
+    CONTROL         "Strict Single Line",IDC_STRICT_SINGLE_LINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,95,116,8
     LTEXT           "Ring Sound File:",IDC_RINGSTATIC,5,128,53,8
     EDITTEXT        IDC_RING_FILE_EDIT,60,127,119,13,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_RING_FILE_BROWSE,179,127,14,13
@@ -971,6 +973,7 @@ BEGIN
     IDS_D242STR             "Disable H245 Tunneling"
     IDS_DFSTARTSTR          "Disable Fast-Start"
     IDS_RINGFSTR            "Ring Sound File:"
+    IDS_SINGLELINE          "Strict Single Line"
     IDS_GKUSESTR            "Use Gatekeeper"
     IDS_GKRECSTR            "Require Gatekeeper"
     IDS_GKLOCSTR            "Locate Gatekeeper"
@@ -1169,6 +1172,7 @@ BEGIN
     IDS_D242STR             "DEsactiver le tunnelage H245"
     IDS_DFSTARTSTR          "DEsactiver DEmarrage-Rapide"
     IDS_RINGFSTR            "Fichier de sonnerie :"
+    IDS_SINGLELINE          "Une seule ligne"
     IDS_GKUSESTR            "Utiliser un opErateur"
     IDS_GKRECSTR            "Exiger un opErateur"
     IDS_GKLOCSTR            "Localiser l'opErateur"
@@ -1354,6 +1358,7 @@ BEGIN
     IDS_D242STR             "Disabilita H245 Tunneling"
     IDS_DFSTARTSTR          "Disabilita Fast-Start"
     IDS_RINGFSTR            "Suono squillo:"
+    IDS_SINGLELINE          "Solo una linea"
     IDS_GKUSESTR            "Usa Gatekeeper"
     IDS_GKRECSTR            "Richiedi Gatekeeper"
     IDS_GKLOCSTR            "Localizza Gatekeeper"

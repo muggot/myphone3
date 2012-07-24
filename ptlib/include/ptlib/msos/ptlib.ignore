@@ -1,0 +1,14 @@
+EXPORTS
+    _!= @13822 NONAME
+    _== @13822 NONAME
+    _CLSID_AudioEffects1Category @13823 NONAME
+    _CLSID_AudioEffects2Category @13824 NONAME
+    _CLSID_VideoEffects1Category @13825 NONAME
+    _CLSID_VideoEffects2Category @13826 NONAME
+    _IID_IAMFilterGraphCallback @13828 NONAME
+    _IsEqualGUID @13829 NONAME
+    _fabsf @13827 NONAME
+    _regcomp @3549 NONAME ;_regcomp
+    _regerror @3550 NONAME ;_regerror
+    _regexec @3551 NONAME ;_regexec
+    _regfree @3552 NONAME ;_regfree

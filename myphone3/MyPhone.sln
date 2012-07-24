@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyPhone", "MyPhone.vcproj", "{94AD386D-842B-464F-9777-60730983AED1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Static|Win32 = Debug Static|Win32
+		Debug|Win32 = Debug|Win32
+		Release Static|Win32 = Release Static|Win32
+		Release|Win32 = Release|Win32
+		Trace Static|Win32 = Trace Static|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94AD386D-842B-464F-9777-60730983AED1}.Debug Static|Win32.ActiveCfg = Release Static|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Debug Static|Win32.Build.0 = Release Static|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Debug|Win32.Build.0 = Debug|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Release Static|Win32.ActiveCfg = Debug|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Release Static|Win32.Build.0 = Debug|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Release|Win32.ActiveCfg = Release|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Release|Win32.Build.0 = Release|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Trace Static|Win32.ActiveCfg = Trace Static|Win32
+		{94AD386D-842B-464F-9777-60730983AED1}.Trace Static|Win32.Build.0 = Trace Static|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

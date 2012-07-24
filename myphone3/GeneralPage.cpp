@@ -50,6 +50,8 @@ CGeneralPage::CGeneralPage() : CPropertyPage(CGeneralPage::IDD)
 	m_NoTunneling = FALSE;
 	m_DtmfAsString = FALSE;
 	m_disableFastStart = FALSE;
+	m_singleLine = FALSE;
+
 	//}}AFX_DATA_INIT
 
 	this->m_psp.dwFlags^=PSP_HASHELP;
@@ -71,6 +73,7 @@ void CGeneralPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_DISABLE_H242_CHECK, m_NoTunneling);
 	DDX_Check(pDX, IDC_DTMF_AS_STRING_CHECK, m_DtmfAsString);
 	DDX_Check(pDX, IDC_DISABLE_FASTSTART, m_disableFastStart);
+	DDX_Check(pDX, IDC_STRICT_SINGLE_LINE, m_singleLine);
 	//}}AFX_DATA_MAP
 }
 
@@ -152,4 +155,5 @@ void CGeneralPage::TranslateDlg()
 	GetDlgItem(IDC_DISABLE_H242_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_D242STR));
 	GetDlgItem(IDC_DISABLE_FASTSTART)->SetWindowText((LPCTSTR)LoadStringLang(IDS_DFSTARTSTR));
 	GetDlgItem(IDC_RINGSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_RINGFSTR));
+	GetDlgItem(IDC_STRICT_SINGLE_LINE)->SetWindowText((LPCTSTR)LoadStringLang(IDS_SINGLELINE));
 }

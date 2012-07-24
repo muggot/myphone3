@@ -61,6 +61,7 @@ const char RTPPortMaxConfigKey[] = "RTPPortMax";
 
 const char NoTunnelingConfigKey[] = "NoTunneling";
 const char NoFastStartConfigKey[] = "FastStart";
+const char StrictSingleLineConfigKey[] = "SingleLine";
 const char IpTosConfigKey[] = "IpTOS";
 const char UserInputModeConfigKey[] = "UserInputMode";
 const char UsernameConfigKey[] = "Username";
@@ -243,6 +244,9 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 	// set some oter settings from Config
 	m_fNoFastStart =  config.GetBoolean(NoFastStartConfigKey, FALSE);
     DisableFastStart(m_fNoFastStart);
+	m_fStrictSingleLine =  config.GetBoolean(StrictSingleLineConfigKey, FALSE);
+    StrictSingleLine(m_fStrictSingleLine);
+
 	m_fDoH245Tunnelling = !(config.GetBoolean(NoTunnelingConfigKey, FALSE));
     DisableH245Tunneling(!m_fDoH245Tunnelling);
 	m_fSilenceOn = config.GetBoolean(SilenceDetectConfigKey, TRUE);

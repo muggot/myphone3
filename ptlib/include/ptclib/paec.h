@@ -4,6 +4,8 @@ extern "C" {
 }
 #include "speex/speex_echo.h"
 #include "speex/speex_preprocess.h"
+#pragma comment(lib, "libspeexdsp.lib")
+#pragma comment(lib, "oslec.lib")
 
 #define BSIZE     15360
 

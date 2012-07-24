@@ -95,6 +95,7 @@ const char JitterConfigKey[] = "Jitter";
 const char CodecsConfigSection[] = "Codecs";
 const char VideoCodecsConfigSection[] = "VideoCodecs";
 const char NoFastStartConfigKey[] = "FastStart";
+const char StrictSingleLineConfigKey[] = "SingleLine";
 const char BufferCountConfigKey[] = "BufferCount";
 const char AutoReceiveVideoConfigKey[] = "AutoReceiveVideo";
 const char AutoTransmitVideoConfigKey[] = "AutoTransmitVideo";
@@ -833,7 +834,8 @@ void CMyPhoneDlg::OnHangup()
 {
 	m_endpoint.ClearCall(m_token);
 	//  m_hangup.EnableWindow(FALSE);
-	m_call.EnableWindow();
+	if(m_endpoint.GetAllConnections().GetSize()<2)
+		m_call.EnableWindow();
 }
 
 void CMyPhoneDlg::OnConnectionEstablished(LPCTSTR remotename)
@@ -858,6 +860,7 @@ void CMyPhoneDlg::OnConnectionEstablished(LPCTSTR remotename)
 
 void CMyPhoneDlg::OnConnectionCleared(LPCTSTR remotename)
 {
+    if(m_endpoint.GetAllConnections().GetSize()<2){
 	// UI change after call ended
 	// called from End Point class
 	m_volindicator.Reset();
@@ -884,6 +887,7 @@ void CMyPhoneDlg::OnConnectionCleared(LPCTSTR remotename)
 	GetDlgItem(IDC_SRVIDEO)->SetWindowText(_T(""));
 	m_micMute.SetCheck(BST_UNCHECKED);
 	m_micMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_MICICON)));
+   }
 }
 
 void CMyPhoneDlg::OnEditchangeDestination() 
@@ -918,6 +922,7 @@ void CMyPhoneDlg::OnSettings()
 	genPage.m_DtmfAsString = m_endpoint.m_fDtmfAsString;
 	genPage.m_NoTunneling = m_endpoint.DisableH245Tunnelling();
 	genPage.m_disableFastStart = m_endpoint.m_fNoFastStart;
+	genPage.m_singleLine = m_endpoint.m_fStrictSingleLine;
 	
 	CNetworkPage netPage;
 	Dlg.AddPage(&netPage);
@@ -1218,6 +1223,9 @@ void CMyPhoneDlg::OnSettings()
 	m_endpoint.m_fNoFastStart = genPage.m_disableFastStart;
 	config.SetBoolean(NoFastStartConfigKey, genPage.m_disableFastStart);
 	
+	m_endpoint.m_fStrictSingleLine = genPage.m_singleLine;
+	config.SetBoolean(StrictSingleLineConfigKey, genPage.m_singleLine);
+
 	if( !genPage.m_RingSoundFile.IsEmpty() )
 	{
 		ringSoundFile = PString((LPCTSTR) genPage.m_RingSoundFile);
