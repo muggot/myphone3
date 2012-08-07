@@ -164,6 +164,7 @@ BOOL CVideoOutputDevice::FrameComplete()
   {
    D3DLOCKED_RECT lr;
 
+/*
                   float scale=1.0*GetSystemMetrics(SM_CXSCREEN)/frameWidth;
                   if(scale>1.0*GetSystemMetrics(SM_CYSCREEN)/frameHeight) 
                     scale=1.0*GetSystemMetrics(SM_CYSCREEN)/frameHeight;
@@ -171,11 +172,28 @@ BOOL CVideoOutputDevice::FrameComplete()
                   int height = scale*frameHeight;
 		  int x = (GetSystemMetrics(SM_CXSCREEN)-width)>>1;
                   int y = (GetSystemMetrics(SM_CYSCREEN)-height)>>1;
-
+*/
+   int x, y, width  = GetSystemMetrics(SM_CXSCREEN), // расчёт чуть "легче", хотя особой разницы нет
+             height = GetSystemMetrics(SM_CYSCREEN);
+   if(frameWidth*height > width*frameHeight){
+     int height0=height; height = width*frameHeight/frameWidth;
+     x = 0; y = (height0-height)>>1;
+   }
+   else if(frameWidth*height<width*frameHeight){
+     int width0=width; width=height*frameWidth/frameHeight;
+     x=(width0-width)>>1; y=0;
+   }
+   else { x=0; y=0; }
 
    m_p3DDevice->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0,0,0), 1.0f, 0 );
   
    m_p3DBackSurface->LockRect(&lr,NULL,0);
+   if((frameWidth<<2) != lr.Pitch) {
+     BYTE * dst=static_cast<BYTE *>(lr.pBits);
+     BYTE * src=frameStore.GetPointer();
+     unsigned amount=frameWidth<<2;
+     for(unsigned i=0;i<frameHeight;i++) { memcpy(dst,src,amount); src+=amount; dst+=lr.Pitch; }
+   } else
    memcpy(static_cast<BYTE *>(lr.pBits),frameStore.GetPointer(),frameStore.GetSize());
    m_p3DBackSurface->UnlockRect();
 
