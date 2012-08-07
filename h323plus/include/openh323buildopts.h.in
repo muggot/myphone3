@@ -212,6 +212,8 @@
 #undef H323_SIGNAL_AGGREGATE
 #undef H323_RTP_AGGREGATE
 
+#define H323_AEC 1
+
 #endif
 
 // End Of File ///////////////////////////////////////////////////////////////
