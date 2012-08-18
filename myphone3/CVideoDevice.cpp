@@ -31,7 +31,6 @@
 #include "MyPhoneDlg.h"
 
 #include "CVideoDevice.h"
-#pragma comment( lib, "d3d9.lib" )
 
 #include "Multilang.h"		// Languages
 
