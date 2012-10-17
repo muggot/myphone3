@@ -804,7 +804,7 @@ RTP_Session::RTP_Session(
 
 RTP_Session::~RTP_Session()
 {
-  userData->OnFinalStatistics(*this);
+  if(userData) userData->OnFinalStatistics(*this);
 
   PTRACE_IF(2, packetsSent != 0 || packetsReceived != 0,
             "RTP\tFinal statistics:\n"
@@ -824,7 +824,7 @@ RTP_Session::~RTP_Session()
             "    averageJitter     = " << (jitterLevel >> 7) << "\n"
             "    maximumJitter     = " << (maximumJitterLevel >> 7)
             );
-  delete userData;
+  if(userData) delete userData;
 
 #ifndef NO_H323_AUDIO_CODECS
   delete jitter;
@@ -874,7 +874,7 @@ void RTP_Session::SetToolName(const PString & name)
 
 void RTP_Session::SetUserData(RTP_UserData * data)
 {
-  delete userData;
+  if(userData) delete userData;
   userData = data;
 }
 
@@ -1492,6 +1492,7 @@ void RTP_Session::OnRxSenderReport(const SenderReport & PTRACE_PARAM(sender),
   for (PINDEX i = 0; i < reports.GetSize(); i++)
     PTRACE(3, "RTP\tOnRxSenderReport RR: " << reports[i]);
 #endif
+ octetsReceived++;
 }
 
 
@@ -1503,6 +1504,7 @@ void RTP_Session::OnRxReceiverReport(DWORD PTRACE_PARAM(src),
   for (PINDEX i = 0; i < reports.GetSize(); i++)
     PTRACE(3, "RTP\tOnReceiverReport RR: " << reports[i]);
 #endif
+ octetsReceived++;
 }
 
 
