@@ -190,6 +190,7 @@
 #define IDS_ABOOKADRCLRSTR              334
 #define IDS_LOCFLIPSTR                  335
 #define IDS_SINGLELINE                  336
+#define IDS_FULLSCREEN                  337
 #define IDC_DESTINATION                 1000
 #define IDC_CALL                        1001
 #define IDC_ANSWER                      1002
@@ -372,6 +373,7 @@
 #define IDC_VIDEOOUTSIZE                1160
 #define IDC_STATIC2                     1160
 #define IDC_STRICT_SINGLE_LINE          1164
+#define IDC_FULLSCRDEFLT                1165
 #define ID_MSETTINGS                    32771
 #define ID_MABOUT                       32772
 #define ID_LOGMENU_COPY                 32774

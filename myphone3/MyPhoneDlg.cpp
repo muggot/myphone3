@@ -123,6 +123,7 @@ const char ColorSignalIndicatorConfigKey[] = "ColorActInd";
 const char ColorSilentIndicatorConfigKey[] = "ColorSlntInd";
 const char AutoVideoHideConfigKey[] = "AutoVidPanHide";
 const char HideStatConfigKey[] = "HideStatistic";
+const char FullScreenDefaultConfigKey[] = "FullScreenDefault";
 const char SysLogMsgHideConfigKey[] = "HideSysLogMessages";
 const char AutoAddCallersConfigKey[] = "AutoAddCallerAddr";
 const char UILangugeConfigKey[] = "UILanguge";
@@ -475,6 +476,7 @@ BOOL CMyPhoneDlg::OnInitDialog()
 	// Main timer
 	statTimer = SetTimer(100, 3000, NULL);
 	hideStat = config.GetBoolean(HideStatConfigKey, FALSE); // Can show statistic info
+	fullScreenDefault = config.GetBoolean(FullScreenDefaultConfigKey, FALSE);
 	indTimer.SetNotifier(PCREATE_NOTIFIER(OnUpdateIndicators));
 	
 	// setting icons
@@ -554,6 +556,7 @@ BOOL CMyPhoneDlg::OnInitDialog()
 	vdlg=new CVideoDlg();
 	vdlg->Create(CVideoDlg::IDD,NULL);
 //	vdlg->ShowWindow(SW_SHOW);
+        if(fullScreenDefault) vdlg->d3d_mode = 1;
 
 	// Initialize OpenH323 Endpoint
 	PTRACE(4, "MyPhone\t###OnInitDialog###\tCall Endpoint Initialize");
@@ -1074,6 +1077,7 @@ void CMyPhoneDlg::OnSettings()
 	guiPage.m_stathidechk = hideStat;
 	guiPage.m_loghidechk = hideSysMsg;
 	guiPage.m_autoaddadrchk = autoAddInAddr;
+	guiPage.m_fullscrdflt = fullScreenDefault;
 	guiPage.m_lang = config.GetInteger(UILangugeConfigKey, -1)+1;
 	
 	// changing some styles of the prop window
@@ -1097,6 +1101,8 @@ void CMyPhoneDlg::OnSettings()
 		ShowVideoPanels(FALSE);
 	hideStat = guiPage.m_stathidechk;
 	config.SetBoolean(HideStatConfigKey, guiPage.m_stathidechk); // show statistic info
+	fullScreenDefault = guiPage.m_fullscrdflt;
+	config.SetBoolean(FullScreenDefaultConfigKey, guiPage.m_fullscrdflt);
 	hideSysMsg = guiPage.m_loghidechk;
 	config.SetBoolean(SysLogMsgHideConfigKey, guiPage.m_loghidechk);
 	autoAddInAddr = guiPage.m_autoaddadrchk; 

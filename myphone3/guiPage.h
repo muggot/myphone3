@@ -58,6 +58,7 @@ public:
 	BOOL	m_stathidechk;
 	BOOL	m_systraychk;
 	BOOL	m_autoaddadrchk;
+	BOOL	m_fullscrdflt;
 	int		m_lang;
 	//}}AFX_DATA
 

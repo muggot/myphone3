@@ -35,7 +35,7 @@ BEGIN
     IDS_STOPCHANNELTX       "Прекратили отправлять %1 данные."
     IDS_STOPCHANNELRX       "Прекратили получать %1 данные."
     IDS_STOPCONNECT         "Соединение с %1 завершено."
-    IDS_TALKING             "Разгавариваем с %1"
+    IDS_TALKING             "Разговариваем с %1"
 END
 
 STRINGTABLE 
@@ -151,6 +151,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_HSTATSTR            "Не отображать статистику соединения"
+    IDS_FULLSCREEN          "Полноэкранное видео по умолчанию"
     IDS_ADRAUTOADDSTR       "Запоминать адрес звонящего"
     IDS_SYSTRAYMINSTR       "Минимизировать в system tray"
     IDS_LANGSTR             "Язык (треб. перезап.):"
@@ -423,6 +424,7 @@ BEGIN
     CONTROL         "Start minimized",IDC_SYSTRAYMIN,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,5,49,195,10
     LTEXT           "Language (needs restart):",IDC_LANGSTATIC,5,62,82,8
     COMBOBOX        IDC_LANGCOMBO,94,61,80,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Full-screen video by default",IDC_FULLSCRDEFLT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,73,203,10
 END
 
 IDD_GKPAGE DIALOGEX 0, 0, 213, 145
@@ -992,6 +994,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_HSTATSTR            "Hide connection statistics"
+    IDS_FULLSCREEN          "Full-screen video by default"
     IDS_ADRAUTOADDSTR       "Auto add caller address to destinations"
     IDS_SYSTRAYMINSTR       "Minimize to system tray"
     IDS_LANGSTR             "Language (needs restart):"
@@ -1191,6 +1194,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_HSTATSTR            "Cacher les statistiques de connexion"
+    IDS_FULLSCREEN          "Мideo plein ecran par default"
     IDS_ADRAUTOADDSTR       "Ajouter l'appelant automatiquement aux destinations"
     IDS_SYSTRAYMINSTR       "Minimiser vers barre des tAches"
     IDS_LANGSTR             "Language (dEmarrage obligatoire):"
@@ -1377,6 +1381,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_HSTATSTR            "Nascondi statistiche connessioni"
+    IDS_FULLSCREEN          "Video a schermo intero per impostazione predefinita"
     IDS_ADRAUTOADDSTR       "Auto aggiungi indirizzo del chiamante alle destinazioni"
     IDS_SYSTRAYMINSTR       "Minimizza"
     IDS_LANGSTR             "Lingua (richiede restart):"

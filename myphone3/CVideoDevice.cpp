@@ -52,7 +52,7 @@ CVideoOutputDevice::CVideoOutputDevice(
    m_pD3D(NULL),
    m_p3DDevice(NULL),
    m_p3DBackSurface(NULL),
-   m_d3d_mode(1)
+   m_d3d_mode(2)
 
 {
  m_x = m_y =0;  m_w = m_h = 200;
@@ -142,7 +142,7 @@ BOOL CVideoOutputDevice::FrameComplete()
   if (m_hWnd == NULL)
     return FALSE;
 
-  if (m_videoDlg->d3d_mode!=0 && m_d3d_mode==0)
+  if (m_videoDlg->d3d_mode!=0 && m_d3d_mode!=1)
   { 
    m_d3d_mode=1; 
    Release_d3d();
@@ -150,7 +150,7 @@ BOOL CVideoOutputDevice::FrameComplete()
    { m_d3d_mode=1; m_videoDlg->d3d_mode=0; } 
   }
 
-  if (m_videoDlg->d3d_mode==0 && m_d3d_mode==1)
+  if (m_videoDlg->d3d_mode!=1 && m_d3d_mode!=0)
    { 
     m_d3d_mode=0; 
     Release_d3d(); 
@@ -388,6 +388,12 @@ BOOL CVideoOutputDevice::Init_d3d(bool windowed)
                              D3DDEVTYPE_HAL,
                              HWND(*m_videoDlg),
                              D3DCREATE_HARDWARE_VERTEXPROCESSING,
+                             &d3dpp,
+                             &m_p3DDevice);
+   if( FAILED(Hr) ) Hr = m_pD3D->CreateDevice(D3DADAPTER_DEFAULT,
+                             D3DDEVTYPE_HAL,
+                             HWND(*m_videoDlg),
+                             D3DCREATE_SOFTWARE_VERTEXPROCESSING,
                              &d3dpp,
                              &m_p3DDevice);
    if( FAILED(Hr) ) return false;       

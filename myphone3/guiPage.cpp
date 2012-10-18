@@ -50,6 +50,7 @@ CguiPage::CguiPage() : CPropertyPage(CguiPage::IDD)
 	m_stathidechk = FALSE;
 	m_systraychk = FALSE;
 	m_autoaddadrchk = FALSE;
+	m_fullscrdflt = FALSE;
 	m_lang = -1;
 	//}}AFX_DATA_INIT
 	clrInMsg = GetSysColor(COLOR_BTNFACE);
@@ -74,6 +75,7 @@ void CguiPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_SYSTRAYMIN, m_systraychk);
 	DDX_Check(pDX, IDC_AUTOADDADDRESS, m_autoaddadrchk);
 	DDX_CBIndex(pDX, IDC_LANGCOMBO, m_lang);
+	DDX_Check(pDX, IDC_FULLSCRDEFLT, m_fullscrdflt);
 	//}}AFX_DATA_MAP
 }
 
@@ -243,5 +245,6 @@ void CguiPage::TranslateDlg()
 	GetDlgItem(IDC_COLRSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_COLRSTR));
 	GetDlgItem(IDC_COLASTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_COLASTR));
 	GetDlgItem(IDC_COLSSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_COLSSTR));
+	GetDlgItem(IDC_FULLSCRDEFLT)->SetWindowText((LPCTSTR)LoadStringLang(IDS_FULLSCREEN));
 //	SetWindowText((LPCTSTR)LoadStringLang(IDS_AUDIOSTR));	
 }

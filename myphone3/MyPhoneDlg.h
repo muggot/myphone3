@@ -194,6 +194,7 @@ public:
 	BOOL hideStat;  // can show stat
 //	CStatusBar m_bar;  // Status bar
 	CString m_oldStatus;  // storring old status msg
+	BOOL fullScreenDefault;
 	void StoreDestonation(LPCTSTR, BOOL isIncoming=FALSE);
 	void LoadDestonation(void);
     virtual void OnOK();
