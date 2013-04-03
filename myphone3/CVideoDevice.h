@@ -115,6 +115,7 @@ protected:
    LPDIRECT3DDEVICE9 m_p3DDevice;
    LPDIRECT3DSURFACE9 m_p3DBackSurface;
    int m_d3d_mode;
+   int windowAlreadyMoved;
    //
 //   LPDIRECT3DVERTEXBUFFER9 m_p3DVertices[MAX_BUFFERS];
 //   LPDIRECT3DTEXTURE9 m_p3DTextures[MAX_BUFFERS];

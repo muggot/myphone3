@@ -57,6 +57,7 @@ CVideoOutputDevice::CVideoOutputDevice(
 {
  m_x = m_y =0;  m_w = m_h = 200;
         m_videoDlg->ShowWindow(SW_SHOW);
+        m_videoDlg->BringWindowToTop();
 //	if(m_doLocalVideoPnP || !m_isLocal)
 //		m_hWnd = m_wndDlg->GetDlgItem(IDC_VIDEOBITMAP);
                 m_hWnd = m_videoDlg->GetDlgItem(IDC_STATIC);
@@ -212,22 +213,77 @@ BOOL CVideoOutputDevice::FrameComplete()
    return TRUE;
   }
 
-  RECT vRect;
-  m_videoDlg->GetClientRect(&vRect);
 
+  if((frameHeight << 16) + frameWidth != windowAlreadyMoved) // just opened or frame size changed
+  {
+    RECT vRect, wRect, dRect; // video, window, desktop work area
+    int newW, newH, maxAvailW, maxAvailH;
+
+    if(SystemParametersInfo(SPI_GETWORKAREA, NULL, &dRect, 0))
+    { maxAvailW = dRect.right-dRect.left+1;
+      maxAvailH = dRect.bottom-dRect.top+1;
+    } else
+    { maxAvailW = GetSystemMetrics(SM_CXSCREEN);
+      maxAvailH = GetSystemMetrics(SM_CYSCREEN) - 48;
+      dRect.top=0; dRect.left=0;
+    }
+
+    m_videoDlg->GetClientRect(&vRect); m_videoDlg->GetWindowRect(&wRect);
+
+    int willLostX = wRect.right-wRect.left-vRect.right;
+    int willLostY = wRect.bottom-wRect.top-vRect.bottom;
+
+    maxAvailW -= willLostX; maxAvailH -= willLostY;
+
+
+    if(frameWidth*3 <= maxAvailW && (frameHeight<<1) <= maxAvailH) // too small: 2x zoom
+    {
+      newW = (frameWidth<<1); newH = (frameHeight<<1);
+    }
+    else if(frameWidth > maxAvailW+3 || frameHeight > maxAvailH+3) // too big: zoom out
+    {
+      if(frameWidth*maxAvailH > frameHeight*maxAvailW) // frame more wide than device: fit width first
+      {
+        newW = maxAvailW; newH = newW*frameHeight/frameWidth;
+      }
+      else // frame more high than device (or equal): fit height first
+      {
+        newH = maxAvailH; newW = newH*frameWidth/frameHeight;
+      }
+    }
+    else // keep size unchanged
+    {
+      newW = frameWidth; newH = frameHeight;
+    }
+
+    newW+=willLostX; newH+=willLostY;
+
+    wRect.left = dRect.left+((maxAvailW-newW)>>1);
+    wRect.top = dRect.top+((maxAvailH-newH)>>1);
+    wRect.right = wRect.left + newW - 1;
+    wRect.bottom = wRect.top + newH - 1;
+    m_videoDlg->MoveWindow(&wRect);
+
+    windowAlreadyMoved = (frameHeight << 16) + frameWidth;
+  }
+
+/*  RECT vRect;
+  m_videoDlg->GetClientRect(&vRect);
   if(frameWidth > vRect.right || frameHeight > vRect.bottom)
   {
    RECT wRect;
    m_videoDlg->GetWindowRect(&wRect);
    int dx = frameWidth-vRect.right;
    int dy = frameHeight-vRect.bottom;
-   vRect.left = wRect.left; vRect.top = wRect.top;
-   vRect.right = wRect.right+dx; vRect.bottom = wRect.bottom+dy;
+//   vRect.left = wRect.left; vRect.top = wRect.top;
+//   vRect.right = wRect.right+dx; vRect.bottom = wRect.bottom+dy;
+   wRect.right+=dx; wRect.bottom+=dy;
    
    if(frameWidth>=GetSystemMetrics(SM_CXSCREEN) || frameHeight>=GetSystemMetrics(SM_CYSCREEN)) {}
-   else m_videoDlg->MoveWindow(&vRect);
+//   else m_videoDlg->MoveWindow(&vRect);
+   else m_videoDlg->MoveWindow(&wRect);
   }
-
+*/
 //        m_videoDlg->ShowWindow(SW_SHOW);
   Redraw(m_cdc->GetSafeHdc());
 

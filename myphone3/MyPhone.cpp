@@ -95,8 +95,14 @@ InitCommonControls();  // for XP Manifest only
 //      WS_OVERLAPPED | WS_VISIBLE,
 //      5, 5, 300, 300, NULL, NULL);
 
+        CVideoDlg vdlg;
+	vdlg.Create(CVideoDlg::IDD,NULL);
+
 	CMyPhoneDlg dlg;
 	m_pMainWnd = &dlg;
+
+        dlg.vdlg = &vdlg;
+
 	int nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{

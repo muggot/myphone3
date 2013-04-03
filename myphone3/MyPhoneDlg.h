@@ -88,6 +88,9 @@ class CMyPhoneDlg : public CDialog
 public:
 	CMyPhoneDlg(CWnd* pParent = NULL);	// standard constructor
 	~CMyPhoneDlg();
+
+        CVideoDlg * vdlg;
+
 // new maggus functions 
 	BOOL OnAnswerCall(const H323Connection & connection);
 	void OnConnectionEstablished(LPCTSTR remotename);

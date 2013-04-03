@@ -551,10 +551,10 @@ BOOL CMyPhoneDlg::OnInitDialog()
 	PTRACE(4, "MyPhone\t###OnInitDialog###\tSetting UI language");
 	TranslateDlg();
 
-	CVideoDlg *vdlg = NULL;
+//	CVideoDlg *vdlg = NULL;
 
-	vdlg=new CVideoDlg();
-	vdlg->Create(CVideoDlg::IDD,NULL);
+//	vdlg=new CVideoDlg();
+//	vdlg->Create(CVideoDlg::IDD,NULL);
 //	vdlg->ShowWindow(SW_SHOW);
         if(fullScreenDefault) vdlg->d3d_mode = 1;
 
