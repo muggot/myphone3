@@ -2565,7 +2565,7 @@ void CVideoDlg::OnSysCommand(UINT nID, LPARAM lParam)
         }
 	else if(nID == SC_MINIMIZE)
 	{
-//		CDialog::OnSysCommand(nID, lParam);
+		CDialog::OnSysCommand(nID, lParam);
 //		ShowWindow(SW_HIDE);
 	}
 	else if(nID == SC_MAXIMIZE)
