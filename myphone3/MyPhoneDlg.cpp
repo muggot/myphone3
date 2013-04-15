@@ -50,6 +50,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 //
+#ifdef _WIN32
+#define sprintf sprintf_s
+#endif
 #define MAXVOLUME ((WORD)0xFFFF)
 //
 COLORREF	CMyPhoneDlg::colInmsg;

@@ -34,6 +34,11 @@
 
 #include "Multilang.h"		// Languages
 
+#ifdef _WIN32
+#define strdup _strdup
+#define itoa _itoa_s
+#endif
+
 //#ifdef _DEBUG
 //#undef THIS_FILE
 //static char THIS_FILE[]=__FILE__;

@@ -160,7 +160,7 @@ BOOL CVideoOutputDevice::FrameComplete()
     m_videoDlg->MoveWindow(&vRect);
    }
 
-  if(m_bIsInitialized == true && m_d3d_mode==1)
+  if(m_bIsInitialized == TRUE && m_d3d_mode==1)
   {
    D3DLOCKED_RECT lr;
 
@@ -217,7 +217,7 @@ BOOL CVideoOutputDevice::FrameComplete()
   if((frameHeight << 16) + frameWidth != windowAlreadyMoved) // just opened or frame size changed
   {
     RECT vRect, wRect, dRect; // video, window, desktop work area
-    int newW, newH, maxAvailW, maxAvailH;
+    unsigned newW, newH, maxAvailW, maxAvailH;
 
     if(SystemParametersInfo(SPI_GETWORKAREA, NULL, &dRect, 0))
     { maxAvailW = dRect.right-dRect.left+1;
