@@ -157,6 +157,7 @@ BOOL CVideoOutputDevice::FrameComplete()
     Release_d3d(); 
     RECT vRect;
     vRect.left = m_x; vRect.top = m_y; vRect.right = m_w; vRect.bottom = m_h;
+    SetWindowPos(HWND(*m_videoDlg), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_FRAMECHANGED); 
     m_videoDlg->MoveWindow(&vRect);
    }
 
