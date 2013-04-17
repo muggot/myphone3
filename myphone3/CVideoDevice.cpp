@@ -107,6 +107,12 @@ CVideoOutputDevice::CVideoOutputDevice(
 
 CVideoOutputDevice::~CVideoOutputDevice()
 {
+  if (m_d3d_mode!=0)
+  {
+    m_d3d_mode=0; 
+    Release_d3d(); 
+    SetWindowPos(HWND(*m_videoDlg), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_FRAMECHANGED); 
+  }
   m_videoDlg->ShowWindow(SW_HIDE);
   PWaitAndSignal m(mutex);
   Close();

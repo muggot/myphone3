@@ -895,6 +895,8 @@ void CMyPhoneDlg::OnConnectionCleared(LPCTSTR remotename)
 	GetDlgItem(IDC_SRVIDEO)->SetWindowText(_T(""));
 	m_micMute.SetCheck(BST_UNCHECKED);
 	m_micMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_MICICON)));
+	m_sndMute.SetCheck(BST_UNCHECKED);
+	m_sndMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_SNDICON)));
    }
 }
 
