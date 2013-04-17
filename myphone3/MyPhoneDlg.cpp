@@ -862,6 +862,8 @@ void CMyPhoneDlg::OnConnectionEstablished(LPCTSTR remotename)
 	//     ShowVideoPanels(FALSE);  // hide Video panel if it's visible
 	m_micMute.SetCheck(BST_UNCHECKED);
 	m_micMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_MICICON)));
+	m_sndMute.SetCheck(BST_UNCHECKED);
+	m_sndMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_SNDICON)));
 }
 
 void CMyPhoneDlg::OnConnectionCleared(LPCTSTR remotename)
