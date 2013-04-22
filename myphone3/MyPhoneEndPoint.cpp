@@ -74,6 +74,7 @@ const char UsernameConfigKey[] = "Username";
 const char AliasConfigKey[] = "UserAliases";
 
 const char AutoAnswerConfigKey[] = "AutoAnswer";
+const char AutoMuteConfigKey[] = "AutoMute";
 
 const char CodecsConfigSection[] = "Codecs";
 const char OnCodecSuffix[] = " (On)";
@@ -268,6 +269,7 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 		m_router = config.GetString(RouterConfigKey, m_router.AsString());
 	
 	m_fAutoAnswer = config.GetBoolean(AutoAnswerConfigKey, false);
+	m_fAutoMute = config.GetBoolean(AutoMuteConfigKey, false);
 	
     CString alias, aliases;
 	aliases = CString((const char *)config.GetString(AliasConfigKey, _T("")));
@@ -364,6 +366,16 @@ BOOL CMyPhoneEndPoint::OpenAudioChannel(H323Connection & connection,
 
 BOOL CMyPhoneEndPoint::OnStartLogicalChannel(H323Connection &, H323Channel & channel)
 {
+	if( m_fAutoMute
+          && (channel.GetCapability().GetMainType()==H323Capability::e_Audio)
+          && (channel.GetDirection()==H323Channel::IsTransmitter)
+        )
+        {
+          channel.SetPause(TRUE);
+	  m_dialog->m_micMute.SetCheck(BST_CHECKED);
+          m_dialog->m_micMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDI_MICMUTEICON)));
+        }
+
 	OnLogicalChannel(channel, IDS_STARTCHANNELTX, IDS_STARTCHANNELRX);
 	return TRUE;
 }

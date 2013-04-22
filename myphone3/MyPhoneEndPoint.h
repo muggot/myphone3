@@ -99,6 +99,7 @@ public:
 	BOOL m_fAECOn;
 	int  m_fAGCOn;
 	BOOL m_fAutoAnswer;
+	BOOL m_fAutoMute;
 	BOOL m_fNoFastStart;
 	BOOL m_fStrictSingleLine;
 	BOOL m_fDoH245Tunnelling;

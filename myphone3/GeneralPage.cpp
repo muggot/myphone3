@@ -47,6 +47,7 @@ CGeneralPage::CGeneralPage() : CPropertyPage(CGeneralPage::IDD)
 	m_UserName = _T("");
 	m_RingSoundFile = _T("");
 	m_AutoAnswer = FALSE;
+	m_AutoMute = FALSE;
 	m_NoTunneling = FALSE;
 	m_DtmfAsString = FALSE;
 	m_disableFastStart = FALSE;
@@ -70,6 +71,7 @@ void CGeneralPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_USERNAME_EDIT, m_UserName);
 	DDX_Text(pDX, IDC_RING_FILE_EDIT, m_RingSoundFile);
 	DDX_Check(pDX, IDC_AUTO_ANSWER_CHECK, m_AutoAnswer);
+	DDX_Check(pDX, IDC_AUTO_MUTE_CHECK, m_AutoMute);
 	DDX_Check(pDX, IDC_DISABLE_H242_CHECK, m_NoTunneling);
 	DDX_Check(pDX, IDC_DTMF_AS_STRING_CHECK, m_DtmfAsString);
 	DDX_Check(pDX, IDC_DISABLE_FASTSTART, m_disableFastStart);
@@ -150,8 +152,9 @@ void CGeneralPage::TranslateDlg()
 {	// changing window languge
 	GetDlgItem(IDC_USERSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_USERSTR));
 	GetDlgItem(IDC_UNAMESTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_UNAMESTR));
-	GetDlgItem(IDC_AUTO_ANSWER_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_AANSWERSTR));	
-	GetDlgItem(IDC_DTMF_AS_STRING_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_DTMFSTRSTR));	
+	GetDlgItem(IDC_AUTO_ANSWER_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_AANSWERSTR));
+	GetDlgItem(IDC_AUTO_MUTE_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_AUTOMUTESTR));
+	GetDlgItem(IDC_DTMF_AS_STRING_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_DTMFSTRSTR));
 	GetDlgItem(IDC_DISABLE_H242_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_D242STR));
 	GetDlgItem(IDC_DISABLE_FASTSTART)->SetWindowText((LPCTSTR)LoadStringLang(IDS_DFSTARTSTR));
 	GetDlgItem(IDC_RINGSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_RINGFSTR));

@@ -79,6 +79,7 @@ const char RTPPortMaxConfigKey[] = "RTPPortMax";
 const char NoTunnelingConfigKey[] = "NoTunneling";
 const char DtmfAsStringConfigKey[] = "DtmfAsString";
 const char AutoAnswerConfigKey[] = "AutoAnswer";
+const char AutoMuteConfigKey[] = "AutoMute";
 const char UsernameConfigKey[] = "Username";
 //const char AliasConfigKey[] = "Alias %d";
 const char AliasConfigKey[] = "UserAliases";
@@ -860,11 +861,11 @@ void CMyPhoneDlg::OnConnectionEstablished(LPCTSTR remotename)
 	indTimer.RunContinuous(200);
 	//  if(autohideVideoPan && showVideoPan )
 	//     ShowVideoPanels(FALSE);  // hide Video panel if it's visible
-	m_micMute.SetCheck(BST_UNCHECKED);
+/*	m_micMute.SetCheck(BST_UNCHECKED);
 	m_micMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_MICICON)));
 	m_sndMute.SetCheck(BST_UNCHECKED);
 	m_sndMute.SetIcon(::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_SNDICON)));
-}
+*/}
 
 void CMyPhoneDlg::OnConnectionCleared(LPCTSTR remotename)
 {
@@ -929,6 +930,7 @@ void CMyPhoneDlg::OnSettings()
 	genPage.m_RingSoundFile = (const char*) ringSoundFile;
 	
 	genPage.m_AutoAnswer = m_endpoint.m_fAutoAnswer;
+	genPage.m_AutoMute = m_endpoint.m_fAutoMute;
 	genPage.m_DtmfAsString = m_endpoint.m_fDtmfAsString;
 	genPage.m_NoTunneling = m_endpoint.DisableH245Tunnelling();
 	genPage.m_disableFastStart = m_endpoint.m_fNoFastStart;
@@ -1226,6 +1228,9 @@ void CMyPhoneDlg::OnSettings()
 	
 	m_endpoint.m_fAutoAnswer = genPage.m_AutoAnswer;
 	config.SetBoolean(AutoAnswerConfigKey, genPage.m_AutoAnswer);
+
+	m_endpoint.m_fAutoMute = genPage.m_AutoMute;
+	config.SetBoolean(AutoMuteConfigKey, genPage.m_AutoMute);
 	
 	m_endpoint.m_fDtmfAsString = genPage.m_DtmfAsString;
 	config.SetBoolean(DtmfAsStringConfigKey, genPage.m_DtmfAsString);

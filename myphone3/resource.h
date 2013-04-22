@@ -191,6 +191,7 @@
 #define IDS_LOCFLIPSTR                  335
 #define IDS_SINGLELINE                  336
 #define IDS_FULLSCREEN                  337
+#define IDS_AUTOMUTESTR                 338
 #define IDC_DESTINATION                 1000
 #define IDC_CALL                        1001
 #define IDC_ANSWER                      1002
@@ -374,6 +375,7 @@
 #define IDC_STATIC2                     1160
 #define IDC_STRICT_SINGLE_LINE          1164
 #define IDC_FULLSCRDEFLT                1165
+#define IDC_AUTO_MUTE_CHECK             1166
 #define ID_MSETTINGS                    32771
 #define ID_MABOUT                       32772
 #define ID_LOGMENU_COPY                 32774
@@ -391,7 +393,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        201
 #define _APS_NEXT_COMMAND_VALUE         32791
-#define _APS_NEXT_CONTROL_VALUE         1161
+#define _APS_NEXT_CONTROL_VALUE         1167
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

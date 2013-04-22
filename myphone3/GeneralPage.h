@@ -52,6 +52,7 @@ public:
 	CString		m_UserName;
 	CString	m_RingSoundFile;
 	BOOL	m_AutoAnswer;
+	BOOL	m_AutoMute;
 	BOOL	m_NoTunneling;
 	BOOL	m_DtmfAsString;
 	BOOL	m_disableFastStart;

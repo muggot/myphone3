@@ -124,6 +124,7 @@ BEGIN
     IDS_KBSSTR              "Кб/с"
     IDS_IPTSTR              "Тип IP сервиса:"
     IDS_AANSWERSTR          "Авто-Ответ"
+    IDS_AUTOMUTESTR         "Выключать микрофон при ответе"
     IDS_DTMFSTRSTR          "DTMF как строку"
 END
 
@@ -347,11 +348,12 @@ BEGIN
     GROUPBOX        "User",IDC_USERSTATIC,5,2,203,29
     LTEXT           "User Alias:",IDC_UNAMESTATIC,11,13,71,8,0,WS_EX_RIGHT
     EDITTEXT        IDC_USERNAME_EDIT,86,11,79,12,ES_AUTOHSCROLL
-    CONTROL         "Auto-Answer",IDC_AUTO_ANSWER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,37,110,8
-    CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,51,112,8
-    CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,66,114,8
-    CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,80,115,8
-    CONTROL         "Strict Single Line",IDC_STRICT_SINGLE_LINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,61,95,116,8
+    CONTROL         "Auto-Answer",IDC_AUTO_ANSWER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,35,110,8
+    CONTROL         "Auto Mute",IDC_AUTO_MUTE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,50,130,8
+    CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,65,112,8
+    CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,80,114,8
+    CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,95,115,8
+    CONTROL         "Strict Single Line",IDC_STRICT_SINGLE_LINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,110,116,8
     LTEXT           "Ring Sound File:",IDC_RINGSTATIC,5,128,53,8
     EDITTEXT        IDC_RING_FILE_EDIT,60,127,119,13,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_RING_FILE_BROWSE,179,127,14,13
@@ -967,6 +969,7 @@ BEGIN
     IDS_KBSSTR              "Kb/s"
     IDS_IPTSTR              "IP Type Of Service:"
     IDS_AANSWERSTR          "Auto-Answer"
+    IDS_AUTOMUTESTR         "Auto mute incoming calls"
     IDS_DTMFSTRSTR          "DTMF as String"
 END
 
@@ -1167,6 +1170,7 @@ BEGIN
     IDS_KBSSTR              "Kb/s"
     IDS_IPTSTR              "Type de Service IP :"
     IDS_AANSWERSTR          "Auto-REponse"
+    IDS_AUTOMUTESTR         "Auto mute appels entrants"
     IDS_DTMFSTRSTR          "DTMF en caractOres"
 END
 
@@ -1354,6 +1358,7 @@ BEGIN
     IDS_KBSSTR              "Kb/s"
     IDS_IPTSTR              "Tipo di servizio IP:"
     IDS_AANSWERSTR          "Risposta Automatica "
+    IDS_AUTOMUTESTR         "Mute microfono (chiamata in arrivo)"
     IDS_DTMFSTRSTR          "DTMF come Stringa"
 END
 
