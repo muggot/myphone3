@@ -113,6 +113,7 @@ public:
 	friend class CMyPhoneDlg;
 	friend class CMyPhoneConnection;
 
+	BOOL isIncomingCall;
 };
 
 class CMyPhoneConnection : public H323Connection

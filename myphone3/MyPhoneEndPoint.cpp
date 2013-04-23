@@ -186,7 +186,8 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 {
 	m_dialog = dlg;
         m_vdlg = vdlg;
-	
+	isIncomingCall = FALSE;
+
 	SetAudioJitterDelay(50, config.GetInteger(JitterConfigKey, GetMaxAudioJitterDelay()));
 	SetSoundChannelBufferDepth(config.GetInteger(BufferCountConfigKey, GetSoundChannelBufferDepth()));
 	
@@ -314,6 +315,7 @@ BOOL CMyPhoneEndPoint::OnIncomingCall(H323Connection & connection,
 {
 	CTime tNow;
 	tNow=CTime::GetCurrentTime();
+	isIncomingCall=TRUE;
 	return TRUE;
 }
 
@@ -366,7 +368,8 @@ BOOL CMyPhoneEndPoint::OpenAudioChannel(H323Connection & connection,
 
 BOOL CMyPhoneEndPoint::OnStartLogicalChannel(H323Connection &, H323Channel & channel)
 {
-	if( m_fAutoMute
+	if( isIncomingCall
+          && m_fAutoMute
           && (channel.GetCapability().GetMainType()==H323Capability::e_Audio)
           && (channel.GetDirection()==H323Channel::IsTransmitter)
         )
