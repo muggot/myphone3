@@ -1337,8 +1337,13 @@ class CodecReadAnalyser
    */
   while (codec->Read(frame.GetPayloadPtr()+frameOffset, length, frame)) {
     // Calculate the timestamp and real time to take in processing
-    rtpTimestamp += codec->GetFrameRate();
-    PTRACE(6, "H323RTP\tFrame length " << length);
+    if(isAudio) {
+     rtpTimestamp += codec->GetFrameRate();
+    }
+    else if(frame.GetMarker()) {
+     now = PTimer::Tick();
+     nextTimestamp = (now - lastFrameTick).GetInterval() * 90;
+    }
 
 
 #if PTRACING
