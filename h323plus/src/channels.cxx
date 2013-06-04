@@ -1322,6 +1322,7 @@ class CodecReadAnalyser
   unsigned frameCount = 0;
   DWORD rtpTimestamp = 0;
   frame.SetPayloadSize(0);
+  PTimeInterval lastFrameTick = PTimer::Tick();
 
 #if PTRACING
   DWORD lastDisplayedTimestamp = 0;
@@ -1341,8 +1342,8 @@ class CodecReadAnalyser
      rtpTimestamp += codec->GetFrameRate();
     }
     else if(frame.GetMarker()) {
-     now = PTimer::Tick();
-     nextTimestamp = (now - lastFrameTick).GetInterval() * 90;
+     PTimeInterval now = PTimer::Tick();
+     rtpTimestamp = (now - lastFrameTick).GetInterval() * 90;
     }
 
 
