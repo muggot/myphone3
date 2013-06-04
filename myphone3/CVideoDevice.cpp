@@ -268,8 +268,8 @@ BOOL CVideoOutputDevice::FrameComplete()
 
     newW+=willLostX; newH+=willLostY;
 
-    wRect.left = dRect.left+((maxAvailW-newW)>>1);
-    wRect.top = dRect.top+((maxAvailH-newH)>>1);
+    wRect.left = dRect.left+(((int)maxAvailW-(int)newW)/2);
+    wRect.top = dRect.top+(((int)maxAvailH-(int)newH)/2);
     wRect.right = wRect.left + newW - 1;
     wRect.bottom = wRect.top + newH - 1;
     m_videoDlg->MoveWindow(&wRect);
