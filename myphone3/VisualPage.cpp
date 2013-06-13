@@ -25,6 +25,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+#include <dshow.h>
 #include "MyPhone.h"
 #include "VisualPage.h"
 //
@@ -98,6 +99,7 @@ void CVisualPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_LOCALVIDEO, m_localVideo);
 	DDX_Check(pDX, IDC_LVFLIP, m_LVflip);
 	DDX_Check(pDX, IDC_RVFLIP, m_RVflip);
+	DDX_Control(pDX, IDC_CAM_SETUP_BUTTON, m_CamSetBtn);
 	DDX_Text(pDX, IDC_VIDEOFPS, m_vFPS);
 	DDX_Text(pDX, IDC_VIDEOINMAXBPS, m_vINBPS);
         DDX_Text(pDX, IDC_VIDEOOUTMAXBPS, m_vOUTBPS);
@@ -131,6 +133,7 @@ BEGIN_MESSAGE_MAP(CVisualPage, CPropertyPage)
 	ON_LBN_SELCHANGE(IDC_CODEC_SELECTION_LIST, OnSelchangeCodecSelectionList)
 	ON_BN_CLICKED(IDC_CS_UP_BUTTON, OnCsUpButton)
 	ON_BN_CLICKED(IDC_CS_DOWN_BUTTON, OnCsDownButton)
+	ON_BN_CLICKED(IDC_CAM_SETUP_BUTTON, OnCamSetupButton)
 	ON_BN_CLICKED(IDC_CS_ENABLED_CHECK, OnCsEnabledCheck)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -216,6 +219,121 @@ void CVisualPage::OnCsDownButton()
 	m_CodecListCtrl.SetCurSel(selection+1);
 
 	OnSelchangeCodecSelectionList(); 
+}
+
+static char *BSTR_to_ANSI(BSTR pSrc)
+{
+    unsigned int cb, cwch;
+    char *szOut = NULL;
+
+    if(!pSrc)
+	return NULL;
+
+    cwch = SysStringLen(pSrc);
+
+    /* Count the number of character needed to allocate */
+    cb = WideCharToMultiByte(CP_ACP, 0, pSrc, cwch + 1, NULL, 0, 0, 0);
+    if (cb == 0)
+	return NULL;
+
+    szOut = (char *)calloc(cb+1, 1);
+    if (szOut == NULL)
+	return NULL;
+
+    cb = WideCharToMultiByte(CP_ACP, 0, pSrc, cwch + 1, szOut, cb, 0, 0);
+    if (cb == 0)
+    {
+	free(szOut);
+	return NULL;
+    }
+
+    return szOut;
+}
+
+void CVisualPage::OnCamSetupButton()
+{
+  CComboBox * box = (CComboBox*)(GetDlgItem(IDC_RECORDING_COMBO));
+  int i = box->GetCurSel();
+  int n = box->GetLBTextLen(i);
+  CString s;
+  box->GetLBText(i, s.GetBuffer(n));
+  PString setupDeviceName = s;
+  s.ReleaseBuffer();
+
+  if (setupDeviceName.IsEmpty()) return;
+  if (setupDeviceName.Find("fake") == 0) return;
+  if (setupDeviceName.Find("monitor") == 0) return;
+  if (setupDeviceName.Find("zmonitor") == 0) return;
+  PTRACE(4,"PVidDirectShow\tCurrent device: " << setupDeviceName);
+
+  HRESULT hr;
+  IBaseFilter * pFilter = NULL;
+  IMoniker *pMoniker =NULL;
+  ICreateDevEnum *pDevEnum =NULL;
+  IEnumMoniker *pClassEnum = NULL;
+  ULONG cFetched;
+
+  ::CoInitialize(NULL);
+
+  // Create the system device enumerator
+  hr = CoCreateInstance (CLSID_SystemDeviceEnum, NULL, CLSCTX_INPROC, IID_ICreateDevEnum, (void **) &pDevEnum);
+  if (FAILED(hr)) { ::CoUninitialize(); return; }
+
+  // Create an enumerator for the video capture devices
+  hr = pDevEnum->CreateClassEnumerator(CLSID_VideoInputDeviceCategory, &pClassEnum, 0);
+  if (FAILED(hr)) { ::CoUninitialize(); return; }
+
+  if (pClassEnum == NULL) { ::CoUninitialize(); return; }
+
+  PTRACE(4,"PVidDirectShow\tEntering device enumeration loop...");
+  while (1)
+  { // Get the next device
+    hr = pClassEnum->Next(1, &pMoniker, &cFetched);
+    if (hr != S_OK) { PTRACE(4, "PVidDirectShow\tGetInputDeviceNames() No more video capture device"); break; }
+
+    // Get the property bag
+    IPropertyBag *pPropBag;
+
+    hr = pMoniker->BindToStorage(0, 0, IID_IPropertyBag, (void**)(&pPropBag));
+    if (FAILED(hr))
+    { PTRACE(4,"PVidDerectShow\tBindToStorage failed, continue");
+      pMoniker->Release();
+      continue;
+    }
+
+    // Find the description or friendly name.
+    VARIANT DeviceName;
+    DeviceName.vt = VT_BSTR;
+    hr = pPropBag->Read(L"Description", &DeviceName, NULL);
+    if (FAILED(hr)) hr = pPropBag->Read(L"FriendlyName", &DeviceName, NULL);
+    if (SUCCEEDED(hr))
+    { char *pDeviceName = BSTR_to_ANSI(DeviceName.bstrVal);
+      if (pDeviceName)
+      { PTRACE(4, "PVidDirectShow\tGetInputDeviceNames() Found this capture device '"<< pDeviceName <<"'");
+        if(PString(pDeviceName) == setupDeviceName)
+        {
+          PTRACE(4, "PVidDirectShow\tCamera Setup: device found");
+          pMoniker->BindToObject(0, 0, IID_IBaseFilter, (void**) &pFilter);
+          ISpecifyPropertyPages *p_spec; CAUUID cauuid;
+          HRESULT hr = pFilter->QueryInterface( IID_ISpecifyPropertyPages, (void **)&p_spec );
+          if( !FAILED(hr) )
+          if( SUCCEEDED(p_spec->GetPages( &cauuid )) )
+          { if( cauuid.cElems > 0 )
+            { HWND hwnd_desktop = ::GetDesktopWindow();
+              OleCreatePropertyFrame( hwnd_desktop, 30, 30, NULL, 1, (LPUNKNOWN *)(&pFilter), cauuid.cElems, cauuid.pElems, 0, 0, NULL );
+              CoTaskMemFree( cauuid.pElems );
+            }
+            p_spec->Release();
+          }
+        }
+        free(pDeviceName);
+      }
+    }
+    pPropBag->Release();
+    pMoniker->Release();
+  }
+
+  ::CoUninitialize();
 }
 
 void CVisualPage::OnCsEnabledCheck() 

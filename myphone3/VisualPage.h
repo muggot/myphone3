@@ -58,6 +58,7 @@ public:
 	CButton		m_UpBtn;
 	CButton		m_DownBtn;
 	CButton		m_EnableBtn;
+        CButton		m_CamSetBtn;
 	CListBox	m_CodecListCtrl;
 	CComboBox	m_RecordDeviceBox;
 	CString	m_RecordDeviceCur;
@@ -99,6 +100,7 @@ protected:
 	afx_msg void OnSelchangeCodecSelectionList();
 	afx_msg void OnCsUpButton();
 	afx_msg void OnCsDownButton();
+        afx_msg void OnCamSetupButton();
 	afx_msg void OnCsEnabledCheck();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
