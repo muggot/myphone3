@@ -662,15 +662,19 @@ void CMyPhoneEndPoint::LoadCapabilities()
    case 1: //QVGA
    case 2: //CIF
     suffixPos = name.Find("-4CIF");  if(suffixPos != P_MAX_INDEX) break;
+    suffixPos = name.Find("-480P");    if(suffixPos != P_MAX_INDEX) break;
    case 3: //VGA
    case 4: //4CIF
     suffixPos = name.Find("-SD");    if(suffixPos != P_MAX_INDEX) break;
    case 5: //SVGA
+    suffixPos = name.Find("-720P");    if(suffixPos != P_MAX_INDEX) break;
    case 6: //XVGA
     suffixPos = name.Find("-HD");    if(suffixPos != P_MAX_INDEX) break;
     suffixPos = name.Find("-16CIF"); if(suffixPos != P_MAX_INDEX) break;
    case 7: //SXGA
     suffixPos = name.Find("-FHD"); if(suffixPos != P_MAX_INDEX) break;
+    suffixPos = name.Find("-16CIF"); if(suffixPos != P_MAX_INDEX) break;
+    suffixPos = name.Find("-1080P"); if(suffixPos != P_MAX_INDEX) break;
    case 8: //16CIF
    default:
     break;
@@ -688,6 +692,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
    case 1: //QVGA
    case 2: //CIF
     suffixPos = name.Find("-4CIF");  if(suffixPos != P_MAX_INDEX) break;
+    suffixPos = name.Find("-480P");    if(suffixPos != P_MAX_INDEX) break;
    case 3: //VGA
    case 4: //4CIF
     suffixPos = name.Find("-SD");    if(suffixPos != P_MAX_INDEX) break;
@@ -695,9 +700,11 @@ void CMyPhoneEndPoint::LoadCapabilities()
    case 6: //XVGA
     suffixPos = name.Find("-HD");    if(suffixPos != P_MAX_INDEX) break;
    case 7: //HD 720
+    suffixPos = name.Find("-720P");    if(suffixPos != P_MAX_INDEX) break;
    case 8: //SXGA
     suffixPos = name.Find("-16CIF"); if(suffixPos != P_MAX_INDEX) break;
     suffixPos = name.Find("-FHD"); if(suffixPos != P_MAX_INDEX) break;
+    suffixPos = name.Find("-1080P"); if(suffixPos != P_MAX_INDEX) break;
    case 9: //16CIF
    default:
     break;
@@ -718,7 +725,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
   if (capabilities[i].GetMainType() == H323Capability::e_Video)
   {
    capabilities[i].SetMediaFormatOptionInteger(OpalVideoFormat::MaxBitRateOption, videoInMaxBitRate);
-   if(capabilities[i].GetFormatName().Find("H.264")!=P_MAX_INDEX)
+   if((capabilities[i].GetFormatName().Find("H.264")!=P_MAX_INDEX) || (capabilities[i].GetFormatName().Find("VP8-")==0))
    {
 
     H323GenericVideoCapability *h264cap = (H323GenericVideoCapability *) &capabilities[i];
