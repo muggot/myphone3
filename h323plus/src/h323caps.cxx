@@ -3839,17 +3839,19 @@ H323Capability * H323Capabilities::FindCapability(const H245_VideoCapability & v
          for (PINDEX i = 0; i < table.GetSize(); i++)
          { H323Capability & capability = table[i];
            if (capability.GetMainType() == H323Capability::e_Video && capability.GetFormatName().Find(VP8DesiredCapability) == 0)
-           { PTRACE(3, "H323\tFound capability: " << capability);
+           { PTRACE(3, "H323\tFound capability*: " << capability);
              return &capability;
            }
          }
+/*
          for (PINDEX i = 0; i < table.GetSize(); i++)
          { H323Capability & capability = table[i];
            if (capability.GetMainType() == H323Capability::e_Video && capability.GetFormatName().Find("VP8") == 0)
-           { PTRACE(3, "H323\tFound capability: " << capability);
+           { PTRACE(3, "H323\tFound capability**: " << capability);
              return &capability;
            }
          }
+*/
          return NULL;
        }
      }
@@ -3857,6 +3859,7 @@ H323Capability * H323Capabilities::FindCapability(const H245_VideoCapability & v
     for (PINDEX i = 0; i < table.GetSize(); i++) {
      H323Capability & capability = table[i];
      if (capability.GetMainType() == H323Capability::e_Video &&
+         (capability.GetFormatName().Find(".264") != P_MAX_INDEX) && //count on current H.264_123 plugin capability table //kay27
          (subType == UINT_MAX || capability.GetSubType() == subType)) {
          if(profile<0)
          {
