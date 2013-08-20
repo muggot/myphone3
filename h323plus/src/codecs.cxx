@@ -785,8 +785,16 @@ H323AudioCodec::H323AudioCodec(const OpalMediaFormat & fmt, Direction dir)
 {
   framesReceived = 0;
   samplesPerFrame = (mediaFormat.GetFrameTime() * mediaFormat.GetTimeUnits()) / 8;
+
   if (samplesPerFrame == 0)
     samplesPerFrame = 8; // Default for non-frame based codecs.
+
+  if (direction == Encoder)
+    codecChannels = mediaFormat.GetEncoderChannels();
+  else
+    codecChannels = mediaFormat.GetDecoderChannels();
+
+  PTRACE(6,"H323AudioCodec\tcodecChannels " << codecChannels);
 
   // Start off in silent mode
   inTalkBurst = FALSE;
@@ -808,7 +816,7 @@ H323AudioCodec::~H323AudioCodec()
 
 BOOL H323AudioCodec::Open(H323Connection & connection)
 {
-  return connection.OpenAudioChannel(direction == Encoder, samplesPerFrame*2, *this);
+  return connection.OpenAudioChannel(direction == Encoder, samplesPerFrame*2*codecChannels, *this);
 }
 
 
@@ -1009,7 +1017,7 @@ BOOL H323AudioCodec::SetRawDataHeld(BOOL hold) {
 
 H323FramedAudioCodec::H323FramedAudioCodec(const OpalMediaFormat & fmt, Direction dir)
   : H323AudioCodec(fmt, dir),
-    sampleBuffer(samplesPerFrame)
+    sampleBuffer(samplesPerFrame*codecChannels)
 {
   bytesPerFrame = mediaFormat.GetFrameSize();
   currVolCoef = 5.0;
@@ -1031,9 +1039,9 @@ BOOL H323FramedAudioCodec::Read(BYTE * buffer, unsigned & length, RTP_DataFrame 
     return TRUE;
   }
 
-  PINDEX numBytes = samplesPerFrame*2;
+  PINDEX numBytes = samplesPerFrame*2*codecChannels;
   PINDEX count;
-  if (!ReadRaw(sampleBuffer.GetPointer(samplesPerFrame), numBytes, count))
+  if (!ReadRaw(sampleBuffer.GetPointer(samplesPerFrame*codecChannels), numBytes, count))
   {
     PTRACE(6,"ReadRaw\tFailed ");
     return FALSE;
@@ -1042,7 +1050,7 @@ BOOL H323FramedAudioCodec::Read(BYTE * buffer, unsigned & length, RTP_DataFrame 
 #ifdef H323_AEC
     if (aec != NULL) {
        PTRACE(6,"AEC\tSend " << numBytes);
-       aec->Send((BYTE*)sampleBuffer.GetPointer(samplesPerFrame),(unsigned &)numBytes);
+       aec->Send((BYTE*)sampleBuffer.GetPointer(samplesPerFrame*codecChannels),(unsigned &)numBytes);
     }
 #endif
 
@@ -1074,7 +1082,7 @@ if(agc)
   float dec_vol = 0.03;
 
   const short * pcm = sampleBuffer;
-  const short * end = pcm + samplesPerFrame;
+  const short * end = pcm + samplesPerFrame*codecChannels;
   int c_max_vol = 0, c_avg_vol = 0;
   while (pcm != end) 
   {
@@ -1100,7 +1108,7 @@ if(agc)
 
   unsigned short *buf = (unsigned short *)sampleBuffer.GetPointer(samplesPerFrame);
 
-  for(int i=0; i<samplesPerFrame; i++) 
+  for(int i=0; i<samplesPerFrame*codecChannels; i++) 
   {
    int v = buf[i];
    if((v&0x00008000)!=0) v|=0xffff0000;
@@ -1128,7 +1136,8 @@ BOOL H323FramedAudioCodec::Write(const BYTE * buffer,
   // If length is zero then it indicates silence, do nothing.
   written = 0;
 
-  unsigned bytesDecoded = samplesPerFrame*2;
+  unsigned bytesDecoded = samplesPerFrame*2*codecChannels;
+  PTRACE(6,"H323FramedAudioCodec\tWrite: codecChannels " << codecChannels << ", samplesPerFrame " << samplesPerFrame << ", bytesDecoded " << bytesDecoded);
 
   if (length != 0) {
     if (length > bytesPerFrame)

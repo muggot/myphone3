@@ -1310,7 +1310,33 @@ class H323PluginFramedAudioCodec : public H323FramedAudioCodec
   public:
     H323PluginFramedAudioCodec(const OpalMediaFormat & fmtName, Direction direction, PluginCodec_Definition * _codec)
       : H323FramedAudioCodec(fmtName, direction), codec(_codec)
-    { if (codec != NULL && codec->createCodec != NULL) context = (*codec->createCodec)(codec); else context = NULL; }
+//    { if (codec != NULL && codec->createCodec != NULL) context = (*codec->createCodec)(codec); else context = NULL; }
+    { // patch by Xak. PLUGINCODEC_CONTROL_SET_CODEC_OPTIONS function for audio plugin
+      if (codec != NULL && codec->createCodec != NULL)
+        context = (*codec->createCodec)(codec);
+      else
+        context = NULL;
+      if (context) {
+        PluginCodec_ControlDefn * ctl = GetCodecControl(codec, SET_CODEC_OPTIONS_CONTROL);
+        if (ctl != NULL) {
+          PStringArray list;
+          for (PINDEX i = 0; i < mediaFormat.GetOptionCount(); i++) {
+            const OpalMediaOption & option = mediaFormat.GetOption(i);
+            list += option.GetName();
+            list += option.AsString();
+            PTRACE(5, "OpalPlugin\tSetting codec option '" << option.GetName() << "'=" << option.AsString());
+          }
+          char ** _options = list.ToCharArray();
+          unsigned int optionsLen = sizeof(_options);
+          (*ctl->control)(codec, context, SET_CODEC_OPTIONS_CONTROL, _options, &optionsLen);
+          free(_options);
+        }
+#if PTRACING
+        PTRACE(6,"Codec Options");
+        OpalMediaFormat::DebugOptionList(mediaFormat);
+#endif
+      }
+    }
 
     ~H323PluginFramedAudioCodec()
     { if (codec != NULL && codec->destroyCodec != NULL) (*codec->destroyCodec)(codec, context); }
@@ -1322,7 +1348,7 @@ class H323PluginFramedAudioCodec : public H323FramedAudioCodec
     {
       if (codec == NULL || direction != Encoder)
         return FALSE;
-      unsigned int fromLen = codec->parm.audio.samplesPerFrame*2;
+      unsigned int fromLen = codec->parm.audio.samplesPerFrame*2*codecChannels;
       toLen                = codec->parm.audio.bytesPerFrame;
       PTRACE(6, "PluginFramedAudioCodec\tfromLen" << fromLen);
       unsigned flags = 0;
@@ -3423,6 +3449,7 @@ H323CodecPluginGenericAudioCapability::H323CodecPluginGenericAudioCapability(
       H323PluginCapabilityInfo((PluginCodec_Definition *)_encoderCodec,
                    (PluginCodec_Definition *) _decoderCodec)
 {
+  PopulateMediaFormatOptions(encoderCodec,GetWritableMediaFormat());
   PopulateMediaFormatFromGenericData(GetWritableMediaFormat(), data);
   rtpPayloadType = (RTP_DataFrame::PayloadTypes)(((_encoderCodec->flags & PluginCodec_RTPTypeMask) == PluginCodec_RTPTypeDynamic) ? RTP_DataFrame::DynamicBase : _encoderCodec->rtpPayload);
 }

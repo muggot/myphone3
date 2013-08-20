@@ -3036,14 +3036,22 @@ BOOL H323EndPoint::OpenAudioChannel(H323Connection & /*connection*/,
 
   int rate = codec.GetMediaFormat().GetTimeUnits() * 1000;
 
+  unsigned codecChannels = 1;
+
   PString deviceName;
   PString deviceDriver;
   if (isEncoding) {
     deviceName   = GetSoundChannelRecordDevice();
     deviceDriver = GetSoundChannelRecordDriver();
+    { PString OptionValue; if(codec.GetMediaFormat().GetOptionValue((const PString)"Encoder Channels", OptionValue))
+      codecChannels = atoi(OptionValue);
+    }
   } else {
     deviceName = GetSoundChannelPlayDevice();
     deviceDriver = GetSoundChannelPlayDriver();
+    { PString OptionValue; if(codec.GetMediaFormat().GetOptionValue((const PString)"Decoder Channels", OptionValue))
+        codecChannels = atoi(OptionValue);
+    }
   }
 
   PTRACE(1, "OpenAudioChannel\tTring to use driver=" << deviceDriver << " device=" << deviceName);
@@ -3064,10 +3072,10 @@ BOOL H323EndPoint::OpenAudioChannel(H323Connection & /*connection*/,
 
   if (soundChannel->Open(deviceName, isEncoding ? PSoundChannel::Recorder
                                                 : PSoundChannel::Player,
-                         1, rate, 16)) {
+                         codecChannels, rate, 16)) {
     PTRACE(3, "Codec\tOpened sound channel \"" << deviceName
            << "\" for " << (isEncoding ? "record" : "play")
-           << "ing at " << rate << " samples/second using " << soundChannelBuffers
+           << "ing at " << codecChannels << "x" << rate << " samples/second using " << soundChannelBuffers
            << 'x' << bufferSize << " byte buffers.");
     soundChannel->SetBuffers(bufferSize, soundChannelBuffers);
     return codec.AttachChannel(soundChannel);
