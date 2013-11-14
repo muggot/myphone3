@@ -834,6 +834,9 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
   int videoFramesPS = config.GetInteger(VideoFPSKey, 10);
   codec.SetGeneralCodecOption("Frame Rate",videoFramesPS);
 
+  codec.SetTargetFrameTimeMs(1000/videoFramesPS);
+  codec.SetGeneralCodecOption("Frame Time",90000/videoFramesPS);
+
   //Create grabber.
   bool NoDevice = false;
   PString deviceName = config.GetString(VideoDeviceConfigKey, deviceName);
