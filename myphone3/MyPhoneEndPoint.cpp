@@ -835,7 +835,11 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
   codec.SetGeneralCodecOption("Frame Rate",videoFramesPS);
 
   codec.SetTargetFrameTimeMs(1000/videoFramesPS);
-  codec.SetGeneralCodecOption("Frame Time",90000/videoFramesPS);
+//  codec.SetGeneralCodecOption("Frame Time",90000/videoFramesPS);
+
+  OpalMediaFormat & mf = codec.GetWritableMediaFormat();
+  mf.SetOptionInteger("Frame Rate", videoFramesPS);
+  mf.SetOptionInteger("Frame Time", 90000/videoFramesPS);
 
   //Create grabber.
   bool NoDevice = false;

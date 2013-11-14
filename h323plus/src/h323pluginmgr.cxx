@@ -1689,7 +1689,11 @@ class H323PluginVideoCodec : public H323VideoCodec
     { return lastFrameTimeRTP; }
 
     BOOL SetTargetFrameTimeMs(unsigned ms)  // Requires implementing
-    {  targetFrameTimeMs = ms; return TRUE; }
+    {  
+     targetFrameTimeMs = ms; 
+     mediaFormat.SetOptionInteger(OpalVideoFormat::FrameTimeOption, (int)(90*ms));
+     return TRUE; 
+    }
 
     virtual BOOL SetFrameSize(int width, int height);
 
