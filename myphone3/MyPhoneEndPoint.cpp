@@ -433,6 +433,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
 
 // ”дал€ю не поддерживаемые видео кодеки из реестра
  PINDEX videoNum = 0;
+ PStringArray duplicateCheck;
  for (;;)
  {
   PString key = psprintf("%u", ++videoNum);
@@ -449,12 +450,13 @@ void CMyPhoneEndPoint::LoadCapabilities()
   }
 
   int res = 0;
+  if(duplicateCheck.GetStringsIndex(name) == P_MAX_INDEX)
   for (PINDEX i = 0; i < capabilities.GetSize(); i++)
   {
    if (capabilities[i].GetMainType() == H323Capability::e_Video)
    {
     if(capabilities[i].GetFormatName() == name)
-     { res = 1; break; }
+     { res = 1; duplicateCheck.AppendString(name); break; }
    }
   }
   if(res == 0) 
@@ -466,7 +468,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
     PString name1 = config.GetString(VideoCodecsConfigSection, key1, "");
     if (name1.IsEmpty()) break;
 
-    config.SetString(VideoCodecsConfigSection, psprintf("%u", j-2), name1);
+    config.SetString(VideoCodecsConfigSection, psprintf("%u", j-1), name1);
    }
    config.DeleteKey(VideoCodecsConfigSection, psprintf("%u", j-1));
   }
@@ -509,6 +511,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
  }
 
  PINDEX audioNum = 0;
+ PStringArray audioDupCheck;
  for (;;)
  {
   PString key = psprintf("%u", ++audioNum);
@@ -525,12 +528,13 @@ void CMyPhoneEndPoint::LoadCapabilities()
   }
 
   int res = 0;
+  if(audioDupCheck.GetStringsIndex(name) == P_MAX_INDEX)
   for (PINDEX i = 0; i < capabilities.GetSize(); i++)
   {
    if (capabilities[i].GetMainType() == H323Capability::e_Audio)
    {
     if(capabilities[i].GetFormatName() == name)
-     { res = 1; break; }
+     { res = 1; audioDupCheck.AppendString(name); break; }
    }
   }
   if(res == 0) 
@@ -542,7 +546,7 @@ void CMyPhoneEndPoint::LoadCapabilities()
     PString name1 = config.GetString(CodecsConfigSection, key1, "");
     if (name1.IsEmpty()) break;
 
-    config.SetString(CodecsConfigSection, psprintf("%u", j-2), name1);
+    config.SetString(CodecsConfigSection, psprintf("%u", j-1), name1);
    }
    config.DeleteKey(CodecsConfigSection, psprintf("%u", j-1));
   }

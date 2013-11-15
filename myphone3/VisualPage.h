@@ -55,8 +55,8 @@ public:
 	CSpinButtonCtrl	m_videoQTYspin;
 	BOOL	m_sendVideo;
 	BOOL	m_receiveVideo;
-	CButton		m_UpBtn;
-	CButton		m_DownBtn;
+	CButton		m_UpBtn, m_TopBtn;
+	CButton		m_DownBtn, m_BottomBtn;
 	CButton		m_EnableBtn;
         CButton		m_CamSetBtn;
 	CListBox	m_CodecListCtrl;
@@ -101,6 +101,8 @@ protected:
 	afx_msg void OnDoubleClickCodecSelectionList();
 	afx_msg void OnCsUpButton();
 	afx_msg void OnCsDownButton();
+	afx_msg void OnCsTopButton();
+	afx_msg void OnCsBottomButton();
         afx_msg void OnCamSetupButton();
 	afx_msg void OnCsEnabledCheck();
 	//}}AFX_MSG

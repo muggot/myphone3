@@ -93,6 +93,8 @@ void CVisualPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_RECEIVE_VIDEO, m_receiveVideo);
 	DDX_Control(pDX, IDC_CS_UP_BUTTON, m_UpBtn);
 	DDX_Control(pDX, IDC_CS_DOWN_BUTTON, m_DownBtn);
+	DDX_Control(pDX, IDC_CS_TOP_BUTTON, m_TopBtn);
+	DDX_Control(pDX, IDC_CS_BOTTOM_BUTTON, m_BottomBtn);
 	DDX_Control(pDX, IDC_CS_ENABLED_CHECK, m_EnableBtn);
 	DDX_Control(pDX, IDC_CODEC_SELECTION_LIST, m_CodecListCtrl);
 	DDX_CBString(pDX, IDC_RECORDING_COMBO, m_RecordDeviceCur);
@@ -132,7 +134,9 @@ BEGIN_MESSAGE_MAP(CVisualPage, CPropertyPage)
 	//{{AFX_MSG_MAP(CVisualPage)
 	ON_LBN_SELCHANGE(IDC_CODEC_SELECTION_LIST, OnSelchangeCodecSelectionList)
 	ON_BN_CLICKED(IDC_CS_UP_BUTTON, OnCsUpButton)
+	ON_BN_CLICKED(IDC_CS_TOP_BUTTON, OnCsTopButton)
 	ON_BN_CLICKED(IDC_CS_DOWN_BUTTON, OnCsDownButton)
+	ON_BN_CLICKED(IDC_CS_BOTTOM_BUTTON, OnCsBottomButton)
 	ON_BN_CLICKED(IDC_CAM_SETUP_BUTTON, OnCamSetupButton)
 	ON_BN_CLICKED(IDC_CS_ENABLED_CHECK, OnCsEnabledCheck)
 	ON_LBN_DBLCLK(IDC_CODEC_SELECTION_LIST, OnDoubleClickCodecSelectionList)
@@ -177,7 +181,9 @@ void CVisualPage::OnSelchangeCodecSelectionList()
 	int count = m_CodecListCtrl.GetCount();
 
 	m_UpBtn.EnableWindow(selection > 0 && selection < count);
+	m_TopBtn.EnableWindow(selection > 0 && selection < count);
 	m_DownBtn.EnableWindow(selection >= 0 && selection < count-1);
+	m_BottomBtn.EnableWindow(selection >= 0 && selection < count-1);
 	m_EnableBtn.EnableWindow(selection >= 0 && selection < count);
 
 	CString value;
@@ -213,6 +219,20 @@ void CVisualPage::OnCsUpButton()
 	OnSelchangeCodecSelectionList(); 
 }
 
+void CVisualPage::OnCsTopButton() 
+{
+	int selection = m_CodecListCtrl.GetCurSel();
+	if (selection<=0) return;
+	CString value;
+	m_CodecListCtrl.GetText(selection,value);
+
+	m_CodecListCtrl.InsertString(0,value);
+	m_CodecListCtrl.DeleteString(selection+1);
+	m_CodecListCtrl.SetCurSel(selection+1);
+
+	OnSelchangeCodecSelectionList(); 
+}
+
 void CVisualPage::OnCsDownButton() 
 {
 	int selection = m_CodecListCtrl.GetCurSel();
@@ -225,6 +245,22 @@ void CVisualPage::OnCsDownButton()
 	m_CodecListCtrl.InsertString(selection+2,value);
 	m_CodecListCtrl.DeleteString(selection);
 	m_CodecListCtrl.SetCurSel(selection+1);
+
+	OnSelchangeCodecSelectionList(); 
+}
+
+void CVisualPage::OnCsBottomButton() 
+{
+	int selection = m_CodecListCtrl.GetCurSel();
+	int count = m_CodecListCtrl.GetCount();
+	if (selection<0 && selection>=count-1) return;
+
+	CString value;
+	m_CodecListCtrl.GetText(selection,value);
+
+	m_CodecListCtrl.InsertString(-1,value);
+	m_CodecListCtrl.DeleteString(selection);
+	m_CodecListCtrl.SetCurSel(selection);
 
 	OnSelchangeCodecSelectionList(); 
 }
@@ -386,9 +422,9 @@ void CVisualPage::TranslateDlg()
 	GetDlgItem(IDC_BPSSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_MBPSSTR));
 //	GetDlgItem(IDC_FPSSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_FPSSTR));
 	GetDlgItem(IDC_CSSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CODECSSTR));	
-	GetDlgItem(IDC_CS_UP_BUTTON)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CSUPSTR));	
+//	GetDlgItem(IDC_CS_UP_BUTTON)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CSUPSTR));	
 	GetDlgItem(IDC_CS_ENABLED_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CSENBLSTR));	
-	GetDlgItem(IDC_CS_DOWN_BUTTON)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CSDOWNSTR));
+//	GetDlgItem(IDC_CS_DOWN_BUTTON)->SetWindowText((LPCTSTR)LoadStringLang(IDS_CSDOWNSTR));
 
 //	SetWindowText((LPCTSTR)LoadStringLang(IDS_AUDIOSTR));	
 }

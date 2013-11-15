@@ -53,9 +53,9 @@ public:
 	CSpinButtonCtrl	m_spinBuffers;
 	CComboBox	m_PlayDeviceBox;
 	CComboBox	m_RecordDeviceBox;
-	CButton	m_UpBtn;
+	CButton	m_UpBtn, m_TopBtn;
 	CButton	m_EnableBtn;
-	CButton	m_DownBtn;
+	CButton	m_DownBtn, m_BottomBtn;
 	CListBox	m_CodecListCtrl;
 	CString	m_PlayDeviceCur;
 	CString	m_editBuffers;
@@ -87,6 +87,8 @@ protected:
 	afx_msg void OnSelchangeCodecSelectionList();
 	afx_msg void OnCsDownButton();
 	afx_msg void OnCsUpButton();
+	afx_msg void OnCsBottomButton();
+	afx_msg void OnCsTopButton();
 	afx_msg void OnCsEnabledCheck();
 	afx_msg void OnDoubleClickCodecSelectionList();
 	//}}AFX_MSG
