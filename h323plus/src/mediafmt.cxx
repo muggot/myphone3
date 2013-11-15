@@ -932,7 +932,10 @@ bool OpalMediaFormat::GetOptionBoolean(const PString & name, bool dflt) const
   if (option == NULL)
     return dflt;
 
-  return PDownCast(OpalMediaOptionBoolean, option)->GetValue();
+//  return PDownCast(OpalMediaOptionBoolean, option)->GetValue();
+  OpalMediaOptionBoolean * opt = dynamic_cast<OpalMediaOptionBoolean*>(option);
+  if(opt==NULL) return dflt;
+  return opt->GetValue();
 }
 
 
@@ -1001,7 +1004,10 @@ double OpalMediaFormat::GetOptionReal(const PString & name, double dflt) const
   if (option == NULL)
     return dflt;
 
-  return PDownCast(OpalMediaOptionReal, option)->GetValue();
+//  return PDownCast(OpalMediaOptionReal, option)->GetValue();
+  OpalMediaOptionReal * opt = dynamic_cast<OpalMediaOptionReal*>(option);
+  if(opt==NULL) return dflt;
+  return opt->GetValue();
 }
 
 
@@ -1026,7 +1032,10 @@ PINDEX OpalMediaFormat::GetOptionEnum(const PString & name, PINDEX dflt) const
   if (option == NULL)
     return dflt;
 
-  return PDownCast(OpalMediaOptionEnum, option)->GetValue();
+//  return PDownCast(OpalMediaOptionEnum, option)->GetValue();
+  OpalMediaOptionEnum * opt = dynamic_cast<OpalMediaOptionEnum*>(option);
+  if(opt==NULL) return dflt;
+  return opt->GetValue();
 }
 
 
@@ -1051,7 +1060,10 @@ PString OpalMediaFormat::GetOptionString(const PString & name, const PString & d
   if (option == NULL)
     return dflt;
 
-  return PDownCast(OpalMediaOptionString, option)->GetValue();
+//  return PDownCast(OpalMediaOptionString, option)->GetValue();
+  OpalMediaOptionString * opt = dynamic_cast<OpalMediaOptionString*>(option);
+  if(opt==NULL) return dflt;
+  return opt->GetValue();
 }
 
 
@@ -1099,7 +1111,28 @@ OpalMediaOption * OpalMediaFormat::FindOption(const PString & name) const
   if (index == P_MAX_INDEX)
     return NULL;
 
-  return &options[index];
+// The following part was modified corresponding the Ilya Pleshchinskii's fix,
+// for more details see: http://www.spinics.net/lists/openh323/msg16546.html
+
+//  return &options[index];
+
+// begin of Ilya fix
+  OpalMediaOption * op = &options[index];
+  int i = 0;
+  while ((op->GetName() != name) && (i < 50))
+  {
+    OpalMediaOptionString search(name, false);
+    PINDEX index = options.GetValuesIndex(search);
+    if (index == P_MAX_INDEX)
+      return NULL;
+    op = &options[index];
+    i++;
+  }
+  if (op->GetName() != name)
+    return NULL;
+  return op;
+// end of Ilya fix
+
 }
 
 

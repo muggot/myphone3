@@ -120,6 +120,7 @@ BEGIN_MESSAGE_MAP(CAudioPage, CPropertyPage)
 	ON_BN_CLICKED(IDC_CS_DOWN_BUTTON, OnCsDownButton)
 	ON_BN_CLICKED(IDC_CS_UP_BUTTON, OnCsUpButton)
 	ON_BN_CLICKED(IDC_CS_ENABLED_CHECK, OnCsEnabledCheck)
+	ON_LBN_DBLCLK(IDC_CODEC_SELECTION_LIST, OnDoubleClickCodecSelectionList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -210,6 +211,13 @@ void CAudioPage::OnCsEnabledCheck()
 	m_CodecListCtrl.DeleteString(selection);
 	m_CodecListCtrl.InsertString(selection,value);
 	m_CodecListCtrl.SetCurSel(selection);
+}
+
+void CAudioPage::OnDoubleClickCodecSelectionList()
+{
+	OnSelchangeCodecSelectionList();
+	m_EnableBtn.SetCheck(1 - m_EnableBtn.GetCheck());
+	OnCsEnabledCheck();
 }
 
 void CAudioPage::OnOK() 

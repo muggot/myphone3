@@ -135,6 +135,7 @@ BEGIN_MESSAGE_MAP(CVisualPage, CPropertyPage)
 	ON_BN_CLICKED(IDC_CS_DOWN_BUTTON, OnCsDownButton)
 	ON_BN_CLICKED(IDC_CAM_SETUP_BUTTON, OnCamSetupButton)
 	ON_BN_CLICKED(IDC_CS_ENABLED_CHECK, OnCsEnabledCheck)
+	ON_LBN_DBLCLK(IDC_CODEC_SELECTION_LIST, OnDoubleClickCodecSelectionList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -189,6 +190,13 @@ void CVisualPage::OnSelchangeCodecSelectionList()
 	{
 		m_EnableBtn.SetCheck(0);
 	}
+}
+
+void CVisualPage::OnDoubleClickCodecSelectionList()
+{
+	OnSelchangeCodecSelectionList();
+	m_EnableBtn.SetCheck(1 - m_EnableBtn.GetCheck());
+	OnCsEnabledCheck();
 }
 
 void CVisualPage::OnCsUpButton() 

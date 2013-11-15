@@ -98,6 +98,7 @@ protected:
 	//{{AFX_MSG(CVisualPage)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSelchangeCodecSelectionList();
+	afx_msg void OnDoubleClickCodecSelectionList();
 	afx_msg void OnCsUpButton();
 	afx_msg void OnCsDownButton();
         afx_msg void OnCamSetupButton();

@@ -88,6 +88,7 @@ protected:
 	afx_msg void OnCsDownButton();
 	afx_msg void OnCsUpButton();
 	afx_msg void OnCsEnabledCheck();
+	afx_msg void OnDoubleClickCodecSelectionList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
