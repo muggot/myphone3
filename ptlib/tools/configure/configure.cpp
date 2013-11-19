@@ -813,13 +813,16 @@ int main(int argc, char* argv[])
   const char EXCLUDE_DIR[] = "--exclude-dir=";
   const char EXCLUDE_ENV[] = "--exclude-env=";
 
-  bool searchDisk = true;
+//  bool searchDisk = true;
+  bool searchDisk = false; // 'true' caused many errors when it attempted to use SDKs from qt, mingw, cbuilder, etc :(
   char *externDir = NULL;
   char *externEnv = NULL;
   int i;
   for (i = 1; i < argc; i++) {
     if (stricmp(argv[i], "--no-search") == 0 || stricmp(argv[i], "--disable-search") == 0)
       searchDisk = false;
+    else if (stricmp(argv[i], "--do-search") == 0 || stricmp(argv[i], "--search") == 0 || stricmp(argv[i], "--enable-search") == 0)
+      searchDisk = true;
     else if (strnicmp(argv[i], EXCLUDE_ENV, sizeof(EXCLUDE_ENV) - 1) == 0){
         externEnv = argv[i] + sizeof(EXCLUDE_ENV) - 1;
     }

@@ -67,29 +67,75 @@
  *
  */
 
-#define EINPROGRESS             (WSAEINPROGRESS|PWIN32ErrorFlag)
-#define ENOTSOCK                (WSAENOTSOCK|PWIN32ErrorFlag)
-#define EMSGSIZE                (WSAEMSGSIZE|PWIN32ErrorFlag)
-#define ESOCKTNOSUPPORT         (WSAESOCKTNOSUPPORT|PWIN32ErrorFlag)
-#define EOPNOTSUPP              (WSAEOPNOTSUPP|PWIN32ErrorFlag)
-#define EPFNOSUPPORT            (WSAEPFNOSUPPORT|PWIN32ErrorFlag)
-#define EAFNOSUPPORT            (WSAEAFNOSUPPORT|PWIN32ErrorFlag)
-#define EADDRINUSE              (WSAEADDRINUSE|PWIN32ErrorFlag)
-#define EADDRNOTAVAIL           (WSAEADDRNOTAVAIL|PWIN32ErrorFlag)
-#define ENETDOWN                (WSAENETDOWN|PWIN32ErrorFlag)
-#define ENETUNREACH             (WSAENETUNREACH|PWIN32ErrorFlag)
-#define ENETRESET               (WSAENETRESET|PWIN32ErrorFlag)
-#define ECONNABORTED            (WSAECONNABORTED|PWIN32ErrorFlag)
-#define ECONNRESET              (WSAECONNRESET|PWIN32ErrorFlag)
-#define ENOBUFS                 (WSAENOBUFS|PWIN32ErrorFlag)
-#define EISCONN                 (WSAEISCONN|PWIN32ErrorFlag)
-#define ENOTCONN                (WSAENOTCONN|PWIN32ErrorFlag)
-#define ESHUTDOWN               (WSAESHUTDOWN|PWIN32ErrorFlag)
-#define ETOOMANYREFS            (WSAETOOMANYREFS|PWIN32ErrorFlag)
-#define ETIMEDOUT               (WSAETIMEDOUT|PWIN32ErrorFlag)
-#define ECONNREFUSED            (WSAECONNREFUSED|PWIN32ErrorFlag)
-#define EHOSTDOWN               (WSAEHOSTDOWN|PWIN32ErrorFlag)
-#define EHOSTUNREACH            (WSAEHOSTUNREACH|PWIN32ErrorFlag)
+#ifndef EINPROGRESS
+#  define EINPROGRESS           (WSAEINPROGRESS|PWIN32ErrorFlag)
+#endif
+#ifndef ENOTSOCK
+#  define ENOTSOCK              (WSAENOTSOCK|PWIN32ErrorFlag)
+#endif
+#ifndef EMSGSIZE
+#  define EMSGSIZE              (WSAEMSGSIZE|PWIN32ErrorFlag)
+#endif
+#ifndef ESOCKTNOSUPPORT
+#  define ESOCKTNOSUPPORT       (WSAESOCKTNOSUPPORT|PWIN32ErrorFlag)
+#endif
+#ifndef EOPNOTSUPP
+#  define EOPNOTSUPP            (WSAEOPNOTSUPP|PWIN32ErrorFlag)
+#endif
+#ifndef EPFNOSUPPORT
+#  define EPFNOSUPPORT          (WSAEPFNOSUPPORT|PWIN32ErrorFlag)
+#endif
+#ifndef EAFNOSUPPORT
+#  define EAFNOSUPPORT          (WSAEAFNOSUPPORT|PWIN32ErrorFlag)
+#endif
+#ifndef EADDRINUSE
+#  define EADDRINUSE            (WSAEADDRINUSE|PWIN32ErrorFlag)
+#endif
+#ifndef EADDRNOTAVAIL
+#  define EADDRNOTAVAIL         (WSAEADDRNOTAVAIL|PWIN32ErrorFlag)
+#endif
+#ifndef ENETDOWN
+#  define ENETDOWN              (WSAENETDOWN|PWIN32ErrorFlag)
+#endif
+#ifndef ENETUNREACH
+#  define ENETUNREACH           (WSAENETUNREACH|PWIN32ErrorFlag)
+#endif
+#ifndef ENETRESET
+#  define ENETRESET             (WSAENETRESET|PWIN32ErrorFlag)
+#endif
+#ifndef ECONNABORTED
+#  define ECONNABORTED          (WSAECONNABORTED|PWIN32ErrorFlag)
+#endif
+#ifndef ECONNRESET
+#  define ECONNRESET            (WSAECONNRESET|PWIN32ErrorFlag)
+#endif
+#ifndef ENOBUFS
+#  define ENOBUFS               (WSAENOBUFS|PWIN32ErrorFlag)
+#endif
+#ifndef EISCONN
+#  define EISCONN               (WSAEISCONN|PWIN32ErrorFlag)
+#endif
+#ifndef ENOTCONN
+#  define ENOTCONN              (WSAENOTCONN|PWIN32ErrorFlag)
+#endif
+#ifndef ESHUTDOWN
+#  define ESHUTDOWN             (WSAESHUTDOWN|PWIN32ErrorFlag)
+#endif
+#ifndef ETOOMANYREFS
+#  define ETOOMANYREFS          (WSAETOOMANYREFS|PWIN32ErrorFlag)
+#endif
+#ifndef ETIMEDOUT
+#  define ETIMEDOUT             (WSAETIMEDOUT|PWIN32ErrorFlag)
+#endif
+#ifndef ECONNREFUSED
+#  define ECONNREFUSED          (WSAECONNREFUSED|PWIN32ErrorFlag)
+#endif
+#ifndef EHOSTDOWN
+#  define EHOSTDOWN             (WSAEHOSTDOWN|PWIN32ErrorFlag)
+#endif
+#ifndef EHOSTUNREACH
+#  define EHOSTUNREACH          (WSAEHOSTUNREACH|PWIN32ErrorFlag)
+#endif
 
 
 #define NETDB_SUCCESS 0
