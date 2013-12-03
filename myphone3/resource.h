@@ -377,6 +377,9 @@
 #define IDC_FULLSCRDEFLT                1165
 #define IDC_AUTO_MUTE_CHECK             1166
 #define IDC_CAM_SETUP_BUTTON            1167
+#define IDC_CS_TOP_BUTTON               1168
+#define IDC_CS_BOTTOM_BUTTON            1169
+
 #define ID_MSETTINGS                    32771
 #define ID_MABOUT                       32772
 #define ID_LOGMENU_COPY                 32774
@@ -394,7 +397,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        201
 #define _APS_NEXT_COMMAND_VALUE         32791
-#define _APS_NEXT_CONTROL_VALUE         1168
+#define _APS_NEXT_CONTROL_VALUE         1170
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif
