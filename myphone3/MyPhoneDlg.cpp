@@ -285,6 +285,8 @@ CMyPhoneDlg::CMyPhoneDlg(CWnd* pParent /*=NULL*/)
 
 CMyPhoneDlg::~CMyPhoneDlg()
 {
+	delete vdlg;
+	vdlg = NULL;
 	//	gFont.DeleteObject(); 
 	// free menu 
 	/*	if (pMyMenu)
