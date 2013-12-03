@@ -830,10 +830,10 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
   width = codec.GetWidth(); 
   height = codec.GetHeight();
 
-  PTRACE(1, "Accepted video device width=" << width << " height=" << height);
   
   int curMBR = codec.GetMaxBitRate();
   if(curMBR > videoOutMaxBitRate) codec.SetMaxBitRate(videoOutMaxBitRate);
+  PTRACE(1, "Accepted video device width=" << width << " height=" << height << " bitrate=" << PMIN(curMBR,videoOutMaxBitRate));
 
   int videoFramesPS = config.GetInteger(VideoFPSKey, 10);
   codec.SetGeneralCodecOption("Frame Rate",videoFramesPS);
@@ -841,9 +841,9 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
   codec.SetTargetFrameTimeMs(1000/videoFramesPS);
 //  codec.SetGeneralCodecOption("Frame Time",90000/videoFramesPS);
 
-  OpalMediaFormat & mf = codec.GetWritableMediaFormat();
-  mf.SetOptionInteger("Frame Rate", videoFramesPS);
-  mf.SetOptionInteger("Frame Time", 90000/videoFramesPS);
+//  OpalMediaFormat & mf = codec.GetWritableMediaFormat();
+//  mf.SetOptionInteger("Frame Rate", videoFramesPS);
+//  mf.SetOptionInteger("Frame Time", 90000/videoFramesPS);
 
   //Create grabber.
   bool NoDevice = false;

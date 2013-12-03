@@ -414,7 +414,6 @@ static const char GET_CODEC_OPTIONS_CONTROL[]    = "get_codec_options";
 static const char FREE_CODEC_OPTIONS_CONTROL[]   = "free_codec_options";
 static const char GET_OUTPUT_DATA_SIZE_CONTROL[] = "get_output_data_size";
 static const char SET_CODEC_OPTIONS_CONTROL[]    = "set_codec_options";
-static const char SET_CODEC_OPTION_CONTROL[]    = "set_codec_option";
 static const char EVENT_CODEC_CONTROL[]          = "event_codec";
 
 #ifdef H323_VIDEO
@@ -711,13 +710,14 @@ static BOOL SetCodecControl(const PluginCodec_Definition * codec,
                                               const char * parm, 
                                               const char * value)
 {
+  if(codec == NULL) return FALSE;
   PluginCodec_ControlDefn * codecControls = GetCodecControl(codec, name);
   if (codecControls == NULL)
     return FALSE;
 
-  char const * options[2] = { parm, value };
+  char const * options[3] = { parm, value, NULL };
   unsigned optionsLen = sizeof(const char **);
-  return (*codecControls->control)(codec, context, name, options, &optionsLen);
+  return (*codecControls->control)(codec, context, SET_CODEC_OPTIONS_CONTROL, options, &optionsLen);
 }
 
 static BOOL SetCodecControl(const PluginCodec_Definition * codec, 
@@ -736,6 +736,7 @@ static BOOL EventCodecControl(PluginCodec_Definition * codec,
                                          const char * name,
                                          const char * parm )
 {
+ if(codec == NULL) return FALSE;
   PluginCodec_ControlDefn * codecControls = codec->codecControls;
   if (codecControls == NULL)
     return FALSE;
@@ -971,7 +972,7 @@ static void SetDefaultVideoOptions(OpalMediaFormat & mediaFormat)
   mediaFormat.AddOption(new OpalMediaOptionInteger(OpalVideoFormat::MaxBitRateOption,          false, OpalMediaOption::MinMerge, mediaFormat.GetBandwidth(), 1000));
   mediaFormat.AddOption(new OpalMediaOptionBoolean(OpalVideoFormat::DynamicVideoQualityOption, false, OpalMediaOption::NoMerge,  false));
   mediaFormat.AddOption(new OpalMediaOptionBoolean(OpalVideoFormat::AdaptivePacketDelayOption, false, OpalMediaOption::NoMerge,  false));
-  mediaFormat.AddOption(new OpalMediaOptionInteger(OpalVideoFormat::FrameTimeOption,           false, OpalMediaOption::NoMerge,  9000));
+  mediaFormat.AddOption(new OpalMediaOptionInteger(OpalVideoFormat::FrameTimeOption,           false, OpalMediaOption::NoMerge,  3600));
 
   mediaFormat.AddOption(new OpalMediaOptionBoolean(h323_temporalSpatialTradeOffCapability_tag, false, OpalMediaOption::NoMerge,  false));
   mediaFormat.AddOption(new OpalMediaOptionBoolean(h323_stillImageTransmission_tag           , false, OpalMediaOption::NoMerge,  false));
@@ -1700,25 +1701,26 @@ class H323PluginVideoCodec : public H323VideoCodec
     virtual void SetVideoSize(int width, int height);
 
     void SetTxQualityLevel(int qlevel)
-    { SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Encoding Quality", qlevel); }
+    { SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Encoding Quality", qlevel); }
  
     void SetTxMinQuality(int qlevel)
-    { SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "set_min_quality", qlevel); }
+    { SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "set_min_quality", qlevel); }
 
     void SetTxMaxQuality(int qlevel)
-    { SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "set_max_quality", qlevel); }
+    { SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "set_max_quality", qlevel); }
 
     void SetBackgroundFill(int fillLevel)
-    { SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "set_background_fill", fillLevel); }
+    { SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "set_background_fill", fillLevel); }
 
     unsigned GetMaxBitRate() const
     { return mediaFormat.GetOptionInteger(OpalVideoFormat::MaxBitRateOption); }
 
     BOOL SetMaxBitRate(unsigned bitRate) 
-    { return SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Max Bit Rate", bitRate); }
+    {
+ return SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Max Bit Rate", bitRate); }
 
     void SetGeneralCodecOption(const char * opt, int val)
-    { SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, opt, val);}
+    { SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, opt, val);}
 
     unsigned GetVideoMode(void);
 
@@ -2195,8 +2197,8 @@ void H323PluginVideoCodec::SetVideoSize(int _width, int _height)
 
     PTRACE(3,"PLUGIN\tResize to w:" << frameWidth << " h:" << frameHeight); 
 
-	SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Frame Width", frameWidth);
-	SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Frame Height", frameHeight);
+	SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Frame Width", frameWidth);
+	SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Frame Height", frameHeight);
     mediaFormat.SetOptionInteger(OpalVideoFormat::FrameWidthOption,frameWidth); 
     mediaFormat.SetOptionInteger(OpalVideoFormat::FrameHeightOption,frameHeight); 
 
@@ -2264,10 +2266,10 @@ void H323PluginVideoCodec::SetVideoMode(int mode)
 
     switch (mode) {
       case H323VideoCodec::DynamicVideoQuality : 
-        SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Dynamic Video Quality", mode); 
+        SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Dynamic Video Quality", mode); 
         break; 
       case H323VideoCodec::AdaptivePacketDelay :
-        SetCodecControl(codec, context, SET_CODEC_OPTION_CONTROL, "Adaptive Packet Delay", mode);
+        SetCodecControl(codec, context, SET_CODEC_OPTIONS_CONTROL, "Adaptive Packet Delay", mode);
         break;
       default:
         break;
@@ -2607,8 +2609,8 @@ class H323VideoPluginCapability : public H323VideoCapability,
              default: return FALSE;
          }
 
-         SetCodecControl(encoderCodec, NULL, SET_CODEC_OPTION_CONTROL, param, frameunits);
-         SetCodecControl(decoderCodec, NULL, SET_CODEC_OPTION_CONTROL, param, frameunits);
+         SetCodecControl(encoderCodec, NULL, SET_CODEC_OPTIONS_CONTROL, param, frameunits);
+         SetCodecControl(decoderCodec, NULL, SET_CODEC_OPTIONS_CONTROL, param, frameunits);
          PopulateMediaFormatOptions(encoderCodec,GetWritableMediaFormat());
          return TRUE;
      }
@@ -3937,8 +3939,8 @@ BOOL H323CodecPluginGenericVideoCapability::SetMaxFrameSize(CapabilityFrameSize 
         default: return FALSE;
     }
 
-    SetCodecControl(encoderCodec, NULL, SET_CODEC_OPTION_CONTROL, param,frameunits);
-    SetCodecControl(decoderCodec, NULL, SET_CODEC_OPTION_CONTROL, param, frameunits);
+    SetCodecControl(encoderCodec, NULL, SET_CODEC_OPTIONS_CONTROL, param,frameunits);
+    SetCodecControl(decoderCodec, NULL, SET_CODEC_OPTIONS_CONTROL, param, frameunits);
     LoadGenericData((PluginCodec_H323GenericCodecData *)encoderCodec->h323CapabilityData);
     return TRUE;
 }
