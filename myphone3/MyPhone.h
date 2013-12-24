@@ -47,13 +47,13 @@
 // Some Globals:
 	const char strProgName[]="MyPhone3";
     const int progMajorVersion = 0;
-    const int progMinorVersion = 14;
+    const int progMinorVersion = 15;
 	#define MF_RELEASE	//*** Uncomment this when go out of "beta" versioning ***
 	const int progBuildVersion = 0;
 	const char strProgPostfix[]="";
 //.	const char strProgDescription[]="Voice&Video IP Telephony Client based on H323plus (www.h323plus.org)";
-	const char strProgAuthor[]="H323plus project (support@h323plus.org)";
-	const char strProgWeb[]="http://h323plus.org/";
+	const char strProgAuthor[]="OpenMCU-ru - fork of H323plus.org project";
+	const char strProgWeb[]="http://openmcu.ru/";
 	const char strProgWebHelp[]="http://h323plus.org/myphone.html";
 	//
 	const char strProgRespects[]="\t~~~ Thanks goes to: ~~~\r\n\

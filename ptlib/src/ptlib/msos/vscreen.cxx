@@ -480,13 +480,13 @@ void PVideoInputDevice_ScreenVideo::GrabScreenDCImage(BYTE *resFrame)
                0,0, 
                screenWidth, screenHeight, 
                h_screendc, 
-               0, 0,
+               screenLeft, screenTop,
                SRCCOPY);
    ////GetObject(h_bmp,sizeof(BITMAP),&bmp);
   DrawIcon(h_compatdc, ci.ptScreenPos.x-ii.xHotspot-screenLeft, ci.ptScreenPos.y-ii.yHotspot-screenTop, ci.hCursor);
   StretchBlt(h_zoomdc,leftpos,toppos,width,height, 
                h_compatdc,        
-               screenLeft, screenTop,
+               0, 0,
                screenWidth, screenHeight,
                SRCCOPY);
   GetDIBits(h_zoomdc, h_zbmp, 0, (UINT)frameHeight, resFrame,
