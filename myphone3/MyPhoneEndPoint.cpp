@@ -832,6 +832,7 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
 
   
   int curMBR = codec.GetMaxBitRate();
+  PTRACE(1,"codec.GetMaxBitRate()=" << curMBR << ", videoOutMaxBitRate=" << videoOutMaxBitRate << ", will set: " << (curMBR > videoOutMaxBitRate));
   if(curMBR > videoOutMaxBitRate) codec.SetMaxBitRate(videoOutMaxBitRate);
   PTRACE(1, "Accepted video device width=" << width << " height=" << height << " bitrate=" << PMIN(curMBR,videoOutMaxBitRate));
 
@@ -880,7 +881,8 @@ BOOL CMyPhoneEndPoint::OpenVideoChannel(H323Connection & connection,
 			grabber->SetVideoFormat(PVideoDevice::PAL);
 			grabber->SetFrameSize(width, height);
 			grabber->SetVFlipState(localFlip);
-			grabber->SetChannel(4);
+//			grabber->SetChannel(4);
+			grabber->SetChannel((config.GetInteger(VideoSourceConfigKey, -1)+5)%7);
   }
 
   if(videoFramesPS >0 && videoFramesPS<30) 
