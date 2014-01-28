@@ -883,7 +883,7 @@ void H323AudioCodec::SetSilenceDetectionMode(SilenceDetectionMode mode,
 }
 
 
-BOOL H323AudioCodec::DetectSilence()
+BOOL H323AudioCodec::DetectSilence(unsigned channels, unsigned sampleRate)
 {
   // Can never have silence if NoSilenceDetection
   if (silenceDetectMode == NoSilenceDetection)
@@ -930,6 +930,7 @@ BOOL H323AudioCodec::DetectSilence()
     if (level > 1) {
       // Bootstrap condition, use first frame level as silence level
       levelThreshold = level/2;
+      if(levelThreshold>64) levelThreshold=64;
       PTRACE(4, "Codec\tSilence detection threshold initialised to: " << levelThreshold);
     }
     return TRUE; // inTalkBurst always FALSE here, so return silent
@@ -948,12 +949,14 @@ BOOL H323AudioCodec::DetectSilence()
   }
 
   // See if we have had enough frames to look at proportions of silence/signal
-  if ((signalFramesReceived + silenceFramesReceived) > adaptiveThresholdFrames) {
+
+  unsigned atff = (unsigned)(((unsigned long)adaptiveThresholdFrames) * sampleRate * channels / 8000);
+  if ((signalFramesReceived + silenceFramesReceived) > atff) {
 
     /* Now we have had a period of time to look at some average values we can
        make some adjustments to the threshold. There are four cases:
      */
-    if (signalFramesReceived >= adaptiveThresholdFrames) {
+    if (signalFramesReceived >= atff) {
       /* If every frame was noisy, move threshold up. Don't want to move too
          fast so only go a quarter of the way to minimum signal value over the
          period. This avoids oscillations, and time will continue to make the
@@ -962,10 +965,11 @@ BOOL H323AudioCodec::DetectSilence()
       int delta = (signalMinimum - levelThreshold)/4;
       if (delta != 0) {
         levelThreshold += delta;
+        if(levelThreshold>64) levelThreshold=64;
         PTRACE(4, "Codec\tSilence detection threshold increased to: " << levelThreshold);
       }
     }
-    else if (silenceFramesReceived >= adaptiveThresholdFrames) {
+    else if (silenceFramesReceived >= atff) {
       /* If every frame was silent, move threshold down. Again do not want to
          move too quickly, but we do want it to move faster down than up, so
          move to halfway to maximum value of the quiet period. As a rule the
@@ -1020,7 +1024,63 @@ H323FramedAudioCodec::H323FramedAudioCodec(const OpalMediaFormat & fmt, Directio
     sampleBuffer(samplesPerFrame*codecChannels)
 {
   bytesPerFrame = mediaFormat.GetFrameSize();
-  currVolCoef = 5.0;
+  sampleRate = 8000;
+  currVolCoef = 1.0;
+  lastReadTime = time(0);
+  readPerSecond = 0;
+}
+
+
+void AutoGainControl(const short * pcm, unsigned samplesPerFrame, unsigned codecChannels, unsigned sampleRate, unsigned level, float* currVolCoef)
+{
+  if(!level) return;
+
+  float max_vol = 17000.0;
+  float inc_vol = 0.05*8000.0/sampleRate;
+
+  unsigned samplesCount = samplesPerFrame*codecChannels;
+
+  const short * end = pcm + samplesCount;
+  short *buf = (short*)pcm;
+  int c_max_vol = 0, c_avg_vol = 0;
+  while (pcm != end) 
+  {
+    if (*pcm < 0) 
+    { if(-*pcm > c_max_vol) c_max_vol = -*pcm; c_avg_vol -= *pcm++; }
+    else 
+    { if( *pcm > c_max_vol) c_max_vol =  *pcm; c_avg_vol += *pcm++; }
+  }
+  c_avg_vol /= samplesPerFrame;
+
+  float & cvc = *currVolCoef;
+  float vc0= cvc;
+  
+  if(c_avg_vol > level)
+  {
+    if(c_max_vol*cvc >= 32768) // есть перегрузка
+      cvc = 32767.0 / c_max_vol;
+    else
+    if(c_max_vol*cvc < max_vol) // нужно увеличить усиление
+      cvc += inc_vol;
+  }
+  else // не должен срабатывать, но временно грубая защита от перегрузки:
+  {
+    if(c_max_vol*cvc >= 32768) // есть перегрузка
+      cvc = 32767.0 / c_max_vol;
+  }
+  PTRACE(6,"AGC\tavg_vol=" << c_avg_vol << " max_vol=" << c_max_vol << " vol_coef=" << vc0 << "->" << cvc << " inc_vol=" << inc_vol);
+
+  float delta0=(cvc-vc0)/samplesCount;
+
+  for(int i=0; i<samplesCount; i++) 
+  {
+    int v = buf[i];
+    v*=vc0;
+    if(v > 32767) buf[i]=32767;
+    else if(v < -32768) buf[i]=-32768;
+    else buf[i] = (short)v;
+    vc0+=delta0;
+  }
 }
 
 
@@ -1064,7 +1124,21 @@ BOOL H323FramedAudioCodec::Read(BYTE * buffer, unsigned & length, RTP_DataFrame 
     return FALSE;
   }
 
-  if (DetectSilence()) {
+  long lastReadTime0 = time(0);
+  readPerSecond += samplesPerFrame;
+  if(lastReadTime0 > lastReadTime)
+  {
+    unsigned long sampleRate0 = readPerSecond;
+    readPerSecond = 0;
+    lastReadTime = lastReadTime0;
+    if(sampleRate0 >= 4999 && sampleRate0 <= 192000) 
+    {
+      sampleRate = (unsigned) ((sampleRate * 3 + sampleRate0) >> 2);
+    }
+    PTRACE(6,"SR=" << sampleRate << " SR0=" << sampleRate0);
+  }
+
+  if (DetectSilence(sampleRate, codecChannels)) {
     length = 0;
     return TRUE;
   }
@@ -1073,49 +1147,8 @@ BOOL H323FramedAudioCodec::Read(BYTE * buffer, unsigned & length, RTP_DataFrame 
   length = bytesPerFrame;
 //  PTRACE(6,"Read\tlength " << length);
 
-if(agc)
-{
-  int sil_vol = agc;
-  float max_vol = 17000.0;
-//  int max_bad_smpl = 2;
-  float inc_vol = 0.05;
-  float dec_vol = 0.03;
-
-  const short * pcm = sampleBuffer;
-  const short * end = pcm + samplesPerFrame*codecChannels;
-  int c_max_vol = 0, c_avg_vol = 0;
-  while (pcm != end) 
-  {
-   if (*pcm < 0) 
-    { if(-*pcm > c_max_vol) c_max_vol = -*pcm; c_avg_vol -= *pcm++; }
-   else 
-    { if(*pcm > c_max_vol) c_max_vol = *pcm; c_avg_vol += *pcm++; }
-  }
-  c_avg_vol /= samplesPerFrame;
-
-  PTRACE(6,"Read\tavg_vol=" << c_avg_vol << " max_vol=" << c_max_vol);
-  
-  if(c_avg_vol > sil_vol)
-  {
-   if(c_max_vol*currVolCoef >= 32768.0 && currVolCoef > dec_vol) // есть перегрузка
-    currVolCoef -= dec_vol;
-   else
-   if(c_max_vol*currVolCoef < max_vol) // нужно увеличить усиление
-    currVolCoef += inc_vol;
-  }
-
-  PTRACE(6,"Read\tvol_coef=" << currVolCoef);
-
-  unsigned short *buf = (unsigned short *)sampleBuffer.GetPointer(samplesPerFrame);
-
-  for(int i=0; i<samplesPerFrame*codecChannels; i++) 
-  {
-   int v = buf[i];
-   if((v&0x00008000)!=0) v|=0xffff0000;
-   v*=currVolCoef; if(v > 32767) v=32767; else if(v < -32767) v=-32767;
-   v&=0x0000ffff; buf[i] = (unsigned short)v;
-  }
-}
+  if(agc)
+  AutoGainControl((const short*)sampleBuffer.GetPointer(), samplesPerFrame, codecChannels, sampleRate, agc, &currVolCoef);
 
   return EncodeFrame(buffer, length);
 }

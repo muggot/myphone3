@@ -244,7 +244,7 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 	}
 
 	m_fAECOn = config.GetBoolean(AECEnableConfigKey, FALSE);
-	m_fAGCOn = config.GetInteger(AGCEnableConfigKey, FALSE);
+	m_fAGCOn = config.GetInteger(AGCEnableConfigKey, 2000);
 	SetAECAlgo(m_fAECOn);
 	agc = m_fAGCOn;
 	             

@@ -692,7 +692,7 @@ class H323AudioCodec : public H323Codec
        levelThreshold, signalDeadbandFrames and silenceDeadbandFrames
        member variables.
       */
-    virtual BOOL DetectSilence();
+    virtual BOOL DetectSilence(unsigned sampleRate, unsigned codecChannels);
 
     /**Get the average signal level in the audio stream.
        This is called from within DetectSilence() to calculate the average
@@ -859,11 +859,12 @@ class H323FramedAudioCodec : public H323AudioCodec
 
 	virtual void EnableAGC(int);
 
-
   protected:
-	PAec * aec;     // Acoustic Echo Canceller
+    PAec * aec;     // Acoustic Echo Canceller
     PShortArray sampleBuffer;
     unsigned    bytesPerFrame;
+    unsigned    sampleRate;
+    unsigned long lastReadTime, readPerSecond; // lame values to calc sampleRate added by kay27
     float currVolCoef;
     int agc;
 };

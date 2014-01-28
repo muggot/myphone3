@@ -1867,7 +1867,7 @@ void H323PluginVideoCodec::ConvertCIF4ToCIF(const void * _src, void * _dst)
     srcRow1 = src + CIF4_WIDTH;
     for (x = CIF_WIDTH; x > 0; x--) {
       val = (*srcRow0+*(srcRow0+1)+*srcRow1+*(srcRow1+1))>>2;
-      dst[0] = val;
+      dst[0] = (unsigned char)val;
       srcRow0 += 2; srcRow1 +=2;
       dst++;
     }
@@ -1880,7 +1880,7 @@ void H323PluginVideoCodec::ConvertCIF4ToCIF(const void * _src, void * _dst)
     srcRow1 = src + CIF_WIDTH;
     for (x = CIF_WIDTH/2; x > 0; x--) {
       val = (*srcRow0+*(srcRow0+1)+*srcRow1+*(srcRow1+1))>>2;
-      dst[0] = val;
+      dst[0] = (unsigned char)val;
       srcRow0 += 2; srcRow1 +=2;
       dst++;
     }
@@ -1893,7 +1893,7 @@ void H323PluginVideoCodec::ConvertCIF4ToCIF(const void * _src, void * _dst)
     srcRow1 = src + CIF_WIDTH;
     for (x = CIF_WIDTH/2; x > 0; x--) {
       val = (*srcRow0+*(srcRow0+1)+*srcRow1+*(srcRow1+1))>>2;
-      dst[0] = val;
+      dst[0] = (unsigned char)val;
       srcRow0 += 2; srcRow1 +=2;
       dst++;
     }
