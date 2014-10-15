@@ -1024,10 +1024,8 @@ H323FramedAudioCodec::H323FramedAudioCodec(const OpalMediaFormat & fmt, Directio
     sampleBuffer(samplesPerFrame*codecChannels)
 {
   bytesPerFrame = mediaFormat.GetFrameSize();
-  sampleRate = 8000;
+  sampleRate = mediaFormat.GetTimeUnits() * 1000;
   currVolCoef = 1.0;
-  lastReadTime = time(0);
-  readPerSecond = 0;
 }
 
 
@@ -1122,20 +1120,6 @@ BOOL H323FramedAudioCodec::Read(BYTE * buffer, unsigned & length, RTP_DataFrame 
   if (count != numBytes) {
     PTRACE(1, "Codec\tRead truncated frame of raw data. Wanted " << numBytes << " and got "<<count);
     return FALSE;
-  }
-
-  long lastReadTime0 = time(0);
-  readPerSecond += samplesPerFrame;
-  if(lastReadTime0 > lastReadTime)
-  {
-    unsigned long sampleRate0 = readPerSecond;
-    readPerSecond = 0;
-    lastReadTime = lastReadTime0;
-    if(sampleRate0 >= 4999 && sampleRate0 <= 192000) 
-    {
-      sampleRate = (unsigned) ((sampleRate * 3 + sampleRate0) >> 2);
-    }
-    PTRACE(6,"SR=" << sampleRate << " SR0=" << sampleRate0);
   }
 
   if (DetectSilence(sampleRate, codecChannels)) {

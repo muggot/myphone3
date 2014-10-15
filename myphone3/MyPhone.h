@@ -47,7 +47,7 @@
 // Some Globals:
 	const char strProgName[]="MyPhone3";
     const int progMajorVersion = 0;
-    const int progMinorVersion = 16;
+    const int progMinorVersion = 17;
 	#define MF_RELEASE	//*** Uncomment this when go out of "beta" versioning ***
 	const int progBuildVersion = 0;
 	const char strProgPostfix[]="";

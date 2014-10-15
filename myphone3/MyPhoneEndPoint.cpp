@@ -188,6 +188,7 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
         m_vdlg = vdlg;
 	isIncomingCall = FALSE;
 
+	config.SetDefaultSection("Parameters"); //!@#
 	SetAudioJitterDelay(50, config.GetInteger(JitterConfigKey, GetMaxAudioJitterDelay()));
 	SetSoundChannelBufferDepth(config.GetInteger(BufferCountConfigKey, GetSoundChannelBufferDepth()));
 	

@@ -382,6 +382,7 @@ BOOL CMyPhoneDlg::OnInitDialog()
 	PTRACE(4, "MyPhone\t###OnInitDialog###\tMaking Sysytem Menu");
 	
 	PConfig& config = m_endpoint.config; 
+	config.SetDefaultSection("Parameters"); //!@#
 	curLang = GetLangFromTable(config.GetInteger(UILangugeConfigKey, -1));
 	// RichEdit configuration
 	m_cstatus.HideSelection(FALSE, TRUE);
@@ -1362,7 +1363,10 @@ void CMyPhoneDlg::OnClose()
 	//		AfxMessageBox("Video output sinchronization failed!");
 	//	}
 	if(m_endpoint.HasConnection(m_token))
+	{
 		m_endpoint.ClearCall(m_token);
+//		PThread::Sleep(1500);
+	}
 	//	ReleaseMutex(hCloseMutex);
 	// Restore old volume
 	//	waveOutSetVolume(0, m_sliderVolume.GetPos());	

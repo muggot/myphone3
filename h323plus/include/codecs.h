@@ -864,9 +864,8 @@ class H323FramedAudioCodec : public H323AudioCodec
     PShortArray sampleBuffer;
     unsigned    bytesPerFrame;
     unsigned    sampleRate;
-    unsigned long lastReadTime, readPerSecond; // lame values to calc sampleRate added by kay27
-    float currVolCoef;
-    int agc;
+    float       currVolCoef;
+    int         agc;
 };
 
 
