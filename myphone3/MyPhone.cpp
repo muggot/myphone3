@@ -157,3 +157,19 @@ PString convert_cp1251_to_utf8(const PString & str)
     return str;
   }
 }
+
+PString convert_utf8_to_LPCTSTR(const std::string & utf8str)
+{
+	std::wstring wstr;
+	int wsize = MultiByteToWideChar(CP_UTF8, 0, utf8str.c_str(), -1, 0, 0);
+	if(wsize > 0)
+	{
+		std::vector<wchar_t> buffer(wsize);
+		MultiByteToWideChar(CP_UTF8, 0, utf8str.c_str(), -1, &buffer[0], wsize);
+		wstr.assign(buffer.begin(), buffer.end() - 1);
+	}
+	int size = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), int(wstr.length() + 1), 0, 0, 0, 0);
+    std::string str(size, 0);
+    WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), int(wstr.length() + 1), &str[0], size, 0, 0);
+    return str;
+}

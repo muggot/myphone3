@@ -2362,8 +2362,12 @@ CString CMyPhoneDlg::FindContactName(const H323Connection & connection)
 	PStringList allList = adrbook.GetSections();
 	for(int ind=0; ind<allList.GetSize(); ind++)
 		if(adrbook.GetString(allList[ind], "Address", "-noaddress-")==(LPCTSTR)callAdr)
-			return (LPCTSTR)adrbook.GetString(allList[ind], "Name", (LPCTSTR)callName);
-		return callName;
+		{
+		  callName = (LPCTSTR)adrbook.GetString(allList[ind], "Name", (LPCTSTR)callName);
+		  break;
+		}
+	callName = (const char *)convert_utf8_to_LPCTSTR((const char *)callName);
+	return callName;
 }
 
 ////////////////////////////////////////////////////////////////////////////

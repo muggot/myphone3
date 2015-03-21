@@ -342,7 +342,8 @@ BOOL CMyPhoneEndPoint::OnIncomingCall(H323Connection & connection,
 void CMyPhoneEndPoint::OnConnectionEstablished(H323Connection & connection, const PString & token)
 {
 	m_dialog->m_token = token;
-	CString goodName = (LPCTSTR)connection.GetRemotePartyName();
+	CString _goodName = (LPCTSTR)connection.GetRemotePartyName();
+	CString goodName = (const char *)convert_utf8_to_LPCTSTR((const char *)_goodName);
 	// store last number in combobox
 	if(!connection.HadAnsweredCall())
 	{

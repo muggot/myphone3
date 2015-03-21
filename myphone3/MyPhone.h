@@ -43,6 +43,7 @@
 #include <ptlib/sound.h>
 
 PString convert_cp1251_to_utf8(const PString & str);
+PString convert_utf8_to_LPCTSTR(const std::string & utf8str);
 
 //#include "Multilang.h"		// Languages
 /////////////////////////////////////////////////////////////////////////////
