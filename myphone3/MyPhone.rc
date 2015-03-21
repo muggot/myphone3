@@ -119,6 +119,7 @@ BEGIN
     IDS_CSDOWNSTR           "Вниз"
     IDS_USERSTR             "Пользователь"
     IDS_UNAMESTR            "Имя пользователя:"
+    IDS_E164NUMBERSTR       "Номер E.164:"
     IDS_NETWORKSTR          "Сеть"
     IDS_BANDSTR             "Тип сети:"
     IDS_KBSSTR              "Кб/с"
@@ -347,19 +348,21 @@ EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
 CAPTION "General"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "User",IDC_USERSTATIC,5,2,203,29
+    GROUPBOX        "User",IDC_USERSTATIC,5,2,203,41
     LTEXT           "User Alias:",IDC_UNAMESTATIC,11,13,71,8,0,WS_EX_RIGHT
     EDITTEXT        IDC_USERNAME_EDIT,86,11,79,12,ES_AUTOHSCROLL
-    CONTROL         "Auto-Answer",IDC_AUTO_ANSWER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,35,110,8
-    CONTROL         "Auto Mute",IDC_AUTO_MUTE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,49,130,8
-    CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,63,112,8
-    CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,76,114,8
-    CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,90,115,8
-    CONTROL         "Strict Single Line",IDC_STRICT_SINGLE_LINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,104,116,8
-    LTEXT           "Ring Sound File:",IDC_RINGSTATIC,5,128,53,8
-    EDITTEXT        IDC_RING_FILE_EDIT,60,127,119,13,ES_AUTOHSCROLL
-    PUSHBUTTON      "...",IDC_RING_FILE_BROWSE,179,127,14,13
-    PUSHBUTTON      ">",IDC_RING_FILE_PLAY,194,127,14,13
+    LTEXT           "E.164:",IDC_E164NUMBERSTATIC,11,25,71,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_E164NUMBER_EDIT,86,23,79,12,ES_AUTOHSCROLL
+    CONTROL         "Auto-Answer",IDC_AUTO_ANSWER_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,47,110,8
+    CONTROL         "Auto Mute",IDC_AUTO_MUTE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,61,130,8
+    CONTROL         "DTMF as String",IDC_DTMF_AS_STRING_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,75,112,8
+    CONTROL         "Disable H245 Tunneling",IDC_DISABLE_H242_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,88,114,8
+    CONTROL         "Disable Fast-Start",IDC_DISABLE_FASTSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,102,115,8
+    CONTROL         "Strict Single Line",IDC_STRICT_SINGLE_LINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,116,116,8
+    LTEXT           "Ring Sound File:",IDC_RINGSTATIC,5,140,53,8
+    EDITTEXT        IDC_RING_FILE_EDIT,60,139,119,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_RING_FILE_BROWSE,179,139,14,13
+    PUSHBUTTON      ">",IDC_RING_FILE_PLAY,194,139,14,13
 END
 
 IDD_VIDEOPAGE DIALOGEX 0, 0, 213, 169
@@ -969,6 +972,7 @@ BEGIN
     IDS_CSDOWNSTR           "Down"
     IDS_USERSTR             "User"
     IDS_UNAMESTR            "User Name:"
+    IDS_E164NUMBERSTR       "Number E.164:"
     IDS_NETWORKSTR          "Network"
     IDS_BANDSTR             "Bandwidth:"
     IDS_KBSSTR              "Kb/s"
@@ -1170,6 +1174,7 @@ BEGIN
     IDS_CSDOWNSTR           "Bas"
     IDS_USERSTR             "Utilisateur"
     IDS_UNAMESTR            "Nom d'utilisateur :"
+    IDS_E164NUMBERSTR       "Number E.164:"
     IDS_NETWORKSTR          "REseau"
     IDS_BANDSTR             "Bande passante :"
     IDS_KBSSTR              "Kb/s"
@@ -1358,6 +1363,7 @@ BEGIN
     IDS_CSDOWNSTR           "Giu"
     IDS_USERSTR             "Utente"
     IDS_UNAMESTR            "Nome Utente:"
+    IDS_E164NUMBERSTR       "Number E.164:"
     IDS_NETWORKSTR          "Rete"
     IDS_BANDSTR             "Banda:"
     IDS_KBSSTR              "Kb/s"

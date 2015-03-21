@@ -81,6 +81,7 @@ const char DtmfAsStringConfigKey[] = "DtmfAsString";
 const char AutoAnswerConfigKey[] = "AutoAnswer";
 const char AutoMuteConfigKey[] = "AutoMute";
 const char UsernameConfigKey[] = "Username";
+const char E164NumberConfigKey[] = "E.164 Number";
 //const char AliasConfigKey[] = "Alias %d";
 const char AliasConfigKey[] = "UserAliases";
 const char UseGatekeeperConfigKey[] = "UseGatekeeper";
@@ -927,9 +928,12 @@ void CMyPhoneDlg::OnSettings()
 	
 	CGeneralPage genPage;
 	Dlg.AddPage(&genPage);
-	
-	genPage.m_UserName = (const char*)(m_endpoint.GetLocalUserName());
-	
+
+	genPage.m_UserName = (const char*)(config.GetString(UsernameConfigKey));
+	if(genPage.m_UserName.IsEmpty())
+	  genPage.m_UserName = "myphone";
+	genPage.m_E164Number = (const char*)(config.GetString(E164NumberConfigKey));
+
 	genPage.m_RingSoundFile = (const char*) ringSoundFile;
 	
 	genPage.m_AutoAnswer = m_endpoint.m_fAutoAnswer;
@@ -968,10 +972,18 @@ void CMyPhoneDlg::OnSettings()
 	
 	gatePage.m_gkdiscover = config.GetInteger(DiscoverGatekeeperConfigKey, defGKdescover);
 	//	gatePage.m_DiscoverGateway = config.GetBoolean(DiscoverGatewayConfigKey, gatePage.m_GatewayHost.IsEmpty());
-	
-	const PStringList aliases = m_endpoint.GetAliasNames();
-	for (i = 1; i < aliases.GetSize(); i++)
-		gatePage.m_AliasList.Add(CString((const char*)(aliases[i])));
+
+
+	CString alias, aliases;
+	aliases = CString((const char *)config.GetString(AliasConfigKey, _T("")));
+	aliases.TrimLeft();
+	int iPos=0;
+	while ((iPos = aliases.Find(_T("|")))>0)  // loading user aliases
+	{
+	  alias = aliases.Left(iPos);
+	  aliases.Delete(0,iPos+1);
+	  gatePage.m_AliasList.Add(alias);
+	}
 	
 	CAudioPage audioPage;
 	Dlg.AddPage(&audioPage);
@@ -1216,16 +1228,28 @@ void CMyPhoneDlg::OnSettings()
 	
 	config.SetInteger(DiscoverGatekeeperConfigKey, gatePage.m_gkdiscover);
 	//	config.SetBoolean(DiscoverGatewayConfigKey, gatePage.m_DiscoverGateway);
-	
-	m_endpoint.SetLocalUserName(PString(genPage.m_UserName));
-	config.SetString(UsernameConfigKey, PString((LPCTSTR)(genPage.m_UserName)));
-	
+
+	config.SetString(UsernameConfigKey, PString((LPCTSTR)genPage.m_UserName));
+	PString username = (LPCTSTR)genPage.m_UserName;
+	username = convert_cp1251_to_utf8(username);
+	m_endpoint.SetLocalUserName(username);
+
+	config.SetString(E164NumberConfigKey, PString((LPCTSTR)genPage.m_E164Number));
+	PString number = (LPCTSTR)genPage.m_E164Number;
+	if(!number.IsEmpty())
+	{
+	  number = convert_cp1251_to_utf8(number);
+	  m_endpoint.AddAliasName(number);
+	}
+
 	CString strAlias;
 	config.DeleteKey(AliasConfigKey);
 	for (i = 0; i < gatePage.m_AliasList.GetSize(); i++) 
 	{
-		strAlias += gatePage.m_AliasList.GetAt(i)+"|";
-		m_endpoint.AddAliasName((LPCTSTR) gatePage.m_AliasList.GetAt(i));
+	  strAlias += gatePage.m_AliasList.GetAt(i)+"|";
+	  PString alias = (LPCTSTR)gatePage.m_AliasList.GetAt(i);
+	  alias = convert_cp1251_to_utf8(alias);
+	  m_endpoint.AddAliasName(alias);
 	}
 	config.SetString(AliasConfigKey, (LPCTSTR) strAlias);
 	

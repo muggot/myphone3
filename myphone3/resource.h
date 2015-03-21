@@ -379,6 +379,9 @@
 #define IDC_CAM_SETUP_BUTTON            1167
 #define IDC_CS_TOP_BUTTON               1168
 #define IDC_CS_BOTTOM_BUTTON            1169
+#define IDC_E164NUMBER_EDIT             1170
+#define IDC_E164NUMBERSTATIC            1171
+#define IDS_E164NUMBERSTR               1172
 
 #define ID_MSETTINGS                    32771
 #define ID_MABOUT                       32772

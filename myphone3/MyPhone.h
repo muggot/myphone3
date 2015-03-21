@@ -42,6 +42,8 @@
 #include <ptlib/pprocess.h>
 #include <ptlib/sound.h>
 
+PString convert_cp1251_to_utf8(const PString & str);
+
 //#include "Multilang.h"		// Languages
 /////////////////////////////////////////////////////////////////////////////
 // Some Globals:

@@ -70,6 +70,7 @@ const char StrictSingleLineConfigKey[] = "SingleLine";
 const char IpTosConfigKey[] = "IpTOS";
 const char UserInputModeConfigKey[] = "UserInputMode";
 const char UsernameConfigKey[] = "Username";
+const char E164NumberConfigKey[] = "E.164 Number";
 
 const char AliasConfigKey[] = "UserAliases";
 
@@ -189,6 +190,35 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 	isIncomingCall = FALSE;
 
 	config.SetDefaultSection("Parameters"); //!@#
+
+	PString username = config.GetString(UsernameConfigKey);
+	if(username.IsEmpty())
+	{
+	  username = "myphone";
+	  config.SetString(UsernameConfigKey, username);
+	}
+	username = convert_cp1251_to_utf8(username);
+	SetLocalUserName(username);
+
+	PString number = config.GetString(E164NumberConfigKey);
+	if(!number.IsEmpty())
+	{
+	  number = convert_cp1251_to_utf8(number);
+	  AddAliasName(number);
+	}
+
+	CString aliases;
+	aliases = CString((const char *)config.GetString(AliasConfigKey, _T("")));
+	aliases.TrimLeft();
+	int iPos=0;
+	while ((iPos = aliases.Find(_T("|")))>0)  // loading user aliases
+	{
+	  PString alias = (LPCTSTR)aliases.Left(iPos);
+	  alias = convert_cp1251_to_utf8(alias);
+	  AddAliasName(alias);
+	  aliases.Delete(0,iPos+1);
+	}
+
 	SetAudioJitterDelay(50, config.GetInteger(JitterConfigKey, GetMaxAudioJitterDelay()));
 	SetSoundChannelBufferDepth(config.GetInteger(BufferCountConfigKey, GetSoundChannelBufferDepth()));
 	
@@ -261,7 +291,7 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
     SetSilenceDetectionMode(m_fSilenceOn
 		? H323AudioCodec::AdaptiveSilenceDetection
 		: H323AudioCodec::NoSilenceDetection);
-    SetLocalUserName(config.GetString(UsernameConfigKey, GetLocalUserName()));
+
     SetInitialBandwidth((unsigned)(config.GetReal(BandwidthConfigKey, 10000)*20));
     SetRtpIpTypeofService(config.GetInteger(IpTosConfigKey, GetRtpIpTypeofService()));
 	
@@ -272,18 +302,7 @@ BOOL CMyPhoneEndPoint::Initialise(CMyPhoneDlg *dlg, CVideoDlg *vdlg)
 	
 	m_fAutoAnswer = config.GetBoolean(AutoAnswerConfigKey, false);
 	m_fAutoMute = config.GetBoolean(AutoMuteConfigKey, false);
-	
-    CString alias, aliases;
-	aliases = CString((const char *)config.GetString(AliasConfigKey, _T("")));
-	aliases.TrimLeft();
-	int iPos=0;
-    while ((iPos = aliases.Find(_T("|")))>0)  // loading user aliases
-	{
-		alias = aliases.Left(iPos);
-		aliases.Delete(0,iPos+1);
-		AddAliasName((LPCTSTR)alias);
-	}
-	
+
 	// The order in which capabilities are added to the capability table
 	// determines which one is selected by default.
 	LoadCapabilities();

@@ -45,6 +45,7 @@ CGeneralPage::CGeneralPage() : CPropertyPage(CGeneralPage::IDD)
 {
 	//{{AFX_DATA_INIT(CGeneralPage)
 	m_UserName = _T("");
+	m_E164Number = _T("");
 	m_RingSoundFile = _T("");
 	m_AutoAnswer = FALSE;
 	m_AutoMute = FALSE;
@@ -69,6 +70,7 @@ void CGeneralPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_RING_FILE_EDIT, m_RingFileCtrl);
 	DDX_Control(pDX, IDC_RING_FILE_PLAY, m_PlayBtn);
 	DDX_Text(pDX, IDC_USERNAME_EDIT, m_UserName);
+	DDX_Text(pDX, IDC_E164NUMBER_EDIT, m_E164Number);
 	DDX_Text(pDX, IDC_RING_FILE_EDIT, m_RingSoundFile);
 	DDX_Check(pDX, IDC_AUTO_ANSWER_CHECK, m_AutoAnswer);
 	DDX_Check(pDX, IDC_AUTO_MUTE_CHECK, m_AutoMute);
@@ -152,6 +154,7 @@ void CGeneralPage::TranslateDlg()
 {	// changing window languge
 	GetDlgItem(IDC_USERSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_USERSTR));
 	GetDlgItem(IDC_UNAMESTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_UNAMESTR));
+	GetDlgItem(IDC_E164NUMBERSTATIC)->SetWindowText((LPCTSTR)LoadStringLang(IDS_E164NUMBERSTR));
 	GetDlgItem(IDC_AUTO_ANSWER_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_AANSWERSTR));
 	GetDlgItem(IDC_AUTO_MUTE_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_AUTOMUTESTR));
 	GetDlgItem(IDC_DTMF_AS_STRING_CHECK)->SetWindowText((LPCTSTR)LoadStringLang(IDS_DTMFSTRSTR));

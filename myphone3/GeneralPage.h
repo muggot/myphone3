@@ -50,6 +50,7 @@ public:
 	CEdit	m_RingFileCtrl;
 	CButton	m_PlayBtn;
 	CString		m_UserName;
+	CString		m_E164Number;
 	CString	m_RingSoundFile;
 	BOOL	m_AutoAnswer;
 	BOOL	m_AutoMute;
